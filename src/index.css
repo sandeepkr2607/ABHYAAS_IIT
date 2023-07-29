@@ -10,15 +10,15 @@ body {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f4f4f4;
+  background: rgba(255, 246, 206, 1);
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 246, 206, 1);
+  background: rgba(255, 206, 77, 1);
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 206, 77, 1);
+  background: rgba(255, 145, 76, 1);
 }

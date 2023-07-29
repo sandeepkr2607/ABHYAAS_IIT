@@ -1,3 +1,4 @@
+import React from "react";
 import css from "./AboutUs.module.css";
 import about_img from "../../assets/about_img.png";
 

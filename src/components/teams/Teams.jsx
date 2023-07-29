@@ -1,3 +1,4 @@
+import React from "react";
 import css from "./Teams.module.css";
 import hod1 from "../../assets/hod1.png";
 import hod2 from "../../assets/hod2.png";

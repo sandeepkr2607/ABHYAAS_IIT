@@ -1,3 +1,4 @@
+import React from "react";
 import css from "./Facilities.module.css";
 import gallery1 from "../../assets/gallery1.png";
 import gallery2 from "../../assets/gallery2.png";

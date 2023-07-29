@@ -1,3 +1,4 @@
+import React from "react";
 import css from "./Footer.module.css";
 import yt from "../../assets/yt.png";
 import fb from "../../assets/fb.png";

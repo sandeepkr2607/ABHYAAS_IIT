@@ -1,3 +1,4 @@
+import React from "react";
 import css from "./Admission.module.css";
 import admission_img from "../../assets/admission_img.png";
 import admission_bg from "../../assets/admission_bg.png";

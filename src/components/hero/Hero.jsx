@@ -1,3 +1,4 @@
+import React from "react";
 import css from "./Hero.module.css";
 import hero_bg from "../../assets/hero_bg.png";
 import hero_img from "../../assets/hero_img.png";

@@ -1,4 +1,4 @@
-.header {
+/* .header {
   display: flex;
   flex-direction: column;
   position: sticky;
@@ -30,11 +30,6 @@
   padding: 10px 0 15px 0;
   background-color: rgba(255, 246, 206, 1);
 }
-
-/* #header_bottom.sticky {
-  position: fixed;
-  top: 0;
-} */
 
 .left {
   display: flex;
@@ -104,4 +99,129 @@
   color: rgba(255, 145, 76, 1);
   background-color: rgba(255, 255, 255, 1);
   border: 2px solid rgba(255, 145, 76, 1);
+} */
+
+.header {
+  display: flex;
+  flex-direction: column;
+}
+
+.header_top {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: rgba(6, 6, 6, 1);
+  padding: 12px 0;
+}
+
+.top_link {
+  font-family: Poppins;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16px;
+  color: rgba(244, 244, 246, 1);
+  cursor: pointer;
+}
+
+.header_bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 10px 0 15px 0;
+  background-color: rgba(255, 246, 206, 1);
+}
+
+.header_bottom.sticky {
+  position: fixed;
+  top: 0;
+  z-index: 99;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 2.3;
+}
+
+.logo {
+  width: 80px;
+  height: 70.5px;
+  cursor: pointer;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex: 6.7;
+}
+
+.para {
+  font-family: Inter;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0.5px;
+  text-align: center;
+  color: rgba(1, 31, 68, 1);
+  cursor: pointer;
+}
+
+.para:hover {
+  font-family: Inter;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: 0.5px;
+  text-align: center;
+  cursor: pointer;
+  color: rgba(152, 34, 34, 1);
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 3;
+}
+
+.btn {
+  font-family: Inter;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: 0.5px;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 20px;
+  color: rgba(255, 255, 255, 1);
+  text-align: center;
+  background-color: rgba(255, 145, 76, 1);
+  cursor: pointer;
+}
+
+.btn:hover {
+  color: rgba(255, 145, 76, 1);
+  background-color: rgba(255, 255, 255, 1);
+  border: 2px solid rgba(255, 145, 76, 1);
+}
+
+.header_bottom.sticky {
+  position: fixed;
+  top: 0; /* Stick to the top of the viewport */
+  z-index: 99;
+  width: 100%; /* Span the full width of the viewport */
+}
+
+.placeholder {
+  /* Remove the height property */
+}
+
+.header.sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 99;
 }

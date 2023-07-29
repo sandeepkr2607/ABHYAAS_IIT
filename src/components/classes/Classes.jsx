@@ -1,3 +1,4 @@
+import React from "react";
 import css from "./Classes.module.css";
 import icon from "../../assets/icon.png";
 
