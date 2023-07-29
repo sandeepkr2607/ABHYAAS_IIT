@@ -1,0 +1,74 @@
+.classes {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  width: 85%;
+  margin: auto;
+  margin-bottom: 40px;
+  margin-top: 30px;
+}
+
+.heading {
+  font-family: Inter;
+  font-size: 29px;
+  font-weight: 700;
+  line-height: 40px;
+  letter-spacing: -0.20000000298023224px;
+  text-align: left;
+  color: rgba(6, 6, 6, 1);
+}
+
+.cards {
+  display: flex;
+  width: 100%;
+  gap: 50px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 392px;
+  height: 358px;
+  border-radius: 10px;
+  background-color: rgba(255, 246, 206, 1);
+}
+
+.card_img {
+  width: 90px;
+  height: 90px;
+}
+
+.card_para {
+  font-family: Poppins;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 28px;
+  letter-spacing: 0px;
+  text-align: center;
+  max-width: 300px;
+  color: rgba(6, 6, 6, 1);
+}
+
+.color_text {
+  color: rgba(152, 34, 34, 1);
+}
+
+.btn {
+  font-family: Inter;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: 0.5px;
+  text-align: center;
+  color: rgba(255, 255, 255, 1);
+  padding: 12px 35px;
+  border-radius: 30px;
+  outline: none;
+  border: none;
+  background-color: rgba(255, 145, 76, 1);
+}
