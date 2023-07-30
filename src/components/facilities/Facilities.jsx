@@ -12,7 +12,7 @@ const Facilities = () => {
     <div className={css.facilities}>
       <h3 className={css.heading}>Coaching Facilities</h3>
       <p className={css.para}>
-        Our State-Of-The-Art Facilities, Including Classrooms, The Library, And
+        {/* Our State-Of-The-Art Facilities, Including Classrooms, The Library, And
         The Computer Lab , Are Designed To Provide Students With A Comfortable
         And Conducive Environment For Learning. Our Classrooms Are Equipped With
         Projectors And Audio Systems, Making Learning More Engaging And
@@ -20,7 +20,7 @@ const Facilities = () => {
         Including Textbooks, Reference Books, And Journals, To Help Students In
         Their Academic Pursuits. Our Computer Lab Is Equipped With The Latest
         Technology, Providing Students With Access To Online Resources And Tools
-        To Aid Their Learning.
+        To Aid Their Learning. */}
       </p>
       <div className={css.img_gallery}>
         <div className={css.left}>

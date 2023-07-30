@@ -14,13 +14,13 @@ const AboutUs = () => {
           AbhyaasIIT is a foundation for inspiring minds
         </h3>
         <p className={css.para_2}>
-          AbhyaasIIT is here to bring quality education to Tier2 and Tier3 cities, 
-          we as a coaching institute are committed to provide students with a 
-          strong foundation in core concepts and basic problem-solving skills through our 
-          "ThinkIIT" modules. Our Team of IITian mentors has created a comprehensive content 
-          for JEE and NEET Exams, which is complemented by Test Series and Daily Practice 
-          Papers(DPPs). Our goal is to create value-based career education, resources and 
-          individual attention and to nurture ethical and responsible career future. 
+          AbhyaasIIT aims to bring quality coaching education to Tier2 and Tier3 cities, 
+          we are a coaching institute which is committed to provide students with a 
+          strong foundation in core concepts and problem-solving through our 
+          "ThinkIIT" modules. Our dedicated Team of "IITian mentors" has created comprehensive content 
+          for JEE and NEET Exams, which will be complemented by AbhyaasIIT Test Series and Daily Practice 
+          Papers(DPPs). We intend to create quality career education, resources and 
+          individual attention and to nurture competent and responsible career future. 
           With our structured and rigorous training module, we empower students to excel 
           and achieve their dreams.
           {/* Bringing quality education to Tier2 and Tier3 cities, we are a
