@@ -85,6 +85,8 @@
 .card:hover .btn {
   padding: 16px 70px;
   font-size: 18px;
-  box-shadow: 0 6px 12px rgba(255, 145, 76, 1);
-  /* box-shadow: rgba(255, 145, 76, 1) 0px 5px 15px; */
+  /* box-shadow: 0 6px 12px rgba(255, 145, 76, 1);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); */
+  box-shadow: rgba(6, 6, 6, 1) 0px 1px 2px 0px,
+    rgba(255, 145, 76, 1) 0px 2px 6px 2px;
 }

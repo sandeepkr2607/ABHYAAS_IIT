@@ -10,6 +10,7 @@ import Facilities from "../../components/facilities/Facilities";
 import Teams from "../../components/teams/Teams";
 import CoursesFees from "../../components/courses&fees/CoursesFees";
 import Carousel from "../../components/carousel/Carousel";
+import Slick from "../../components/slick/Slick";
 
 const Home = () => {
   return (
@@ -18,8 +19,9 @@ const Home = () => {
       <Hero />
       <Classes />
       <AboutUs />
-      {/* <Courses /> */}
-      <CoursesFees />
+      {/* <Courses />
+      <CoursesFees /> */}
+      <Slick />
       <Admission />
       <Facilities />
       <Teams />
