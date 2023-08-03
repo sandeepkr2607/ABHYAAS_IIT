@@ -69,6 +69,7 @@
 import React, { useEffect, useState } from "react";
 import css from "./Header.module.css";
 import logo from "../../assets/logo.png";
+import { Link } from "react-scroll";
 
 const Header = () => {
   const [isSticky, setIsSticky] = useState(false);
@@ -90,12 +91,16 @@ const Header = () => {
   }, []);
 
   return (
-    <div className={css.header}>
+    <div className={css.header} id="/">
       <div className={css.header_top}>
-        <span className={css.top_link}>+91-8854228785</span>
-        <span className={css.top_link}>abhyaasiit1234@gmail.com</span>
-        <span className={css.top_link}>Online admission form</span>
-        <span className={css.top_link}>online student counselling</span>
+        <a href="tel:+91 6005787874" style={{ textDecoration: "none" }}>
+          <span className={css.top_link}>+91-6005787874</span>
+        </a>
+        <a href="mailto:info@abhyaasiit.com" style={{ textDecoration: "none" }}>
+          <span className={css.top_link}>info@abhyaasiit.com</span>
+        </a>
+        {/* <span className={css.top_link}>Online admission form</span> */}
+        {/* <span className={css.top_link}>online student counselling</span> */}
       </div>
       <div
         className={
@@ -106,15 +111,72 @@ const Header = () => {
           <img src={logo} alt="logo_img" className={css.logo} />
         </div>
         <div className={css.center}>
-          <p className={css.para}>HOME</p>
-          <p className={css.para}>ABOUT US</p>
-          <p className={css.para}>COURSES</p>
-          <p className={css.para}>FACULTY</p>
-          <p className={css.para}>ADMISSIONS</p>
-          <p className={css.para}>FACILITIES</p>
+          <Link
+            to="/"
+            activeClass="active"
+            spy={true}
+            smooth={true}
+            offset={-40}
+            duration={500}>
+            <p className={css.para}>HOME</p>
+          </Link>
+
+          <Link
+            to="about-us"
+            activeClass="active"
+            spy={true}
+            smooth={true}
+            offset={-130}
+            duration={500}>
+            <p className={css.para}>ABOUT US</p>
+          </Link>
+          <Link
+            to="courses"
+            activeClass="active"
+            spy={true}
+            smooth={true}
+            offset={-80}
+            duration={500}>
+            <p className={css.para}>COURSES</p>
+          </Link>
+          <Link
+            to="teams"
+            activeClass="active"
+            spy={true}
+            smooth={true}
+            offset={-40}
+            duration={500}>
+            <p className={css.para}>FACULTY</p>
+          </Link>
+          <Link
+            to="admissions"
+            activeClass="active"
+            spy={true}
+            smooth={true}
+            offset={-40}
+            duration={500}>
+            <p className={css.para}>ADMISSIONS</p>
+          </Link>
+          <Link
+            to="facilities"
+            activeClass="active"
+            spy={true}
+            smooth={true}
+            offset={-60}
+            duration={500}>
+            <p className={css.para}>FACILITIES</p>
+          </Link>
         </div>
         <div className={css.right}>
-          <button className={css.btn}>CONTACT US</button>
+          <Link
+            to="footer"
+            activeClass="active"
+            spy={true}
+            smooth={true}
+            offset={-40}
+            duration={500}>
+            <button className={css.btn}>CONTACT US</button>
+          </Link>
         </div>
       </div>
     </div>

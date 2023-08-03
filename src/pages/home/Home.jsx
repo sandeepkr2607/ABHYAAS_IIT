@@ -8,8 +8,8 @@ import Hero from "../../components/hero/Hero";
 import Admission from "../../components/admission/Admission";
 import Facilities from "../../components/facilities/Facilities";
 import Teams from "../../components/teams/Teams";
-// import Carousel from "../../components/swiper/Carousel";
 import CoursesFees from "../../components/courses&fees/CoursesFees";
+import Carousel from "../../components/carousel/Carousel";
 
 const Home = () => {
   return (
@@ -19,12 +19,12 @@ const Home = () => {
       <Classes />
       <AboutUs />
       {/* <Courses /> */}
-      {/* <Carousel /> */}
       <CoursesFees />
       <Admission />
       <Facilities />
       <Teams />
       <Footer />
+      {/* <Carousel /> */}
     </>
   );
 };

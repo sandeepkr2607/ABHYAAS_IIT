@@ -27,7 +27,6 @@
   outline: none;
   background-color: transparent;
   width: 80px;
-  /* height: 100%; */
   position: absolute;
   cursor: pointer;
   z-index: 2;
@@ -35,7 +34,6 @@
 
 .next_btn {
   right: 100px;
-  /* top: 50%; */
 }
 
 .prev_btn {

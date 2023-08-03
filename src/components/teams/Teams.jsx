@@ -16,7 +16,7 @@ import hod_link from "../../assets/hod_link.png";
 
 const Teams = () => {
   return (
-    <div className={css.team}>
+    <div className={css.team} id="teams">
       <div className={css.top}>
         <h5 className={css.heading1}>OUR TEAM</h5>
         <h2 className={css.heading2}>Our Valuable team members</h2>
@@ -25,37 +25,57 @@ const Teams = () => {
           <div className={css.card}>
             <img src={hod1} alt="" className={css.card_img} />
             <div className={css.details}>
-              <p className={css.post}>CEO - FOUNDER</p>
-              <p className={css.name}>Don't Know</p>
+              <p className={css.post}>MATHS</p>
+              <p className={css.name}>Prachin Chahar</p>
               <p className={css.quotes}>
-                Karma Kiyea Ja Fal Ki Chinta Mat Karna Insan, Jaisa Karma Karega
-                Waisa Fal Dega Bhagwan
+                IIT BHU 2016 <br />
+                IISC Bangalore 2020
+                <br />5 years experience
               </p>
-              <img src={hod_link} alt="" className={css.link} />
+              <a
+                className={css.img_links}
+                target="_blank"
+                rel="noreferrer"
+                href="https://www.linkedin.com/in/prachin-chahar-a7058595">
+                <img src={hod_link} alt="" className={css.link} />
+              </a>
             </div>
           </div>
           <div className={css.card}>
             <img src={hod2} alt="" className={css.card_img} />
             <div className={css.details}>
-              <p className={css.post}>CEO - FOUNDER</p>
+              <p className={css.post}>PHYSICS</p>
               <p className={css.name}>Sunit Tiwari</p>
               <p className={css.quotes}>
-                Karma Kiyea Ja Fal Ki Chinta Mat Karna Insan, Jaisa Karma Karega
-                Waisa Fal Dega Bhagwan
+                IIT BHU 2016 <br />
+                AIR 33 UPSC CAPF 2019
+                <br />2 years experience
               </p>
-              <img src={hod_link} alt="" className={css.link} />
+              <a
+                className={css.img_links}
+                target="_blank"
+                rel="noreferrer"
+                href="https://www.linkedin.com/in/sunit-kumar-69254687">
+                <img src={hod_link} alt="" className={css.link} />
+              </a>
             </div>
           </div>
           <div className={css.card}>
             <img src={hod3} alt="" className={css.card_img} />
             <div className={css.details}>
-              <p className={css.post}>CEO - FOUNDER</p>
+              <p className={css.post}>CHEMISTRY</p>
               <p className={css.name}>Chetan Swaroop</p>
               <p className={css.quotes}>
-                Karma Kiyea Ja Fal Ki Chinta Mat Karna Insan, Jaisa Karma Karega
-                Waisa Fal Dega Bhagwan
+                IIT BHU 2016 <br />
+                former Asst. Manager CIL <br />6 Years experience
               </p>
-              <img src={hod_link} alt="" className={css.link} />
+              <a
+                className={css.img_links}
+                target="_blank"
+                rel="noreferrer"
+                href="https://www.linkedin.com/in/chetan-swaroop-784482116">
+                <img src={hod_link} alt="" className={css.link} />
+              </a>
             </div>
           </div>
         </div>
@@ -68,6 +88,7 @@ const Teams = () => {
             <div className={css.bottom_details}>
               <p className={css.branch}>MATHS</p>
               <p className={css.bottom_name}>Pradhyumn Singh</p>
+              <p className={css.institute}>IIT BHU 2016</p>
             </div>
           </div>
           <div className={css.bottom_card}>
@@ -75,6 +96,7 @@ const Teams = () => {
             <div className={css.bottom_details}>
               <p className={css.branch}>MATHS</p>
               <p className={css.bottom_name}>Ankur Satyapriye</p>
+              <p className={css.institute}>IIT BHU 2016</p>
             </div>
           </div>
           <div className={css.bottom_card}>
@@ -82,6 +104,7 @@ const Teams = () => {
             <div className={css.bottom_details}>
               <p className={css.branch}>PHYSICS</p>
               <p className={css.bottom_name}>Shivam Mehta</p>
+              <p className={css.institute}>IIT BHU 2016</p>
             </div>
           </div>
           <div className={css.bottom_card}>
@@ -89,6 +112,7 @@ const Teams = () => {
             <div className={css.bottom_details}>
               <p className={css.branch}>MATHS</p>
               <p className={css.bottom_name}>Hirdesh Patel</p>
+              <p className={css.institute}>IIT BHU 2016</p>
             </div>
           </div>
           <div className={css.bottom_card}>
@@ -96,13 +120,15 @@ const Teams = () => {
             <div className={css.bottom_details}>
               <p className={css.branch}>PHYSICS</p>
               <p className={css.bottom_name}>Mayank Mishra</p>
+              <p className={css.institute}>IIT BHU 2016</p>
             </div>
           </div>
           <div className={css.bottom_card}>
             <img src={men6} alt="" className={css.bottom_img} />
             <div className={css.bottom_details}>
               <p className={css.branch}>PHYSICS</p>
-              <p className={css.bottom_name}>Aswini Singh Tomer</p>
+              <p className={css.bottom_name}>Ashwini Singh Tomar</p>
+              <p className={css.institute}>IIT BHU 2016</p>
             </div>
           </div>
           <div className={css.bottom_card}>
@@ -110,6 +136,7 @@ const Teams = () => {
             <div className={css.bottom_details}>
               <p className={css.branch}>CHEMISTRY</p>
               <p className={css.bottom_name}>Chandan Kumar Yadav</p>
+              <p className={css.institute}>IIT BHU 2016</p>
             </div>
           </div>
           <div className={css.bottom_card}>
@@ -117,6 +144,7 @@ const Teams = () => {
             <div className={css.bottom_details}>
               <p className={css.branch}>CHEMISTRY</p>
               <p className={css.bottom_name}>Sagar Singh</p>
+              <p className={css.institute}>IIT BHU 2016</p>
             </div>
           </div>
           <div className={css.bottom_card}>
@@ -124,6 +152,7 @@ const Teams = () => {
             <div className={css.bottom_details}>
               <p className={css.branch}>MATHS</p>
               <p className={css.bottom_name}>Alok Singhal</p>
+              <p className={css.institute}>IIT BHU 2016</p>
             </div>
           </div>
         </div>

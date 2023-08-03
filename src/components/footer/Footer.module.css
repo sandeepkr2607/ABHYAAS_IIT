@@ -1,6 +1,5 @@
 .footer {
   display: flex;
-  align-items: center;
   flex-direction: column;
   background-color: rgba(51, 51, 51, 1);
   gap: 40px;
@@ -131,6 +130,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
+  justify-content: space-evenly;
   gap: 40px;
   flex: 8;
   margin-right: 100px;

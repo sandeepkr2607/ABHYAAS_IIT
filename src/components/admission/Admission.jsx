@@ -12,7 +12,7 @@ import nstse from "../../assets/nstse.png";
 
 const Admission = () => {
   return (
-    <div className={css.admission}>
+    <div className={css.admission} id="admissions">
       <div className={css.top}>
         <div className={css.left}>
           <h2 className={css.heading}>How To Apply For Admission</h2>

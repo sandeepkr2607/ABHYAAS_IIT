@@ -7,7 +7,7 @@ import linkdin from "../../assets/linkdin.png";
 
 const Footer = () => {
   return (
-    <div className={css.footer}>
+    <div className={css.footer} id="footer">
       <div className={css.top}>
         <div className={css.left}>
           <p className={css.Follow_us}>Follow us:</p>
@@ -43,9 +43,7 @@ const Footer = () => {
           </div>
           <div className={css.line}></div>
           <p className={css.newsletter}>Newsletter</p>
-          <p className={css.left_para}>
-            Get Officevibe content straight to your inbox.
-          </p>
+          <p className={css.left_para}>Schedule a meeting with our mentor.</p>
           <p className={css.email}>Email address*</p>
           <input
             type="email"
@@ -71,18 +69,18 @@ const Footer = () => {
             <p className={css.link}>Boards Special</p>
             <p className={css.link}>Brain Gym</p>
           </div>
-          <div className={css.section}>
+          {/* <div className={css.section}>
             <h4 className={css.title}>STUDENT's TALK</h4>
             <p className={css.link}>abhyaasiit Toppers</p>
             <p className={css.link}>Testimonials</p>
             <p className={css.link}>Alumni</p>
-          </div>
-          <div className={css.section}>
+          </div> */}
+          {/* <div className={css.section}>
             <h4 className={css.title}>RESOURCES</h4>
             <p className={css.link}>JEE & NEET 2023 Exam Pattern</p>
             <p className={css.link}>JEE & NEET Top Scorers</p>
             <p className={css.link}>GATE 2023 Exam Pattern</p>
-          </div>
+          </div> */}
           <div className={css.section}>
             <h4 className={css.title}>ENQUIRY</h4>
             <p className={css.link}>Blog</p>
