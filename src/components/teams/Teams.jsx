@@ -88,7 +88,7 @@ const Teams = () => {
             <div className={css.bottom_details}>
               <p className={css.branch}>MATHS</p>
               <p className={css.bottom_name}>Pradhyumn Singh</p>
-              <p className={css.institute}>IIT BHU 2016</p>
+              <p className={css.institute}>IIT BHU 2016, MS QCF Georgia Tech 2023</p>
             </div>
           </div>
           <div className={css.bottom_card}>
@@ -96,7 +96,7 @@ const Teams = () => {
             <div className={css.bottom_details}>
               <p className={css.branch}>MATHS</p>
               <p className={css.bottom_name}>Ankur Satyapriye</p>
-              <p className={css.institute}>IIT BHU 2016</p>
+              <p className={css.institute}>NIT PATNA 2016</p>
             </div>
           </div>
           <div className={css.bottom_card}>
@@ -112,7 +112,7 @@ const Teams = () => {
             <div className={css.bottom_details}>
               <p className={css.branch}>MATHS</p>
               <p className={css.bottom_name}>Hirdesh Patel</p>
-              <p className={css.institute}>IIT BHU 2016</p>
+              <p className={css.institute}>IIT BHU 2016, ICAS Officer</p>
             </div>
           </div>
           <div className={css.bottom_card}>
@@ -120,7 +120,7 @@ const Teams = () => {
             <div className={css.bottom_details}>
               <p className={css.branch}>PHYSICS</p>
               <p className={css.bottom_name}>Mayank Mishra</p>
-              <p className={css.institute}>IIT BHU 2016</p>
+              <p className={css.institute}>IPS Officer 2020 Batch</p>
             </div>
           </div>
           <div className={css.bottom_card}>
