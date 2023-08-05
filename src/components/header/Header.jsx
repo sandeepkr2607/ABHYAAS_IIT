@@ -70,9 +70,18 @@ import React, { useEffect, useState } from "react";
 import css from "./Header.module.css";
 import logo from "../../assets/logo.png";
 import { Link } from "react-scroll";
+import { useNavigate } from "react-router-dom";
+import { FaWhatsapp } from "react-icons/fa";
+import { BiPhoneCall } from "react-icons/bi";
+import { FiMail } from "react-icons/fi";
 
 const Header = () => {
+  const navigate = useNavigate();
   const [isSticky, setIsSticky] = useState(false);
+
+  const goToAHome = () => {
+    navigate("/");
+  };
 
   useEffect(() => {
     const headerBottom = document.getElementById("header_bottom");
@@ -93,13 +102,30 @@ const Header = () => {
   return (
     <div className={css.header} id="/">
       <div className={css.header_top}>
-        <a href="tel:+91 6005787874" style={{ textDecoration: "none" }}>
+        <a
+          href="tel:+91 6005787874"
+          style={{ textDecoration: "none" }}
+          className={css.top_links}>
+          <BiPhoneCall color="rgba(255, 145, 76, 1)" />
           <span className={css.top_link}>+91-6005787874</span>
         </a>
-        <a href="mailto:info@abhyaasiit.com" style={{ textDecoration: "none" }}>
+        <a
+          href="mailto:info@abhyaasiit.com"
+          style={{ textDecoration: "none" }}
+          className={css.top_links}>
+          <FiMail color="rgba(255, 145, 76, 1)" />
           <span className={css.top_link}>info@abhyaasiit.com</span>
         </a>
-        {/* <span className={css.top_link}>Online admission form</span> */}
+        <a
+          href="https://wa.me/916005787874?text=Hello,%20I%20want%20to%20chat!"
+          style={{ textDecoration: "none" }}
+          target="_blank"
+          rel="noreferrer"
+          className={css.top_links}>
+          <FaWhatsapp color="rgba(255, 145, 76, 1)" />
+          <span className={css.top_link}>91-6005787874</span>
+        </a>
+
         {/* <span className={css.top_link}>online student counselling</span> */}
       </div>
       <div
@@ -108,7 +134,12 @@ const Header = () => {
         }
         id="header_bottom">
         <div className={css.left}>
-          <img src={logo} alt="logo_img" className={css.logo} />
+          <img
+            src={logo}
+            alt="logo_img"
+            onClick={goToAHome}
+            className={css.logo}
+          />
         </div>
         <div className={css.center}>
           <Link

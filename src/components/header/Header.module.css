@@ -114,6 +114,13 @@
   padding: 12px 0;
 }
 
+.top_links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
 .top_link {
   font-family: Poppins;
   font-size: 14px;

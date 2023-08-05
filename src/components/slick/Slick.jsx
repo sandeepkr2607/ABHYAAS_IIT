@@ -55,7 +55,7 @@ const Slick = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container" id="courses">
       <div className="inner_container">
         <h2 className="heading">Courses & Fees Structure</h2>
         <div className="slide">
@@ -102,7 +102,6 @@ const Slick = () => {
             </div>
           </Slider>
         </div>
-        {/* <div className="btns"> */}
         <button
           className="left_btn"
           onClick={() => arrowRef.current.slickPrev()}>
@@ -113,7 +112,6 @@ const Slick = () => {
           onClick={() => arrowRef.current.slickNext()}>
           <img src={btn} alt="" className="right_btn_img" />
         </button>
-        {/* </div> */}
       </div>
     </div>
   );

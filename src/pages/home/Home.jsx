@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import css from "./Home.module.css";
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
 import Classes from "../../components/classes/Classes";
@@ -11,10 +12,21 @@ import Teams from "../../components/teams/Teams";
 import CoursesFees from "../../components/courses&fees/CoursesFees";
 import Carousel from "../../components/carousel/Carousel";
 import Slick from "../../components/slick/Slick";
+import FormModal from "../../components/formModal/FormModal";
 
 const Home = () => {
+  useEffect(() => {
+    setShowModal(true);
+  }, []);
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
+  const [showModal, setShowModal] = useState(false);
+
   return (
-    <>
+    <div className={css.home}>
       <Header />
       <Hero />
       <Classes />
@@ -27,7 +39,14 @@ const Home = () => {
       <Teams />
       <Footer />
       {/* <Carousel /> */}
-    </>
+      {showModal && (
+        <FormModal
+          setShowModal={setShowModal}
+          showModal={showModal}
+          onClose={closeModal}
+        />
+      )}
+    </div>
   );
 };
 

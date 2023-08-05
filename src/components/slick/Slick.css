@@ -50,7 +50,11 @@
 }
 
 .course_title {
+  position: absolute;
   font-family: Poppins;
+  top: -200px;
+  left: 120px;
+
   font-size: 32px;
   font-weight: 600;
   line-height: 24px;
@@ -89,6 +93,10 @@
   bottom: 50px;
 }
 
+.image_box:hover > .disc > .course_title {
+  top: -50px;
+}
+
 .left_btn,
 .right_btn {
   border: none;
@@ -124,12 +132,12 @@
   transition: all 400ms ease-in-out;
   pointer-events: all;
   opacity: 1;
-  filter: none;
+  /* filter: none; */
 }
 
 .center .image_box {
   /* opacity: 0.7; */
-  filter: blur(5px);
+  /* filter: blur(5px); */
   pointer-events: none;
 }
 
