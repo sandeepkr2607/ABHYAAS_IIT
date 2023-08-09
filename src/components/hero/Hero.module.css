@@ -59,3 +59,69 @@
 .hero_img {
   width: 70%;
 }
+
+@media screen and (max-width: 1200px) {
+  .heading {
+    font-size: 56px;
+  }
+
+  .colored {
+    font-size: 56px;
+    font-weight: 700;
+  }
+
+  .para {
+    margin-top: 15px;
+    margin-bottom: 30px;
+    font-size: 18px;
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 990px) {
+  .heading {
+    font-size: 48px;
+    margin-top: 40px;
+  }
+
+  .colored {
+    font-size: 48px;
+    font-weight: 700;
+  }
+
+  .para {
+    margin-top: 15px;
+    margin-bottom: 30px;
+    font-size: 15px;
+    line-height: 27px;
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .heading {
+    font-size: 32px;
+    margin-top: 30px;
+    width: 100%;
+    line-height: 15px;
+  }
+
+  .colored {
+    font-size: 32px;
+    font-weight: 700;
+    margin-left: 10px;
+  }
+
+  .para {
+    margin-top: 5px;
+    margin-bottom: 20px;
+    font-size: 13px;
+    line-height: 23px;
+    width: 80%;
+  }
+
+  .line {
+    width: 150px;
+    margin-top: -10px;
+  }
+}

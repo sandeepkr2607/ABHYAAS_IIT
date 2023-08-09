@@ -10,7 +10,7 @@ const Hero = () => {
       <h1 className={css.heading}>
         Welcome To
         <span className={css.colored}>
-          AbhyaasIIT <img src={hero_line} alt="Line" />
+          AbhyaasIIT <img src={hero_line} alt="Line" className={css.line} />
         </span>{" "}
       </h1>
       <p className={css.para}>

@@ -14,8 +14,8 @@ const Slick = () => {
   const arrowRef = useRef(null);
 
   var settings = {
-    className: "center",
-    centerMode: true,
+    // className: "center",
+    // centerMode: true,
     dots: false,
     infinite: true,
     speed: 500,
@@ -25,9 +25,9 @@ const Slick = () => {
     arrows: false,
     responsive: [
       {
-        breakpoint: 990,
+        breakpoint: 1224,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 3,
           slidesToScroll: 1,
           infinite: true,
           dots: false,
@@ -35,7 +35,7 @@ const Slick = () => {
         },
       },
       {
-        breakpoint: 600,
+        breakpoint: 990,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
@@ -44,7 +44,7 @@ const Slick = () => {
         },
       },
       {
-        breakpoint: 480,
+        breakpoint: 590,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,

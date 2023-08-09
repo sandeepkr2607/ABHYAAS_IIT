@@ -87,3 +87,113 @@
   color: rgba(6, 6, 6, 1);
   box-shadow: 0 6px 12px rgba(255, 145, 76, 1);
 }
+
+@media screen and (max-width: 1200px) {
+  .about_us {
+    gap: 40px;
+    margin-top: 80px;
+    margin-bottom: 50px;
+  }
+
+  .img {
+    width: 400px;
+    height: 490px;
+  }
+
+  .para {
+    font-size: 14px;
+  }
+
+  .heading {
+    font-size: 27px;
+  }
+
+  .para_2 {
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 27px;
+  }
+
+  .btn {
+    font-size: 15px;
+    padding: 12px 45px;
+  }
+}
+@media screen and (max-width: 990px) {
+  .about_us {
+    gap: 40px;
+    margin-top: 60px;
+    margin-bottom: 40px;
+  }
+
+  .img {
+    width: 300px;
+    height: 390px;
+  }
+
+  .para {
+    font-size: 13px;
+  }
+
+  .heading {
+    font-size: 25px;
+    line-height: 32px;
+  }
+
+  .para_2 {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 23px;
+  }
+
+  .btn {
+    font-size: 13px;
+    padding: 10px 45px;
+    margin-top: 0;
+  }
+}
+
+@media screen and (max-width: 690px) {
+  .about_us {
+    flex-direction: column;
+    width: 90%;
+    margin: auto;
+    gap: 30px;
+    margin-top: 40px;
+    margin-bottom: 30px;
+  }
+
+  .img {
+    width: 300px;
+    height: 300px;
+  }
+
+  .right {
+    width: 85%;
+  }
+
+  .para {
+    font-size: 12px;
+  }
+
+  .heading {
+    font-size: 20px;
+    line-height: 30px;
+  }
+
+  .para_2 {
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 21px;
+  }
+
+  .btn {
+    font-size: 11px;
+    padding: 8px 35px;
+    margin-top: 0;
+  }
+
+  .about_us:hover > .right > .btn {
+    transform: scale(1.2);
+  }
+}

@@ -35,7 +35,7 @@ const Home = () => {
       <CoursesFees /> */}
       <Slick />
       <Admission />
-      <Facilities />
+      {/* <Facilities /> */}
       <Teams />
       <Footer />
       {/* <Carousel /> */}
