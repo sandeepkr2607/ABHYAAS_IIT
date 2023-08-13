@@ -63,40 +63,40 @@ const Slick = () => {
             <div className="image_box">
               <img src={course1} alt="" className="image" />
               <div className="disc">
-                <h2 className="course_title">Course Title</h2>
-                <p className="course_class">For Class 1, 2, 3, 4, 5</p>
+                <h2 className="course_title">Brain Gym</h2>
+                <p className="course_class">Class 6-7</p>
                 <button className="btn">Join Now</button>
               </div>
             </div>
             <div className="image_box">
               <img src={course2} alt="" className="image" />
               <div className="disc">
-                <h2 className="course_title">Course Title</h2>
-                <p className="course_class">For Class 1, 2, 3, 4, 5</p>
+                <h2 className="course_title">Foundation Course</h2>
+                <p className="course_class">Class 8, 9 & 10</p>
                 <button className="btn">Join Now</button>
               </div>
             </div>
             <div className="image_box">
               <img src={course3} alt="" className="image" />
               <div className="disc">
-                <h2 className="course_title">Course Title</h2>
-                <p className="course_class">For Class 1, 2, 3, 4, 5</p>
+                <h2 className="course_title">IIT/JEE Mains</h2>
+                <p className="course_class">Class 11-12</p>
                 <button className="btn">Join Now</button>
               </div>
             </div>
             <div className="image_box">
               <img src={course4} alt="" className="image" />
               <div className="disc">
-                <h2 className="course_title">Course Title</h2>
-                <p className="course_class">For Class 1, 2, 3, 4, 5</p>
+                <h2 className="course_title">NEET UG</h2>
+                <p className="course_class">Class 11-12</p>
                 <button className="btn">Join Now</button>
               </div>
             </div>
             <div className="image_box">
               <img src={course5} alt="" className="image" />
               <div className="disc">
-                <h2 className="course_title">Course Title</h2>
-                <p className="course_class">For Class 1, 2, 3, 4, 5</p>
+                <h2 className="course_title">Maths+ Programme</h2>
+                <p className="course_class">Class 6-11</p>
                 <button className="btn">Join Now</button>
               </div>
             </div>

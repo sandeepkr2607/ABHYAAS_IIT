@@ -10,28 +10,28 @@ const Classes = () => {
         <div className={css.card}>
           <img src={icon} alt="icon" className={css.card_img} />
           <p className={css.card_para}>
-            <span className={css.color_text}> Batch 1 </span>
-            To Be Stared From
-            <span className={css.color_text}> April 2024 </span>
-            For Various Courses.
+            <span className={css.color_text}> Free Crash Course by 6+ IITians </span>
+            Starting From
+            <span className={css.color_text}> December 2023 </span>
           </p>
+          <button className={css.btn}>Register Now</button>
         </div>
         <div className={css.card}>
           <img src={icon} alt="icon" className={css.card_img} />
           <p className={css.card_para}>
-            <span className={css.color_text}> “Tea With IITians” </span>
-            Orientation Programme On 21st January 2024.
+            <span className={css.color_text}> “Tea With 14+ IITians” </span>
+            Free Orientation Programme On 21st January 2024.
           </p>
           <button className={css.btn}>Join Us</button>
         </div>
         <div className={css.card}>
           <img src={icon} alt="icon" className={css.card_img} />
           <p className={css.card_para}>
-            <span className={css.color_text}>Entrance Test </span>
-            For Admissions For JEE/NEET Foundation Courses
-            <span className={css.color_text}> 28th January. </span>
+            <span className={css.color_text}>Admissions Opening Soon </span>
+            for all Batches of 2024
+            <span className={css.color_text}> Classes 6-11 </span>
           </p>
-          <button className={css.btn}>Join Us</button>
+          <button className={css.btn}>Enquire</button>
         </div>
       </div>
     </div>

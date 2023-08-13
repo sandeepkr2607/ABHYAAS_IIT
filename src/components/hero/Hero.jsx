@@ -14,13 +14,15 @@ const Hero = () => {
         </span>{" "}
       </h1>
       <p className={css.para}>
-        AbhyaasIIT: Your pathway to success in JEE ADVANCE or NEET exams. We
+        AbhyaasIIT: An IITian only initiative IIT/JEE Mains or NEET exams. We
         nurture students from classes 6th to 12th, empowering them to excel in
-        top institutes. Our highly qualified faculty utilizes engaging teaching
-        methods for effective learning. With a disciplined environment and
-        state-of-the-art facilities, we ensure a conducive atmosphere for
-        growth. Personalized IITian mentors drive continuous progress for each
-        student.
+        education. Our 14+ IITian Mentors utilize engaging teaching
+        methods for effective learning. Every Student will get a Personal IITian 
+        Mentor who will remain in constant touch with student and Parents. 
+      </p>
+      <p className={css.para}>
+        Personal IITian Mentor to every student at AbhyaasIIT. This is a one-of-a-kind
+        initiative for future minds which will help them attain the path of excellence.
       </p>
       <img src={hero_img} alt="hero_img" className={css.hero_img} />
     </div>

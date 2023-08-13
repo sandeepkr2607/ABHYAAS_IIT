@@ -21,16 +21,15 @@ const AboutUs = () => {
           AbhyaasIIT is a foundation for inspiring minds
         </h3>
         <p className={css.para_2}>
-          AbhyaasIIT aims to bring quality coaching education to Tier2 and Tier3
-          cities, we are a coaching institute which is committed to provide
-          students with a strong foundation in core concepts and problem-solving
-          through our "ThinkIIT" modules. Our dedicated Team of "IITian mentors"
-          has created comprehensive content for JEE and NEET Exams, which will
-          be complemented by AbhyaasIIT Test Series and Daily Practice
-          Papers(DPPs). We intend to create quality career education, resources
-          and individual attention and to nurture competent and responsible
-          career future. With our structured and rigorous training module, we
-          empower students to excel and achieve their dreams.
+          AbhyaasIIT Motihari aims to bring quality coaching education to the Tier3
+          city. we are a coaching institute with a team of 14+ IITian Mentors 
+          which is committed to provide students with a strong foundation in core 
+          concepts and problem-solving through our "ThinkIIT" modules.These 
+          comprehensive modules for JEE and NEET Exams, which will be complemented 
+          by AbhyaasIIT Test Series and Daily Practice Papers(DPPs). We intend
+          to create quality career education, resources and individual attention
+          and to nurture. It's a First-of-a-kind initiative to bring quality 
+          education of IITians to Motihari.
         </p>
         <button className={css.btn} onClick={goToAboutUs}>
           See More about us
