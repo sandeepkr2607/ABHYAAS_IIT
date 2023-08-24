@@ -5,14 +5,15 @@ import icon from "../../assets/icon.png";
 const Classes = () => {
   return (
     <div className={css.classes}>
-      <h3 className={css.heading}>Join Our Classes</h3>
+      <h3 className={css.heading}>
+        Join Our Classes For IIT JEE and NEET Exam Prepration
+      </h3>
       <div className={css.cards}>
         <div className={css.card}>
           <img src={icon} alt="icon" className={css.card_img} />
           <p className={css.card_para}>
-            <span className={css.color_text}> Free Crash Course by 6+ IITians </span>
-            Starting From
-            <span className={css.color_text}> December 2023 </span>
+            <span className={css.color_text}> Free Crash Course </span>
+            by 6+ IITians Starting From December 2023
           </p>
           <button className={css.btn}>Register Now</button>
         </div>
@@ -27,9 +28,7 @@ const Classes = () => {
         <div className={css.card}>
           <img src={icon} alt="icon" className={css.card_img} />
           <p className={css.card_para}>
-            <span className={css.color_text}>Admissions Opening Soon </span>
-            for all Batches of 2024
-            <span className={css.color_text}> Classes 6-11 </span>
+            Admissions Opening Soon for all Batches of 2024 Classes 6-11
           </p>
           <button className={css.btn}>Enquire</button>
         </div>

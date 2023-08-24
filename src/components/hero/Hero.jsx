@@ -14,15 +14,17 @@ const Hero = () => {
         </span>{" "}
       </h1>
       <p className={css.para}>
-        AbhyaasIIT: An IITian only initiative IIT/JEE Mains or NEET exams. We
-        nurture students from classes 6th to 12th, empowering them to excel in
-        education. Our 14+ IITian Mentors utilize engaging teaching
-        methods for effective learning. Every Student will get a Personal IITian 
-        Mentor who will remain in constant touch with student and Parents. 
+        AbhyaasIIT: An IITian only initiative IIT JEE and NEET exam prepration
+        coaching center in Motihri. We nurture students from classes 6th to
+        12th, empowering them to excel in education. Our 14+ IITian Mentors
+        utilize engaging teaching methods for effective learning. Every Student
+        will get a Personal IITian Mentor who will remain in constant touch with
+        student and Parents.
       </p>
       <p className={css.para}>
-        Personal IITian Mentor to every student at AbhyaasIIT. This is a one-of-a-kind
-        initiative for future minds which will help them attain the path of excellence.
+        Personal IITian Mentor to every student at AbhyaasIIT. This is a
+        one-of-a-kind initiative for future minds which will help them attain
+        the path of excellence.
       </p>
       <img src={hero_img} alt="hero_img" className={css.hero_img} />
     </div>

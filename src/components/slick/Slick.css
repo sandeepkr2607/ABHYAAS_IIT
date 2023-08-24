@@ -18,6 +18,7 @@
   letter-spacing: -0.01em;
   text-align: left;
   margin-bottom: 0;
+  color: rgba(114, 48, 55, 1);
 }
 
 .image_box {
@@ -54,11 +55,9 @@
   position: absolute;
   font-family: Poppins;
   top: -200px;
-  /* left: 120px; */
   left: 0;
   right: 0;
   margin: auto;
-
   font-size: 32px;
   font-weight: 600;
   line-height: 24px;
@@ -152,7 +151,7 @@
   border-radius: 10px;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1350px) {
   .inner_container {
     width: 95%;
   }
@@ -181,9 +180,8 @@
     position: absolute;
     font-family: Poppins;
     top: -220px;
-    left: 80px;
-
-    font-size: 32px;
+    left: -8px;
+    font-size: 24px;
     font-weight: 600;
     line-height: 24px;
     letter-spacing: -0.0038em;
@@ -197,7 +195,9 @@
 
   .image_box:hover > .disc > .course_title {
     top: -50px;
-    left: 80px;
+    left: 0;
+    right: 0;
+    margin: auto;
   }
 
   .left_btn {
@@ -260,7 +260,7 @@
     position: absolute;
     font-family: Poppins;
     top: -220px;
-    left: 103px;
+    left: 6px;
     font-size: 24px;
     font-weight: 600;
     line-height: 24px;
@@ -293,7 +293,9 @@
 
   .image_box:hover > .disc > .course_title {
     top: -50px;
-    left: 116px;
+    left: 0;
+    right: 0;
+    margin: auto;
   }
 
   .left_btn {
@@ -364,7 +366,7 @@
     font-family: Poppins;
     margin-bottom: 0;
     top: -220px;
-    left: 103px;
+    left: 0;
     font-size: 24px;
     font-weight: 600;
     line-height: 24px;
@@ -397,7 +399,9 @@
 
   .image_box:hover > .disc > .course_title {
     top: -50px;
-    left: 96px;
+    left: 0;
+    right: 0;
+    margin: auto;
   }
 
   .left_btn {

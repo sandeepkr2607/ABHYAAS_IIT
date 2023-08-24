@@ -73,12 +73,20 @@ const Header = () => {
           }
           id="header_bottom">
           <div className={css.left}>
-            <img
-              src={logo}
-              alt="logo_img"
-              onClick={goToHome}
-              className={css.logo}
-            />
+            <Link
+              to="/"
+              activeClass="active"
+              spy={true}
+              smooth={true}
+              offset={-40}
+              duration={500}>
+              <img
+                src={logo}
+                alt="logo_img"
+                onClick={goToHome}
+                className={css.logo}
+              />
+            </Link>
           </div>
           <div className={css.center}>
             <Link

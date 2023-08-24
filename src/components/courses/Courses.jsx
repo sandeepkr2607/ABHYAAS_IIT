@@ -25,7 +25,7 @@ const Courses = () => {
 
   return (
     <div className={css.courses}>
-      <h3 className={css.heading}>Courses & Fees Structure</h3>
+      <h3 className={css.heading}>Courses</h3>
 
       <button className={css.prev_btn}>
         <img

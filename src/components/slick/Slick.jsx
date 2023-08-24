@@ -57,7 +57,7 @@ const Slick = () => {
   return (
     <div className="container" id="courses">
       <div className="inner_container">
-        <h2 className="heading">Courses & Fees Structure</h2>
+        <h2 className="heading">Our Comprehensive Courses</h2>
         <div className="slide">
           <Slider ref={arrowRef} {...settings}>
             <div className="image_box">

@@ -17,10 +17,10 @@ const Admission = () => {
         <div className={css.left}>
           <h2 className={css.heading}>How To Apply For Admission</h2>
           <p className={css.para}>
-            To Apply For Admission, Students Can Visit Our Website And Fill Out
-            The Online Application Form. We Also Offer Scholarship Programs For
-            Meritorious Students, And Details Of These Programs Can Be Found On
-            Our Website.
+            To apply for admission, students can visit our website and fill out
+            the online application form. We also offer Scholarship Programs for
+            merit students, and details of these programs can be found on our
+            website.
           </p>
           <button className={css.btn}>Apply For Admission</button>
         </div>
