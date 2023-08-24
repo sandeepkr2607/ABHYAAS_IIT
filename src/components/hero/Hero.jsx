@@ -15,7 +15,7 @@ const Hero = () => {
       </h1>
       <p className={css.para}>
         AbhyaasIIT: An IITian only initiative IIT JEE and NEET exam prepration
-        coaching center in Motihri. We nurture students from classes 6th to
+        coaching center in Motihari. We nurture students from classes 6th to
         12th, empowering them to excel in education. Our 14+ IITian Mentors
         utilize engaging teaching methods for effective learning. Every Student
         will get a Personal IITian Mentor who will remain in constant touch with
