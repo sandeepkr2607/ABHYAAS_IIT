@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.dda3c9d6.css",
-    "main.js": "/static/js/main.3a758ac7.js",
+    "main.css": "/static/css/main.35b01ca0.css",
+    "main.js": "/static/js/main.1e67157c.js",
     "static/media/hero_img.png": "/static/media/hero_img.317af11bacd6e802aa02.png",
     "static/media/Hero_About.png": "/static/media/Hero_About.98813cbaf9315d25b11c.png",
     "static/media/knowledge_tree.png": "/static/media/knowledge_tree.07b9cbc599f93302b5bd.png",
@@ -27,6 +27,7 @@
     "static/media/hod3.png": "/static/media/hod3.1904bb6572fd1e68b9be.png",
     "static/media/hod2.png": "/static/media/hod2.988a7d83e93b9c871396.png",
     "static/media/NDA.png": "/static/media/NDA.5a917b4cc4ba2a4b156e.png",
+    "static/media/logo.png": "/static/media/logo.9c267ff6e5aaa1453855.png",
     "static/media/JEE.png": "/static/media/JEE.5609f1002df08c203195.png",
     "static/media/men9.png": "/static/media/men9.4d9f5b926c9166fc0b5f.png",
     "static/media/course1.png": "/static/media/course1.672d521cf6e20d303cec.png",
@@ -44,11 +45,11 @@
     "index.html": "/index.html",
     "static/media/slick.ttf": "/static/media/slick.c94f7671dcc99dce43e2.ttf",
     "static/media/slick.woff": "/static/media/slick.295183786cd8a1389865.woff",
-    "main.dda3c9d6.css.map": "/static/css/main.dda3c9d6.css.map",
-    "main.3a758ac7.js.map": "/static/js/main.3a758ac7.js.map"
+    "main.35b01ca0.css.map": "/static/css/main.35b01ca0.css.map",
+    "main.1e67157c.js.map": "/static/js/main.1e67157c.js.map"
   },
   "entrypoints": [
-    "static/css/main.dda3c9d6.css",
-    "static/js/main.3a758ac7.js"
+    "static/css/main.35b01ca0.css",
+    "static/js/main.1e67157c.js"
   ]
 }
