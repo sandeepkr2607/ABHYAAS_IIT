@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useRef } from "react";
 import css from "./FormModal.module.css";
 import { MdClose } from "react-icons/md";
+import model_img from "../../assets/model_img.png";
 
 const FormModal = ({ showModal, setShowModal, onClose }) => {
   const modalRef = useRef(null);
@@ -38,6 +39,7 @@ const FormModal = ({ showModal, setShowModal, onClose }) => {
       className={`${css.modal} ${showModal ? css.active : ""}`}
       onClick={handleClickOutside}>
       <div className={css.inner_modal} ref={modalRef}>
+        <img src={model_img} alt="" className={css.model_img} />
         <h1 className={css.heading_one}>Your Preferences Matters,</h1>
         <h2 className={css.heading_two}>Let's Get to Know You.</h2>
         <form className={css.form}>
@@ -46,58 +48,59 @@ const FormModal = ({ showModal, setShowModal, onClose }) => {
             placeholder="Your name please!"
             className={css.name}
           />
-          <div className={css.class_and_number}>
-            <input
-              type="number"
-              placeholder="Mobile No."
-              className={css.mobile}
-            />
-            <select className={css.select}>
-              <option disabled value="">
-                Std... ?
-              </option>
-              <option className={css.option} value="option1">
-                Std 6
-              </option>
-              <option className={css.option} value="option2">
-                Std 7
-              </option>
-              <option className={css.option} value="option2">
-                Std 8
-              </option>
-              <option className={css.option} value="option2">
-                Std 9
-              </option>
-              <option className={css.option} value="option2">
-                Std 10
-              </option>
-              <option className={css.option} value="option2">
-                Std 11
-              </option>
-              <option className={css.option} value="option2">
-                Std 12
-              </option>
-              <option className={css.option} value="option2">
-                IIT
-              </option>
-              <option className={css.option} value="option2">
-                NEET
-              </option>
-            </select>
-          </div>
+          {/* <div className={css.class_and_number}> */}
+          <input
+            type="number"
+            placeholder="Mobile No."
+            className={css.mobile}
+          />
+          <select className={css.select}>
+            <option disabled value="">
+              Std... ?
+            </option>
+            <option className={css.option} value="option1">
+              Std 6
+            </option>
+            <option className={css.option} value="option2">
+              Std 7
+            </option>
+            <option className={css.option} value="option2">
+              Std 8
+            </option>
+            <option className={css.option} value="option2">
+              Std 9
+            </option>
+            <option className={css.option} value="option2">
+              Std 10
+            </option>
+            <option className={css.option} value="option2">
+              Std 11
+            </option>
+            <option className={css.option} value="option2">
+              Std 12
+            </option>
+            <option className={css.option} value="option2">
+              IIT
+            </option>
+            <option className={css.option} value="option2">
+              NEET
+            </option>
+          </select>
+          {/* </div> */}
           <textarea
             placeholder="Feel free for any kind of quarry....."
             className={css.text_area}></textarea>
-          <button className={css.btn} onClick={() => setShowModal(false)}>
-            SUBMIT
-          </button>
+          <div className={css.btns}>
+            <button
+              className={css.btn_close}
+              onClick={() => setShowModal(false)}>
+              CLOSE
+            </button>
+            <button className={css.btn} onClick={() => setShowModal(false)}>
+              SUBMIT
+            </button>
+          </div>
         </form>
-        <MdClose
-          className={css.close}
-          size={32}
-          color="black"
-          onClick={() => setShowModal(false)}
-        />
       </div>
     </div>
   );

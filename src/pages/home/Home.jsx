@@ -28,6 +28,7 @@ const Home = () => {
   return (
     <div className={css.home}>
       <Header />
+
       <Hero />
       <Classes />
       <AboutUs />
