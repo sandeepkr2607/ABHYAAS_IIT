@@ -9,8 +9,19 @@ import Boards from "../../assets/Boards.png";
 import ICSE from "../../assets/ICSE.png";
 import NDA from "../../assets/NDA.png";
 import nstse from "../../assets/nstse.png";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const Admission = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
+  const navigate = useNavigate();
+ 
+  const Submithandler = () => {
+    navigate("/form");
+  };
   return (
     <div className={css.admission} id="admissions">
       <div className={css.top}>
@@ -22,7 +33,7 @@ const Admission = () => {
             merit students, and details of these programs can be found on our
             website.
           </p>
-          <button className={css.btn}>Apply For Admission</button>
+          <button className={css.btn} onClick={Submithandler}>Apply For Admission</button>
         </div>
         <div className={css.right}>
           <img src={admission_img} alt="" className={css.admission_img} />

@@ -14,8 +14,12 @@ import { useNavigate } from "react-router-dom";
 import Header from "../header/Header.jsx";
 import Footer from "../footer/Footer.jsx";
 import { ChakraProvider } from "@chakra-ui/react";
+import { useEffect } from "react";
 
 export default function Application() {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   const navigate = useNavigate();
   const Submithandler = () => {
     navigate("/success");
@@ -28,7 +32,7 @@ export default function Application() {
         </Box>
         <Center>
           <Box
-            boxShadow={"dark-lg"}
+            boxShadow={"base"}
             width={["100%", "100%", "100%", "75%"]}
             rounded={"lg"}
             m={"3"}>
@@ -94,8 +98,8 @@ export default function Application() {
             </Center>
             <Divider orientation="horizontal" bgColor={"black"} />
             <Center>
-              <Box>
-                <Heading textStyle="h1" fontWeight={"bold"} fontSize={"lg"}>
+              <Box m={3}>
+                <Heading textStyle="h1" fontWeight={"bold"} fontSize={"lg"} m={3}>
                   Course Details
                 </Heading>
                 <Text textStyle="p" fontFamily={""}>
@@ -106,7 +110,7 @@ export default function Application() {
             <HStack spacing={10}>
               <Box boxShadow={"base"} rounded={"2xl"} m={"3"} width={"60%"}>
                 <HStack px={50} spacing={20} py={10}>
-                  <VStack spacing={0} alignItems={"start"}>
+                  <VStack spacing={2} alignItems={"start"}>
                     <Text fontWeight={"bold"}>Application No.</Text>
                     <Text fontWeight={"bold"}>Course Name</Text>
                     <Text fontWeight={"bold"}>Division</Text>
@@ -123,7 +127,7 @@ export default function Application() {
                     <Text fontWeight={"bold"}>PinCode</Text>
                     <Text fontWeight={"bold"}>Application From Free</Text>
                   </VStack>
-                  <VStack spacing={0} alignItems={"start"}>
+                  <VStack spacing={2} alignItems={"start"}>
                     <Text>2300922</Text>
                     <Text>iAKHIL</Text>
                     <Text>JEE(Main)</Text>

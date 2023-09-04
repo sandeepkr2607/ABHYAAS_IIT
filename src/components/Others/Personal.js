@@ -14,12 +14,16 @@ import {
   Button,
   Checkbox,
 } from "@chakra-ui/react";
-import { InputRightElement, InputGroup } from "@chakra-ui/react";
+// import { InputRightElement, InputGroup } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import Header from "../header/Header.jsx";
 import Footer from "../footer/Footer.jsx";
 import { ChakraProvider } from "@chakra-ui/react";
+import { useEffect } from "react";
 export default function Personal() {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   const navigate = useNavigate();
   const Submithandler = () => {
     navigate("/application");
@@ -32,8 +36,8 @@ export default function Personal() {
         </Box>
         <Center>
           <Box
-            boxShadow={"dark-lg"}
-            width={["100%", "60%"]}
+            boxShadow={"base"}
+            width={["100%", "80%"]}
             rounded={"lg"}
             m={"3"}>
             <Center>
@@ -98,8 +102,8 @@ export default function Personal() {
             </Center>
             <Divider orientation="horizontal" bgColor={"black"} />
             <Center>
-              <Box>
-                <Heading textStyle="h1" fontWeight={"bold"} fontSize={"lg"}>
+              <Box m={5}>
+                <Heading textStyle="h1" fontWeight={"bold"} fontSize={"lg"} m={3}>
                   Personal Details
                 </Heading>
                 <Text textStyle="p" fontFamily={""}>
@@ -108,16 +112,16 @@ export default function Personal() {
               </Box>
             </Center>
             {/* ------------------------------------------------------------------------------------------------------------------------------- */}
-            <Center m={3}>
-              <VStack spacing={3}>
-                <HStack width={"95%"}>
+            <Center>
+              <VStack spacing={35}>
+                <HStack spacing={30}>
                   <FormControl>
                     <FormLabel>Name</FormLabel>
-                    <Input color={"gray"} rounded={"full"} boxShadow={"base"} />
+                    <Input color={"gray"} rounded={"full"} boxShadow={"base"} width={'100%'}/>
                   </FormControl>
                   <FormControl>
                     <FormLabel>Father's Name</FormLabel>
-                    <Input color={"gray"} rounded={"full"} boxShadow={"base"} />
+                    <Input color={"gray"} rounded={"full"} boxShadow={"base"} width={'100%'}/>
                   </FormControl>
                   <FormControl>
                     <FormLabel>Date of Birth</FormLabel>
@@ -127,10 +131,9 @@ export default function Personal() {
                       type="datetime-local"
                       rounded={"full"}
                       boxShadow={"base"}
+                      width={'100%'}
                     />
                   </FormControl>
-                </HStack>
-                <HStack width={"95%"}>
                   <FormControl>
                     <FormLabel>Gender</FormLabel>
                     <Select
@@ -143,6 +146,9 @@ export default function Personal() {
                       <option>Nigeria</option>
                     </Select>
                   </FormControl>
+                </HStack>
+                <HStack spacing={30}>
+                 
                   <FormControl>
                     <FormLabel>Category</FormLabel>
                     <Select
@@ -162,8 +168,16 @@ export default function Personal() {
                   {/* <Button colorScheme='orange' size='lg' rounded={'full'} width={'80%'} marginTop={'4%'}>
                                 next
                             </Button> */}
+                    <FormControl>
+                    <FormLabel>Mobile No.(Self)</FormLabel>
+                    <Input color={"gray"} rounded={"full"} boxShadow={"base"} />
+                  </FormControl>
+                  <FormControl>
+                    <FormLabel>Mobile No.(Father)</FormLabel>
+                    <Input color={"gray"} rounded={"full"} boxShadow={"base"} />
+                  </FormControl>
                 </HStack>
-                <HStack width={"95%"} spacing={3}>
+                <HStack width={"100%"} spacing={30}>
                   <FormControl width={"180%"}>
                     <FormLabel>Permanent Address</FormLabel>
                     <Input color={"gray"} rounded={"full"} boxShadow={"base"} />
@@ -173,12 +187,12 @@ export default function Personal() {
                     <Input color={"gray"} rounded={"full"} boxShadow={"base"} />
                   </FormControl>
                 </HStack>
-                <HStack width={"95%"}>
+                <HStack width={"100%"} spacing={30}>
                   <FormControl>
                     <FormLabel>Pin Code</FormLabel>
                     <Input color={"gray"} rounded={"full"} boxShadow={"base"} />
                   </FormControl>
-                  <FormControl>
+                  {/* <FormControl>
                     <FormLabel>Country Id</FormLabel>
                     <Select
                       placeholder="Country Id"
@@ -188,7 +202,7 @@ export default function Personal() {
                       <option>United Arab Emirates</option>
                       <option>Nigeria</option>
                     </Select>
-                  </FormControl>
+                  </FormControl> */}
                   <FormControl>
                     <FormLabel>State</FormLabel>
                     <Select
@@ -211,22 +225,16 @@ export default function Personal() {
                       <option>Nigeria</option>
                     </Select>
                   </FormControl>
-                </HStack>
-                <HStack width={"95%"}>
-                  <FormControl>
-                    <FormLabel>Mobile No.(Self)</FormLabel>
-                    <Input color={"gray"} rounded={"full"} boxShadow={"base"} />
-                  </FormControl>
-                  <FormControl>
-                    <FormLabel>Mobile No.(Father)</FormLabel>
-                    <Input color={"gray"} rounded={"full"} boxShadow={"base"} />
-                  </FormControl>
                   <FormControl>
                     <FormLabel>Email (Self)</FormLabel>
                     <Input color={"gray"} rounded={"full"} boxShadow={"base"} />
                   </FormControl>
                 </HStack>
                 <HStack width={"95%"}>
+                
+                
+                </HStack>
+                <HStack width={"100%"}>
                   <FormControl width={"180%"}>
                     <FormLabel>
                       How did you came to know about AbhyaasIIT
@@ -236,7 +244,7 @@ export default function Personal() {
                       <option>Nigeria</option>
                     </Select>
                   </FormControl>
-                  <FormControl>
+                  {/* <FormControl>
                     <FormLabel>Student Photo</FormLabel>
                     <InputGroup>
                       <Input
@@ -254,9 +262,9 @@ export default function Personal() {
                         </Button>
                       </InputRightElement>
                     </InputGroup>
-                  </FormControl>
+                  </FormControl> */}
                 </HStack>
-                <HStack width={"95%"} marginBottom={8}>
+                <HStack width={"100%"} marginBottom={8}>
                   <Checkbox
                     colorScheme="orange"
                     defaultChecked

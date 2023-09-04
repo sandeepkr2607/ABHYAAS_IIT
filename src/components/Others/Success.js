@@ -10,16 +10,33 @@ import {
   ModalBody,
   Center,
   VStack,
+  // AbsoluteCenter
 } from "@chakra-ui/react";
 import { Button } from "@chakra-ui/react";
-import { ChakraProvider } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
+import { ChakraProvider,Box } from "@chakra-ui/react";
+// import Header from "../header/Header.jsx";
+// import Footer from "../footer/Footer.jsx";
+import { useEffect } from "react";
 
 export default function Success() {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+  const navigate = useNavigate();
+  const Submithandler = () => {
+    navigate("/");
+  };
+
   return (
     <ChakraProvider>
+       {/* <Box>
+          <Header></Header>
+        </Box> */}
       <Modal isOpen={true}>
         <ModalOverlay />
-        <ModalContent p={25}>
+       
+        <ModalContent p={25} marginTop={120}>
           <Center>
             <ModalHeader color={"green.500"}>
               <CheckCircleIcon boxSize={20} />
@@ -46,12 +63,18 @@ export default function Success() {
               size="lg"
               rounded={"full"}
               width={"50%"}
-              marginTop={"2%"}>
+              marginTop={"2%"}
+              onClick={Submithandler}
+              >
               Go to Home Page
             </Button>
           </Center>
         </ModalContent>
+     
       </Modal>
+      {/* <Box>
+          <Footer></Footer>
+        </Box> */}
     </ChakraProvider>
   );
 }

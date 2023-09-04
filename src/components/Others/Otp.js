@@ -7,9 +7,13 @@ import { useNavigate } from "react-router-dom";
 import Header from "../header/Header.jsx";
 import Footer from "../footer/Footer.jsx";
 import { ChakraProvider } from "@chakra-ui/react";
+import { useEffect } from "react";
 
 export default function Otp() {
   const navigate = useNavigate();
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   const Submithandler = () => {
     navigate("/personal");
   };
@@ -28,10 +32,10 @@ export default function Otp() {
             m={10}>
             <Center>
               <Box m={3} marginTop={8}>
-                <Heading textStyle="h1" fontWeight={"bold"} fontSize={"lg"}>
+                <Heading textStyle="h1" fontWeight={"bold"} fontSize={"lg"} m={3}>
                   Enter Your OTP
                 </Heading>
-                <HStack>
+                <HStack m={3}>
                   <Text textStyle="p">OTP was sended to</Text>
                   <Text color={"orange"} fontWeight={"bold"}>
                     +917364863246
@@ -58,6 +62,7 @@ export default function Otp() {
               rounded={"full"}
               width={"40%"}
               marginTop={"4%"}
+              marginBottom={"2%"}
               onClick={Submithandler}>
               next
             </Button>

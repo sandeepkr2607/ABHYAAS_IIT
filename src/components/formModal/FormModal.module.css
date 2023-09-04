@@ -10,13 +10,13 @@
   background-color: rgba(0, 0, 0, 0.7);
   transition: opacity 1s, top 1s;
   z-index: 1000;
-  /* overflow: auto; */
+  overflow: auto;
   scroll-behavior: smooth;
 }
 
 @keyframes slideIn {
   from {
-    top: -100%;
+    /* top: -90%; */
   }
   to {
     top: 0;
@@ -36,8 +36,18 @@
   padding: 40px;
   border-radius: 10px;
   background-color: #fff;
-  max-height: 100%; /* Allow inner content to be scrollable */
-  overflow-y: auto;
+  max-height: 85%; /* Allow inner content to be scrollable */
+  max-width: 50%;
+  overflow-y: scroll;
+}
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+
+::-webkit-scrollbar-track {
+ border-radius: 10px;
 }
 
 .heading_one {

@@ -14,8 +14,12 @@ import { Button } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import Header from "../header/Header.jsx";
 import Footer from "../footer/Footer.jsx";
+import { useEffect } from "react";
 
 export default function Form() {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   const navigate = useNavigate();
   const Submithandler = () => {
     navigate("/otp");
@@ -30,7 +34,7 @@ export default function Form() {
         <Center>
           <Box
             boxShadow={"base"}
-            width={["100%", "60%"]}
+            width={["100%", "80%"]}
             height={"auto"}
             rounded={"lg"}
             mx={2}
@@ -98,8 +102,8 @@ export default function Form() {
             </Center>
             <Divider orientation="horizontal" bgColor={"black"} />
             <Center>
-              <Box>
-                <Heading textStyle="h1" fontWeight={"bold"} fontSize={"lg"}>
+              <Box m={3}>
+                <Heading textStyle="h1" fontWeight={"bold"} fontSize={"lg"} m={3}>
                   Course Details
                 </Heading>
                 <Text textStyle="p" fontFamily={""}>
@@ -109,7 +113,7 @@ export default function Form() {
             </Center>
             <Center m={3}>
               <VStack spacing={35}>
-                <HStack>
+                <HStack spacing={12}>
                   <FormControl>
                     <FormLabel>Academic Session</FormLabel>
                     <Select
@@ -159,7 +163,7 @@ export default function Form() {
                     </Select>
                   </FormControl>
                 </HStack>
-                <HStack>
+                <HStack spacing={20}>
                   <FormControl>
                     <FormLabel>Study Center</FormLabel>
                     <Select
