@@ -4,10 +4,14 @@ import "./index.css";
 import App from "./App";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { BrowserRouter } from 'react-router-dom';
+import { ChakraProvider } from "@chakra-ui/react";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
+  <ChakraProvider>
+  <BrowserRouter>
     <App />
-  </React.StrictMode>
+</BrowserRouter>
+</ChakraProvider>
 );

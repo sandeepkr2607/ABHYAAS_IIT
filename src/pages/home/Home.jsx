@@ -7,10 +7,7 @@ import AboutUs from "../../components/aboutUs/AboutUs";
 // import Courses from "../../components/courses/Courses";
 import Hero from "../../components/hero/Hero";
 import Admission from "../../components/admission/Admission";
-import Facilities from "../../components/facilities/Facilities";
 import Teams from "../../components/teams/Teams";
-import CoursesFees from "../../components/courses&fees/CoursesFees";
-import Carousel from "../../components/carousel/Carousel";
 import Slick from "../../components/slick/Slick";
 import FormModal from "../../components/formModal/FormModal";
 
