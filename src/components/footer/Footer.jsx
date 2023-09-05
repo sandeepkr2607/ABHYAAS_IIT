@@ -16,28 +16,28 @@ const Footer = () => {
               className={css.img_link}
               target="_blank"
               rel="noreferrer"
-              href="https://twitter.com/NixonBit_India">
+              href="https://instagram.com/abhyaasiit/">
               <img src={yt} alt="" className={css.link} />
             </a>
             <a
               className={css.img_link}
               target="_blank"
               rel="noreferrer"
-              href="https://twitter.com/NixonBit_India">
+              href="https://www.facebook.com/profile.php?id=100095737801437&mibextid=ZbWKwL">
               <img src={fb} alt="" className={css.link} />
             </a>
             <a
               className={css.img_link}
               target="_blank"
               rel="noreferrer"
-              href="https://twitter.com/NixonBit_India">
+              href="https://instagram.com/abhyaasiit/">
               <img src={twitter} alt="" className={css.link} />
             </a>
             <a
               className={css.img_link}
               target="_blank"
               rel="noreferrer"
-              href="https://twitter.com/NixonBit_India">
+              href="https://www.linkedin.com/company/abhyaasiit/">
               <img src={linkdin} alt="" className={css.link} />
             </a>
           </div>

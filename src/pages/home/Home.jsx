@@ -12,6 +12,8 @@ import Slick from "../../components/slick/Slick";
 import FormModal from "../../components/formModal/FormModal";
 
 const Home = () => {
+  const [showModal, setShowModal] = useState(false);
+
   useEffect(() => {
     setShowModal(true);
   }, []);
@@ -19,8 +21,6 @@ const Home = () => {
   const closeModal = () => {
     setShowModal(false);
   };
-
-  const [showModal, setShowModal] = useState(false);
 
   return (
     <div className={css.home}>
