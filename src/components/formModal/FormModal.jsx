@@ -40,7 +40,7 @@ const FormModal = ({ showModal, setShowModal, onClose }) => {
       onClick={handleClickOutside}>
       <div className={css.inner_modal} ref={modalRef}>
         <img src={model_img} alt="" className={css.model_img} />
-        <h1 className={css.heading_one}>Your Preferences Matters,</h1>
+        <h1 className={css.heading_one}>Your Preference Matters,</h1>
         <h2 className={css.heading_two}>Let's Get to Know You.</h2>
         <form className={css.form}>
           <input
