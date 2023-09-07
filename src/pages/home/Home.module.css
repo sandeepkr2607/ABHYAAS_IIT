@@ -1,4 +1,4 @@
 .home {
   position: relative;
-  /* overflow-y: auto; */
+  overflow-y: hidden;
 }

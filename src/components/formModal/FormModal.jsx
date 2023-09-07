@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef } from "react";
 import css from "./FormModal.module.css";
-import { MdClose } from "react-icons/md";
+// import { MdClose } from "react-icons/md";
 import model_img from "../../assets/model_img.png";
 
 const FormModal = ({ showModal, setShowModal, onClose }) => {
