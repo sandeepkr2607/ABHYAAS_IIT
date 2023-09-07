@@ -88,7 +88,7 @@ const FormModal = ({ showModal, setShowModal, onClose }) => {
           </select>
           {/* </div> */}
           <textarea
-            placeholder="Feel free for any kind of quarry....."
+            placeholder="Feel free for any kind of query....."
             className={css.text_area}></textarea>
           <div className={css.btns}>
             <button
