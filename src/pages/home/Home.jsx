@@ -11,6 +11,9 @@ import Teams from "../../components/teams/Teams";
 import Slick from "../../components/slick/Slick";
 // import FormModal from "../../components/formModal/FormModal";
 import FormModel from "../../components/formModal/FormModel";
+
+
+
 const Home = () => {
   const [showModal, setShowModal] = useState(false);
   const [isOpen,setisOpen ] = useState(false);
