@@ -33,12 +33,12 @@ export default function FormModel(props) {
         <ModalOverlay />
         
         <ModalContent >
-          <Center marginBottom={0}>
+          <Center marginBottom={0} >
             <Image src={model_img} p={2}></Image>
           </Center>
-          <ModalBody m={0} height={'90%'}>
+          <ModalBody m={0} height={'90%'} pt={0}>
             <Center marginTop={0}>
-              <VStack spacing={2} margin={0}>
+              <VStack spacing={2} margin={0} width={'90%'}>
                 <VStack spacing={0}>
                 <Text fontWeight={"bold"} color={"black.300"} fontSize={"25"}>
                 Your Preference Matters,
@@ -54,6 +54,8 @@ export default function FormModel(props) {
                       rounded={"full"}
                       boxShadow={"base"}
                       width={"100%"}
+                      fontSize={12}
+                      height={9}
                     />
                   </FormControl>
                 <FormControl isRequired>
@@ -63,6 +65,8 @@ export default function FormModel(props) {
                       rounded={"full"}
                       boxShadow={"base"}
                       width={"100%"}
+                      fontSize={12}
+                      height={9}
                     />
                   </FormControl>
                   <FormControl>
@@ -71,32 +75,37 @@ export default function FormModel(props) {
                       color={"gray"}
                       rounded={"full"}
                       boxShadow={"base"}
-                      width={"100%"}>
+                      width={"100%"}
+                      fontSize={12}
+                      height={9}>
                       <option>United Arab Emirates</option>
                       <option>Nigeria</option>
+                      
                     </Select>
                   </FormControl>
                   <FormControl isRequired>
-                  <Textarea placeholder='Feel free for any kind of query.....' rounded={"2xl"} boxShadow={"base"} />
+                  <Textarea placeholder='Feel free for any kind of query.....' rounded={"2xl"} boxShadow={"base"}  fontSize={12} />
                   </FormControl>
                 <HStack spacing={5}>
                 <Button
                     color={"gray.700"}
                     bgColor={"gray.400"}
-                    size="md"
+                    size="sm"
                     rounded={"full"}
                     width={"80%"}
                     marginTop={"1%"}
                     onClick={onclose}
+                    px={10}
                     >
                     Cencel
                   </Button>
                 <Button
                     colorScheme="orange"
-                    size="md"
+                    size="sm"
                     rounded={"full"}
                     width={"80%"}
                     marginTop={"1%"}
+                    px={10}
                     >
                    Submit
                   </Button>
