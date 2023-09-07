@@ -2,9 +2,12 @@ import React from "react";
 import css from "./AboutUs.module.css";
 import about_img from "../../assets/about_img.png";
 import { useNavigate } from "react-router-dom";
-
+import { useEffect } from "react";
 const AboutUs = () => {
   const navigate = useNavigate();
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   const goToAboutUs = () => {
     navigate("/about-us");

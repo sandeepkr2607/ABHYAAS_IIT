@@ -5,8 +5,11 @@ import Footer from "../../components/footer/Footer";
 import HeroAbout from "../../components/hero_About/HeroAbout";
 import knowledge_tree from "../../assets/knowledge_tree.png";
 import books from "../../assets/books.png";
-
+import { useEffect } from "react";
 const About = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   return (
     <>
       <Header />
