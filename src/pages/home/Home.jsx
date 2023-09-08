@@ -9,14 +9,12 @@ import Hero from "../../components/hero/Hero";
 import Admission from "../../components/admission/Admission";
 import Teams from "../../components/teams/Teams";
 import Slick from "../../components/slick/Slick";
-// import FormModal from "../../components/formModal/FormModal";
-import FormModel from "../../components/formModal/FormModel";
-
-
+import FormModal from "../../components/formModal/FormModal";
+// import FormModel from "../../components/formModal/FormModel";
 
 const Home = () => {
   const [showModal, setShowModal] = useState(false);
-  const [isOpen,setisOpen ] = useState(false);
+  const [isOpen, setisOpen] = useState(false);
 
   useEffect(() => {
     setShowModal(true);
@@ -43,13 +41,12 @@ const Home = () => {
       <Footer />
       {/* <Carousel /> */}
       {showModal && (
-        // <FormModal
-        //   setShowModal={setShowModal}
-        //   showModal={showModal}
-        //   onClose={closeModal}
-        // />
-        <FormModel isOpen={isOpen}>
-        </FormModel>
+        <FormModal
+          setShowModal={setShowModal}
+          showModal={showModal}
+          onClose={closeModal}
+        />
+        // <FormModel isOpen={isOpen}></FormModel>
       )}
     </div>
   );
