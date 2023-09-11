@@ -1,5 +1,6 @@
-import React from "react";
-import { Box, ChakraProvider } from "@chakra-ui/react";
+
+import React, { useState } from "react";
+import { Box, ChakraProvider } from "@chakra-ui/react"
 import { Heading } from "@chakra-ui/react";
 import { Center } from "@chakra-ui/react";
 import { Progress } from "@chakra-ui/react";
@@ -14,16 +15,121 @@ import { Button } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import Header from "../header/Header.jsx";
 import Footer from "../footer/Footer.jsx";
+import { FormErrorMessage } from "@chakra-ui/react";
 import { useEffect } from "react";
+import { hasFormSubmit } from "@testing-library/user-event/dist/utils/index.js";
+const Target_courses = [{value:'Brain Gym',text:'Brain Gym'},{value:'Foundation Course',text:'Foundation Course'} ,
+{value:'JEE Mains/Advance',text:'JEE Mains/Advance'},{value:'Maths+ Programme',text:'Maths+ Programme'} , 
+{value:'Free Crash Course',text:'Free Crash Course '}, {value: 'Entrance Test Batch-1',text: 'Entrance Test Batch-1'}
+]
+const BrainGym_Target=[6,7];
+const FoundationCourse_Target=[8,9,10];
+const JEE_Target=[11,12]
+const Maths_Target=[6,7,8,10,11,12]
+const FreeCrash_Target=[8,9,10,12]
+
+
+
+
+
+
+
+
 
 export default function Form() {
+
+const [target_course,setTarget_course]=useState(" ")
+const [academic_session,setAcademic_session]=useState(" ");
+const [target_class,setTarget_class]=useState(" ");
+const [name,setName]=useState(" ");
+const [mobile,setMobile]=useState(" ");
+const [errors, setErrors] = useState({
+  academic_session: '',
+  target_course: '',
+  target_class: '',
+  name:'',
+  mobile:''
+});
+
+
+
+
+
+
+const sessionChangeHandler=(event)=>{
+    setAcademic_session(event.target.value);
+    setErrors({
+      ...errors,
+      academic_session:''
+    })
+}
+
+
+
+const CourseChangeHandler=(event)=>{
+  setTarget_course(event.target.value);
+  setErrors({
+    ...errors,
+    target_course:''
+  })
+}
+
+const classChangeHandler=(event)=>{
+  setTarget_class(event.target.value)
+  setErrors({
+    ...errors,
+    target_class:''
+  })
+}
+
+const mobileChangeHandler=(event)=>{
+  setMobile(event.target.value);
+  setErrors({
+    ...errors,
+    mobile:''
+  })
+}
+
+const nameChangeHandler=(event)=>{
+  setName(event.target.value);
+  setErrors({
+    ...errors,
+    name:''
+  })
+}
+
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
   const navigate = useNavigate();
   const Submithandler = () => {
+    console.log(academic_session)
+    console.log(target_course)
+    console.log(target_class)
+    console.log(mobile)
+    console.log(name);
     navigate("/otp");
   };
+
+const selectedCourses=(course)=>{
+    if(course===" ")return " ";
+    if(course==='Brain Gym'){
+      return BrainGym_Target.map((e)=>{return <option key={e} value={e}>{e}</option>})
+    }
+    if(course==='Foundation Course'){
+      return FoundationCourse_Target.map((e)=>{return <option key={e} value={e}>{e}</option>})
+    }
+    if(course==='JEE Mains/Advance'){
+      return JEE_Target.map((e)=>{return <option key={e} value={e}>{e}</option>})
+    }
+    if(course==='Maths+ Programme'){
+      return Maths_Target.map((e)=>{return <option key={e} value={e}>{e}</option>})
+    }
+    if(course==='Free Crash Course'){
+      return FreeCrash_Target.map((e)=>{return <option key={e} value={e}>{e}</option>})
+    }
+}
+
 
   return (
     <>
@@ -112,71 +218,85 @@ export default function Form() {
               </Box>
             </Center>
             <Center m={3}>
-              <VStack spacing={35}>
+            <form onSubmit={Submithandler}>
+              <VStack spacing={20}>
+               
                 <HStack spacing={12}>
-                  <FormControl>
-                    <FormLabel>Academic Session</FormLabel>
+                  <FormControl isInvalid={errors.academic_session}  height="2rem">
+                    <FormLabel width={'100%'}>Academic Session</FormLabel>
                     <Select
                       placeholder="Academic Session"
                       color={"gray"}
                       rounded={"full"}
                       boxShadow={"base"}
-                      width={"100%"}>
-                      <option>United Arab Emirates</option>
-                      <option>Nigeria</option>
+                      width={"100%"}
+                      onChange={sessionChangeHandler}
+                      >
+                      <option value="2023-24">2023-2024</option>
+                      <option value="2024-25">2024-2025</option>
                     </Select>
+                    {errors.academic_session ? (<FormErrorMessage>{errors.academic_session}</FormErrorMessage>) : ''}
                   </FormControl>
-                  <FormControl>
+                  <FormControl  height="2rem">
                     <FormLabel>Study Mode</FormLabel>
                     <Select
-                      placeholder="Study Mode"
-                      color={"gray"}
+                      placeholder="Offline Mode"
+                      color={"black"}
                       rounded={"full"}
                       boxShadow={"base"}
-                      width={"100%"}>
-                      <option>United Arab Emirates</option>
-                      <option>Nigeria</option>
+                      width={"100%"} disabled>
+                      {/* <option>United Arab Emirates</option>
+                      <option>Nigeria</option> */}
                     </Select>
                   </FormControl>
-                  <FormControl>
+                  <FormControl isInvalid={errors.target_course}  height="2rem">
                     <FormLabel>Target Course</FormLabel>
                     <Select
-                      placeholder="Target Course"
+                      placeholder="Brain Gym"
                       color={"gray"}
                       rounded={"full"}
                       boxShadow={"base"}
-                      width={"100%"}>
-                      <option>United Arab Emirates</option>
-                      <option>Nigeria</option>
+                      width={"100%"}
+                      value={target_course}
+                      onChange={CourseChangeHandler}
+                      >
+                      {Target_courses.map((e)=>
+                        <option key={e.value} value={e.value}>{e.text}</option>
+                      )}
                     </Select>
+                    {errors.target_course ? (<FormErrorMessage >{errors.target_course}</FormErrorMessage>) : ''}
                   </FormControl>
-                  <FormControl>
+                  <FormControl isInvalid={errors.target_class}   height="2rem">
                     <FormLabel>Target Class</FormLabel>
                     <Select
                       placeholder="Target Class"
                       color={"gray"}
                       rounded={"full"}
                       boxShadow={"base"}
-                      width={"100%"}>
-                      <option>United Arab Emirates</option>
-                      <option>Nigeria</option>
+                      width={"100%"}
+                      onChange={classChangeHandler}
+                    
+                      >
+                     {selectedCourses(target_course)}
                     </Select>
+                    <FormErrorMessage>{errors.target_class && errors.target_class}</FormErrorMessage>
                   </FormControl>
                 </HStack>
-                <HStack spacing={20}>
-                  <FormControl>
+                <HStack spacing={19}>
+                  <FormControl  height="2rem">
                     <FormLabel>Study Center</FormLabel>
                     <Select
-                      placeholder="Study Center"
+                      placeholder="Raghunath Pur, Motihari"
                       color={"gray"}
                       rounded={"full"}
                       boxShadow={"base"}
-                      width={"100%"}>
-                      <option>United Arab Emirates</option>
-                      <option>Nigeria</option>
+                      width={"100%"}
+                      disabled>
+                      {/* <option>United Arab Emirates</option>
+                      <option>Nigeria</option> */}
                     </Select>
                   </FormControl>
-                  <FormControl>
+                  <FormControl isInvalid={errors.name}  height="2rem">
                     <FormLabel>Student name</FormLabel>
                     <Input
                       placeholder="Student name"
@@ -184,27 +304,30 @@ export default function Form() {
                       rounded={"full"}
                       boxShadow={"base"}
                       width={"100%"}
+                      onChange={nameChangeHandler}
                     />
+                    {errors.name ? (<FormErrorMessage>{errors.name}</FormErrorMessage>) : ''}
                   </FormControl>
-                  <FormControl>
+                  <FormControl isInvalid={errors.mobile}  height="2rem">
                     <FormLabel>Mobile No.</FormLabel>
-                    <Select
-                      placeholder="Mobile No"
+                    <Input
+                      placeholder="Mobile No."
                       color={"gray"}
                       rounded={"full"}
                       boxShadow={"base"}
-                      width={"100%"}>
-                      <option>United Arab Emirates</option>
-                      <option>Nigeria</option>
-                    </Select>
+                      width={"100%"}
+                      onChange={mobileChangeHandler}
+                    />
+                     {errors.mobile ? (<FormErrorMessage>{errors.mobile}</FormErrorMessage>) : ''}
                   </FormControl>
                   <Button
                     colorScheme="orange"
                     size="lg"
                     rounded={"full"}
                     width={"80%"}
-                    marginTop={"4%"}
-                    onClick={Submithandler}>
+                    marginTop={"9.5%"}
+                    type="submit"
+                    >
                     next
                   </Button>
                 </HStack>
@@ -216,6 +339,7 @@ export default function Form() {
                   I Agree to receive SMS/Call from AbhyaasIIT
                 </Checkbox>
               </VStack>
+              </form>
             </Center>
           </Box>
         </Center>

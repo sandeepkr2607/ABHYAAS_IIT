@@ -1,10 +1,48 @@
-import React, { useCallback, useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useRef,useState } from "react";
 import css from "./FormModal.module.css";
 // import { MdClose } from "react-icons/md";
 import model_img from "../../assets/model_img.png";
+// import { color } from "framer-motion";
+// import { FormErrorMessage } from "@chakra-ui/react";
 
 const FormModal = ({ showModal, setShowModal, onClose }) => {
   const modalRef = useRef(null);
+  const [input,setInput]=useState("");
+  const [mobile_number,setMobile_number]=useState("");
+  const [std,setStd]=useState("");
+  const [message,setMessage]=useState("");
+  const [errors, setErrors] = useState({
+    input: '',
+    mobile_number: '',
+    std: '',
+  });
+
+  const inputChangeHandler=(event)=>{
+      setInput(event.target.value)
+      setErrors({
+        ...errors,
+        input:''
+      })
+  }
+  const mobile_numberChangeHandler=(event)=>{
+      setMobile_number(event.target.value);
+      setErrors({
+        ...errors,
+        mobile_number:''
+      })
+  }
+  const stdChangeHandler=(event)=>{
+      setStd(event.target.value)
+      setErrors({
+        ...errors,
+        std:''
+      })
+  }
+  const messageChangeHandler=(event)=>{
+      setMessage(event.target.value)
+  }
+
+
 
   const handleClickOutside = useCallback(
     (event) => {
@@ -14,6 +52,47 @@ const FormModal = ({ showModal, setShowModal, onClose }) => {
     },
     [onClose]
   );
+
+  const onSubmitHandler=async (e)=>{
+      e.preventDefault();
+   
+      const regex = /^[0-9]{10}$/;
+      const newErrors = {};
+
+      if (input.trim() === '') {
+        newErrors.input= 'Name is required.';
+       
+      }
+  
+      if (regex.test(mobile_number) === false) {
+        newErrors.mobile_number = 'Enter Valid Mobile Number';
+      }
+  
+      if (std === '') {
+        newErrors.std = 'Please enter a standerd';
+      }
+  
+      setErrors(newErrors);
+      // console.log(errors)
+
+
+      if (Object.keys(newErrors).length === 0){
+
+      const response = await fetch("https://dev.seiasecure.com/api/v1/abhyaas_enquiry_form", {
+        method: 'POST',
+          headers: {
+           'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ "name":input,"mobile_number":mobile_number, "std":std , "message":message })
+      });
+      const data=await response.json();
+      console.log(data)
+      setShowModal(false);
+      }
+  }
+
+
+
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
@@ -42,20 +121,24 @@ const FormModal = ({ showModal, setShowModal, onClose }) => {
         <img src={model_img} alt="" className={css.model_img} />
         <h1 className={css.heading_one}>Your Preference Matters,</h1>
         <h2 className={css.heading_two}>Let's Get to Know You.</h2>
-        <form className={css.form}>
+        <form className={css.form} onSubmit={onSubmitHandler}>
           <input
             type="text"
             placeholder="Your name please!"
-            className={css.name}
+            className={  errors.input ? css.errorControl : css.name}
+            onChange={inputChangeHandler}
           />
-          {/* <div className={css.class_and_number}> */}
+          {errors.input &&  <div className={css.errorMessage}>{errors.input}</div>}
+         
           <input
             type="number"
             placeholder="Mobile No."
-            className={css.mobile}
+            className={ errors.mobile_number ? css.errorControl : css.name}
+            onChange={mobile_numberChangeHandler}
           />
-          <select className={css.select}>
-            <option disabled value="">
+           {errors.mobile_number &&  <div className={css.errorMessage}>{errors.mobile_number}</div>}
+          <select className={errors.std? css.errorSelectControl: css.select} onChange={stdChangeHandler}>
+            <option disabled value=''>
               Std... ?
             </option>
             <option className={css.option} value="option1">
@@ -86,17 +169,19 @@ const FormModal = ({ showModal, setShowModal, onClose }) => {
               NEET
             </option>
           </select>
-          {/* </div> */}
+          {errors.std &&  <div className={css.errorMessage}>{errors.std}</div>}
           <textarea
             placeholder="Feel free for any kind of query....."
-            className={css.text_area}></textarea>
+            className={css.text_area}
+            onChange={messageChangeHandler}
+            ></textarea>
           <div className={css.btns}>
             <button
               className={css.btn_close}
               onClick={() => setShowModal(false)}>
               CLOSE
             </button>
-            <button className={css.btn} onClick={() => setShowModal(false)}>
+            <button className={css.btn} type="submit">
               SUBMIT
             </button>
           </div>
