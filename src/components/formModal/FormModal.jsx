@@ -71,7 +71,7 @@ const FormModal = ({ showModal, setShowModal, onClose }) => {
       if (std === '') {
         newErrors.std = 'Please enter a standerd';
       }
-  
+
       setErrors(newErrors);
       // console.log(errors)
 
