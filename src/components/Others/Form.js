@@ -17,7 +17,7 @@ import Header from "../header/Header.jsx";
 import Footer from "../footer/Footer.jsx";
 import { FormErrorMessage } from "@chakra-ui/react";
 import { useEffect } from "react";
-import { hasFormSubmit } from "@testing-library/user-event/dist/utils/index.js";
+
 const Target_courses = [{value:'Brain Gym',text:'Brain Gym'},{value:'Foundation Course',text:'Foundation Course'} ,
 {value:'JEE Mains/Advance',text:'JEE Mains/Advance'},{value:'Maths+ Programme',text:'Maths+ Programme'} , 
 {value:'Free Crash Course',text:'Free Crash Course '}, {value: 'Entrance Test Batch-1',text: 'Entrance Test Batch-1'}
@@ -38,11 +38,11 @@ const FreeCrash_Target=[8,9,10,12]
 
 export default function Form() {
 
-const [target_course,setTarget_course]=useState(" ")
-const [academic_session,setAcademic_session]=useState(" ");
-const [target_class,setTarget_class]=useState(" ");
-const [name,setName]=useState(" ");
-const [mobile,setMobile]=useState(" ");
+const [academic_session,setAcademic_session]=useState('');
+const [target_course,setTarget_course]=useState('')
+const [target_class,setTarget_class]=useState('');
+const [name,setName]=useState('');
+const [mobile,setMobile]=useState('');
 const [errors, setErrors] = useState({
   academic_session: '',
   target_course: '',
@@ -52,7 +52,11 @@ const [errors, setErrors] = useState({
 });
 
 
+const [isChecked, setIsChecked] = useState(true);
 
+const handleCheckboxChange = (event) => {
+  setIsChecked(event.target.checked);
+};
 
 
 
@@ -102,13 +106,40 @@ const nameChangeHandler=(event)=>{
     window.scrollTo(0, 0)
   }, [])
   const navigate = useNavigate();
-  const Submithandler = () => {
-    console.log(academic_session)
-    console.log(target_course)
-    console.log(target_class)
-    console.log(mobile)
-    console.log(name);
-    navigate("/otp");
+  const Submithandler =async () => {
+    const regex = /^[0-9]{10}$/;
+    const newErrors = {};
+    if(academic_session===''){
+      newErrors.academic_session = 'Please enter a session';
+    }
+    if(target_course===''){
+      newErrors.target_course= 'Please enter a course';
+    }
+    if(target_class===''){
+      newErrors.target_class= 'Please enter a class';
+    }
+    if (name.trim() === '') {
+      newErrors.name= 'Name is required';
+    }
+    if (regex.test(mobile) === false) {
+      newErrors.mobile = 'Enter Valid Mobile Number';
+    }
+    setErrors(newErrors);
+
+
+    if (Object.keys(newErrors).length === 0){
+      const response = await fetch("https://dev.seiasecure.com/api/v1/coaching_application", {
+        method: 'POST',
+          headers: {
+           'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ "academicSession":academic_session,"studyMode": "Offline", "targetCourse":target_course ,  
+        "targetClass":target_class,"studyCenter":"RaghunathPur,Motihari","studentName":name,"mobileNo":mobile,"agreeToReceiveSMS":isChecked })
+      });
+      const data=await response.json();
+      console.log(data)
+      navigate("/otp");
+    }
   };
 
 const selectedCourses=(course)=>{
@@ -218,20 +249,21 @@ const selectedCourses=(course)=>{
               </Box>
             </Center>
             <Center m={3}>
-            <form onSubmit={Submithandler}>
+       
               <VStack spacing={20}>
                
                 <HStack spacing={12}>
                   <FormControl isInvalid={errors.academic_session}  height="2rem">
                     <FormLabel width={'100%'}>Academic Session</FormLabel>
                     <Select
-                      placeholder="Academic Session"
+                      // placeholder="Academic Session"
                       color={"gray"}
                       rounded={"full"}
                       boxShadow={"base"}
                       width={"100%"}
                       onChange={sessionChangeHandler}
                       >
+                      <option value=''>Academic Session</option>
                       <option value="2023-24">2023-2024</option>
                       <option value="2024-25">2024-2025</option>
                     </Select>
@@ -252,7 +284,7 @@ const selectedCourses=(course)=>{
                   <FormControl isInvalid={errors.target_course}  height="2rem">
                     <FormLabel>Target Course</FormLabel>
                     <Select
-                      placeholder="Brain Gym"
+                      // placeholder="Brain Gym"
                       color={"gray"}
                       rounded={"full"}
                       boxShadow={"base"}
@@ -260,6 +292,7 @@ const selectedCourses=(course)=>{
                       value={target_course}
                       onChange={CourseChangeHandler}
                       >
+                      <option value=''>Target Course</option>
                       {Target_courses.map((e)=>
                         <option key={e.value} value={e.value}>{e.text}</option>
                       )}
@@ -269,7 +302,7 @@ const selectedCourses=(course)=>{
                   <FormControl isInvalid={errors.target_class}   height="2rem">
                     <FormLabel>Target Class</FormLabel>
                     <Select
-                      placeholder="Target Class"
+                      // placeholder="Target Class"
                       color={"gray"}
                       rounded={"full"}
                       boxShadow={"base"}
@@ -277,6 +310,7 @@ const selectedCourses=(course)=>{
                       onChange={classChangeHandler}
                     
                       >
+                     <option value=''>Target Class</option>
                      {selectedCourses(target_course)}
                     </Select>
                     <FormErrorMessage>{errors.target_class && errors.target_class}</FormErrorMessage>
@@ -286,7 +320,7 @@ const selectedCourses=(course)=>{
                   <FormControl  height="2rem">
                     <FormLabel>Study Center</FormLabel>
                     <Select
-                      placeholder="Raghunath Pur, Motihari"
+                      placeholder="RaghunathPur,Motihari"
                       color={"gray"}
                       rounded={"full"}
                       boxShadow={"base"}
@@ -326,7 +360,7 @@ const selectedCourses=(course)=>{
                     rounded={"full"}
                     width={"80%"}
                     marginTop={"9.5%"}
-                    type="submit"
+                    onClick={Submithandler}
                     >
                     next
                   </Button>
@@ -335,11 +369,13 @@ const selectedCourses=(course)=>{
                   colorScheme="orange"
                   defaultChecked
                   marginLeft={0}
-                  width={"100%"}>
+                  isChecked={isChecked}
+                  width={"100%"}
+                  onChange={handleCheckboxChange}
+                  >
                   I Agree to receive SMS/Call from AbhyaasIIT
                 </Checkbox>
               </VStack>
-              </form>
             </Center>
           </Box>
         </Center>
