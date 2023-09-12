@@ -281,7 +281,7 @@ const selectedCourses=(course)=>{
                       <option>Nigeria</option> */}
                     </Select>
                   </FormControl>
-                  <FormControl isInvalid={errors.target_course}  height="2rem">
+                  <FormControl isInvalid={errors.target_course}  height="2rem">   
                     <FormLabel>Target Course</FormLabel>
                     <Select
                       // placeholder="Brain Gym"
