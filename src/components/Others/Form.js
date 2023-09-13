@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Box, ChakraProvider } from "@chakra-ui/react"
 import { Heading } from "@chakra-ui/react";
 import { Center } from "@chakra-ui/react";
@@ -16,7 +16,7 @@ import { useNavigate } from "react-router-dom";
 import Header from "../header/Header.jsx";
 import Footer from "../footer/Footer.jsx";
 import { FormErrorMessage } from "@chakra-ui/react";
-import { useEffect } from "react";
+
 
 const Target_courses = [{value:'Brain Gym',text:'Brain Gym'},{value:'Foundation Course',text:'Foundation Course'} ,
 {value:'JEE Mains/Advance',text:'JEE Mains/Advance'},{value:'Maths+ Programme',text:'Maths+ Programme'} , 
@@ -137,7 +137,19 @@ const nameChangeHandler=(event)=>{
         "targetClass":target_class,"studyCenter":"RaghunathPur,Motihari","studentName":name,"mobileNo":mobile,"agreeToReceiveSMS":isChecked })
       });
       const data=await response.json();
+      localStorage.setItem("id",data.data._id)
       console.log(data)
+      const otpResponse=await fetch("https://dev.seiasecure.com/api/v1/send_otp",{
+        method:'POST',
+        headers: {
+          'Content-Type': 'application/json',
+       },
+       body:JSON.stringify({"mobileNo":mobile})
+      })
+      const otpdata=await otpResponse.json();
+      // console.log(otpdata.otp.mobileNo)
+      localStorage.setItem("mobile",otpdata.otp.mobileNo)
+      console.log(otpdata)
       navigate("/otp");
     }
   };
@@ -307,9 +319,7 @@ const selectedCourses=(course)=>{
                       rounded={"full"}
                       boxShadow={"base"}
                       width={"100%"}
-                      onChange={classChangeHandler}
-                    
-                      >
+                      onChange={classChangeHandler} >
                      <option value=''>Target Class</option>
                      {selectedCourses(target_course)}
                     </Select>

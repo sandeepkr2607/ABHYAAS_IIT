@@ -99,7 +99,7 @@ export default function Personal() {
     })
   }
   const aadharChangeHandler=(event)=>{
-    setCategory(event.target.value)
+    setAadhar(event.target.value)
   }
   const mobileSChangeHandler=(event)=>{
     setMobileS(event.target.value)
@@ -352,7 +352,6 @@ export default function Personal() {
                   </FormControl>
                 </HStack>
                 <HStack spacing={35}>
-                 
                   <FormControl isInvalid={errors.category} h={0.5} marginBottom={20}>
                     <FormLabel>Category</FormLabel>
                     <Select

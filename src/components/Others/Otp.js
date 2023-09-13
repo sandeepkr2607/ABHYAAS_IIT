@@ -7,14 +7,61 @@ import { useNavigate } from "react-router-dom";
 import Header from "../header/Header.jsx";
 import Footer from "../footer/Footer.jsx";
 import { ChakraProvider } from "@chakra-ui/react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useToast } from "@chakra-ui/react";
+
 
 export default function Otp() {
+  const toast = useToast()
   const navigate = useNavigate();
+  const data=localStorage.getItem("mobile")
+  const [pin, setPin] = useState('');
+
+  const handlePinChange = (value) => {
+    setPin(value);
+  };
+ 
+  const onSendAgain=async ()=>{
+    const phone=localStorage.getItem("mobile")
+    const otpResponse=await fetch("https://dev.seiasecure.com/api/v1/send_otp",{
+      method:'POST',
+      headers: {
+        'Content-Type': 'application/json',
+     },
+     body:JSON.stringify({"mobileNo":phone})
+    })
+    const data=await otpResponse.json();
+    console.log(data);
+  }
+
   useEffect(() => {
+    
     window.scrollTo(0, 0)
   }, [])
-  const Submithandler = () => {
+  const Submithandler =async () => {
+    // console.log(pin)
+    const phone=localStorage.getItem("mobile")
+    const Response=await fetch("https://dev.seiasecure.com/api/v1/verify_otp",{
+      method:'POST',
+      headers: {
+        'Content-Type': 'application/json',
+     },
+     body:JSON.stringify({"mobileNo":phone,"otpNumber":pin})
+    })
+    const data=await Response.json();
+    console.log(data)
+    
+    if(data.success===false){
+      toast({
+        title: 'Otp not veified',
+        description: "Do send Again",
+        position:'top',
+        status: 'error',
+        duration: 9000,
+        isClosable: true,
+      })
+      return
+    }
     navigate("/personal");
   };
   return (
@@ -38,7 +85,7 @@ export default function Otp() {
                 <HStack m={3}>
                   <Text textStyle="p">OTP was sended to</Text>
                   <Text color={"orange"} fontWeight={"bold"}>
-                    +917364863246
+                    {data}
                   </Text>
                 </HStack>
                 <Text>Please Enter your OTP below</Text>
@@ -46,7 +93,7 @@ export default function Otp() {
             </Center>
             <Center>
               <HStack p={10}>
-                <PinInput>
+                <PinInput value={pin} onChange={handlePinChange}>
                   <PinInputField boxShadow={"base"} />
                   <PinInputField boxShadow={"base"} />
                   <PinInputField boxShadow={"base"} />
@@ -69,9 +116,9 @@ export default function Otp() {
             <Center>
               <HStack>
                 <Text textStyle="p">OTP Not Received?</Text>
-                <Text color={"orange"} fontWeight={"bold"}>
-                  Send Again
-                </Text>
+                
+                  <Button color={"orange"} bgColor={"white"} onClick={onSendAgain}>Send Again</Button>
+               
               </HStack>
             </Center>
           </Box>

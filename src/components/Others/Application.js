@@ -17,8 +17,18 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { useEffect } from "react";
 
 export default function Application() {
+  
+  const id=localStorage.getItem("id");
+
   useEffect(() => {
     window.scrollTo(0, 0)
+    async function fetchData() {
+      
+      const response = await fetch(`https://dev.seiasecure.com/api/v1/getCoachingApplicationById/${id}`);
+      const data=await response.json();
+      console.log(data);
+    }
+    fetchData();
   }, [])
   const navigate = useNavigate();
   const Submithandler = () => {
@@ -100,7 +110,7 @@ export default function Application() {
             <Center>
               <Box m={3}>
                 <Heading textStyle="h1" fontWeight={"bold"} fontSize={"lg"} m={3}>
-                  Course Details
+                  Personal Details
                 </Heading>
                 <Text textStyle="p" fontFamily={""}>
                   Following are the details

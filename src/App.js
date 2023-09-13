@@ -12,18 +12,21 @@ import Success from "./components/Others/Success";
 function App() {
   return (
     <div className="App">
+  
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about-us" element={<About />} />
-
+      
         <Route path="/form" element={<Form></Form>}></Route>
         <Route path="/otp" element={<Otp></Otp>}></Route>
+        
         <Route path="/personal" element={<Personal></Personal>}></Route>
         <Route
           path="/application"
           element={<Application></Application>}></Route>
         <Route path="/success" element={<Success></Success>}></Route>
       </Routes>
+
     </div>
   );
 }
