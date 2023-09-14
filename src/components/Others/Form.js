@@ -150,7 +150,10 @@ const nameChangeHandler=(event)=>{
       // console.log(otpdata.otp.mobileNo)
       localStorage.setItem("mobile",otpdata.otp.mobileNo)
       console.log(otpdata)
-      navigate("/otp");
+      if(otpdata.success===true){
+
+        navigate("/otp");
+      }
     }
   };
 
@@ -268,7 +271,7 @@ const selectedCourses=(course)=>{
                   <FormControl isInvalid={errors.academic_session}  height="2rem">
                     <FormLabel width={'100%'}>Academic Session</FormLabel>
                     <Select
-                      // placeholder="Academic Session"
+                     
                       color={"gray"}
                       rounded={"full"}
                       boxShadow={"base"}
@@ -305,9 +308,12 @@ const selectedCourses=(course)=>{
                       onChange={CourseChangeHandler}
                       >
                       <option value=''>Target Course</option>
-                      {Target_courses.map((e)=>
+                      {academic_session==='2023-24'?<option value="Free Crash Course">Free Crash Course</option>:Target_courses.map((e)=>
                         <option key={e.value} value={e.value}>{e.text}</option>
                       )}
+                      {/* {Target_courses.map((e)=>
+                        <option key={e.value} value={e.value}>{e.text}</option>
+                      )} */}
                     </Select>
                     {errors.target_course ? (<FormErrorMessage >{errors.target_course}</FormErrorMessage>) : ''}
                   </FormControl>
@@ -323,7 +329,7 @@ const selectedCourses=(course)=>{
                      <option value=''>Target Class</option>
                      {selectedCourses(target_course)}
                     </Select>
-                    <FormErrorMessage>{errors.target_class && errors.target_class}</FormErrorMessage>
+                    {errors.target_class ? (<FormErrorMessage >{errors.target_class}</FormErrorMessage>) : ''}
                   </FormControl>
                 </HStack>
                 <HStack spacing={19}>

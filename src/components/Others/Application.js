@@ -14,19 +14,41 @@ import { useNavigate } from "react-router-dom";
 import Header from "../header/Header.jsx";
 import Footer from "../footer/Footer.jsx";
 import { ChakraProvider } from "@chakra-ui/react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function Application() {
   
+  const [info,setInfo]=useState({
+    applicationNo:'',
+    targetCourse:'',
+    studentName:'',
+    fatherName:'',
+    category:'',
+    city:'',
+    district:'',
+    state:'',
+    pinCode:''
+  });
   const id=localStorage.getItem("id");
-
+  
   useEffect(() => {
     window.scrollTo(0, 0)
     async function fetchData() {
       
       const response = await fetch(`https://dev.seiasecure.com/api/v1/getCoachingApplicationById/${id}`);
-      const data=await response.json();
-      console.log(data);
+      const  data=await response.json();
+      const newData = {}
+      newData.applicationNo=data.data.applicationNo
+      newData.targetCourse=data.data.targetCourse
+      newData.studentName=data.data.studentName
+      newData.fatherName=data.data.fatherName
+      newData.category=data.data.category
+      newData.city=data.data.city
+      newData.district=data.data.district
+      newData.state=data.data.state
+      newData.pinCode=data.data.pinCode
+      setInfo(newData);
+    
     }
     fetchData();
   }, [])
@@ -138,7 +160,7 @@ export default function Application() {
                     <Text fontWeight={"bold"}>Application From Free</Text>
                   </VStack>
                   <VStack spacing={2} alignItems={"start"}>
-                    <Text>2300922</Text>
+                    {/* <Text>2300922</Text>
                     <Text>iAKHIL</Text>
                     <Text>JEE(Main)</Text>
                     <Text>Mumbai - Churchgate</Text>
@@ -152,6 +174,21 @@ export default function Application() {
                     <Text>Bijapur</Text>
                     <Text>Karnataka</Text>
                     <Text>560049</Text>
+                    <Text>500</Text> */}
+                    <Text>{info.applicationNo}</Text>
+                    <Text>{info.targetCourse}</Text>
+                    <Text>JEE(Main)</Text>
+                    <Text>Mumbai - Churchgate</Text>
+                    <Text>E</Text>
+                    <Text>Online</Text>
+                    <Text>13-Aug-2023 11.00 AM</Text>
+                    <Text>{info.studentName}</Text>
+                    <Text>{info.fatherName}</Text>
+                    <Text>{info.category}</Text>
+                    <Text>{info.city}</Text>
+                    <Text>{info.district}</Text>
+                    <Text>{info.state}</Text>
+                    <Text>{info.pinCode}</Text>
                     <Text>500</Text>
                   </VStack>
                 </HStack>

@@ -39,7 +39,7 @@ export default function Personal() {
   const [email,setEmail]=useState('');
   const [about,setAbout]=useState('');
 
-
+ 
   const [errors, setErrors] = useState({
     name: '',
     fatherName: '',
@@ -165,7 +165,7 @@ export default function Personal() {
       })
   }
 
-
+  const id=localStorage.getItem("id");
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -173,6 +173,8 @@ export default function Personal() {
   const navigate = useNavigate();
   const Submithandler =async () => {
     const regex = /^[0-9]{10}$/;
+
+    const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
     const newErrors = {};
     if(name.trim()===''){
       newErrors.name= 'Please enter a name';
@@ -210,7 +212,7 @@ export default function Personal() {
     if(district.trim()===''){
       newErrors.district= 'Please enter your district';
     }
-    if(email.trim()===''){
+    if(emailRegex.test(email)===false){
       newErrors.email= 'Please enter your email';
     }
     if(about.trim()===''){
@@ -218,8 +220,22 @@ export default function Personal() {
     }
     setErrors(newErrors);
     if (Object.keys(newErrors).length === 0){
-      //API call
-      navigate("/application");
+      const response = await fetch(`https://dev.seiasecure.com/api/v1/updateCoachingApplicationById/${id}`, {
+        method: 'PUT',
+          headers: {
+           'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ "studentName":name,"dateOfBirth": date,"gender":gender,"mobileNo":mobileS,"agreeToReceiveSMS":isChecked,  
+        "fatherMobileNo":mobileF,"permanentAddress":address,"email":email,"fatherName":fatherName,"aadharNo":addhar,"sourceConnection":about
+      ,"category":category,"city":city,"district":district,"state":state,"pinCode":pincode
+      })
+      });
+      const data=await response.json();
+      console.log(data);
+      if(data.success===true){
+
+        navigate("/application");
+      }
     }
   };
   return (
@@ -430,8 +446,9 @@ export default function Personal() {
                       How did you came to know about AbhyaasIIT
                     </FormLabel>
                     <Select color={"gray"} rounded={"full"} boxShadow={"base"} onChange={aboutChangeHandler}>
-                      <option value=''>United Arab Emirates</option>
-                      <option value=''>Nigeria</option>
+                      <option value='From a friend'>From a friend</option>
+                      <option value='Form Social Media Add'>Form Social Media Add.</option>
+                      <option value='From Local Adds'>From Local Adds</option>
                     </Select>
                     {errors.about?(<FormErrorMessage>{errors.about}</FormErrorMessage>):''}
                   </FormControl>
