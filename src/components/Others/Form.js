@@ -332,7 +332,8 @@ const selectedCourses=(course)=>{
                     {errors.target_class ? (<FormErrorMessage >{errors.target_class}</FormErrorMessage>) : ''}
                   </FormControl>
                 </HStack>
-                <HStack spacing={19}>
+                <HStack spacing="24px">
+                  {/* <Box> */}
                   <FormControl  height="2rem">
                     <FormLabel>Study Center</FormLabel>
                     <Select
@@ -346,7 +347,8 @@ const selectedCourses=(course)=>{
                       <option>Nigeria</option> */}
                     </Select>
                   </FormControl>
-                  <FormControl isInvalid={errors.name}  height="2rem">
+                  {/* </Box> */}
+                  <FormControl isInvalid={errors.name}  height="2rem" >
                     <FormLabel>Student name</FormLabel>
                     <Input
                       placeholder="Student name"
@@ -374,7 +376,7 @@ const selectedCourses=(course)=>{
                     colorScheme="orange"
                     size="lg"
                     rounded={"full"}
-                    width={"80%"}
+                    width={"100%"}
                     marginTop={"9.5%"}
                     onClick={Submithandler}
                     >
