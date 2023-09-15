@@ -102,18 +102,41 @@ export default function Personal() {
     setAadhar(event.target.value)
   }
   const mobileSChangeHandler=(event)=>{
-    setMobileS(event.target.value)
+    // setMobileS(event.target.value)
+    // setErrors({
+    //   ...errors,
+    //   mobileS:''
+    // })
+    const regex = /^[0-9]{10}$/;
+  setMobileS(event.target.value);
+  if (regex.test(event.target.value) === false) {
+    setErrors({
+      ...errors,
+      mobileS:'Enter Valid Mobile Number'
+    })
+  }
+  else{
     setErrors({
       ...errors,
       mobileS:''
     })
   }
+}
   const mobileFChangeHandler=(event)=>{
-      setMobileF(event.target.value)
+    const regex = /^[0-9]{10}$/;
+    setMobileF(event.target.value);
+    if (regex.test(event.target.value) === false) {
+      setErrors({
+        ...errors,
+        mobileF:'Enter Valid Mobile Number'
+      })
+    }
+    else{
       setErrors({
         ...errors,
         mobileF:''
       })
+    }
   }
   const addressChangeHandler=(event)=>{
     setAddress(event.target.value)
@@ -151,11 +174,26 @@ export default function Personal() {
     })
   }
   const emailChangeHandler=(event)=>{
-      setEmail(event.target.value)
-      setErrors({
-        ...errors,
-        email:''
-      })
+      // setEmail(event.target.value)
+      // setErrors({
+      //   ...errors,
+      //   email:''
+      // })
+      const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+      setEmail(event.target.value);
+      if (emailRegex.test(email)===false) {
+        setErrors({
+          ...errors,
+          email:'Enter Valid Email'
+        })
+       
+      }
+      else{
+        setErrors({
+          ...errors,
+          email:''
+        })
+      }
   }
   const aboutChangeHandler=(event)=>{
       setAbout(event.target.value)
@@ -177,43 +215,43 @@ export default function Personal() {
     const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
     const newErrors = {};
     if(name.trim()===''){
-      newErrors.name= 'Please enter a name';
+      newErrors.name= 'Enter your name';
     }
     if(fatherName.trim()===''){
-      newErrors.fatherName= 'Please enter your father name';
+      newErrors.fatherName= 'Enter your father name';
     }
     if(date===''){
-      newErrors.date= 'Please enter your DOB';
+      newErrors.date= 'Enter your DOB';
     }
     if(gender===''){
-      newErrors.gender= 'Please enter your gender';
+      newErrors.gender= 'Enter your gender';
     }
     if(category===''){
-      newErrors.category= 'Please enter your category';
+      newErrors.category= 'Enter your category';
     }
     if(regex.test(mobileS) === false){
-      newErrors.mobileS= 'Please enter a valid mobile number';
+      newErrors.mobileS= 'Enter a valid mobile number';
     }
     if(regex.test(mobileF) === false){
-        newErrors.mobileF='Please enter a valid mobile number'
+        newErrors.mobileF='Enter a valid mobile number'
     }
     if(address.trim()===''){
-      newErrors.address= 'Please enter your address';
+      newErrors.address= 'Enter your address';
     }
     if(city.trim()===''){
-      newErrors.city= 'Please enter your city';
+      newErrors.city= 'Enter your city';
     }
     if(pincode.trim()===''){
-      newErrors.pincode= 'Please enter your Pincode';
+      newErrors.pincode= 'Enter your Pincode';
     }
     if(state.trim()===''){
-      newErrors.state= 'Please enter your state';
+      newErrors.state= 'Enter your state';
     }
     if(district.trim()===''){
-      newErrors.district= 'Please enter your district';
+      newErrors.district= 'Enter your district';
     }
     if(emailRegex.test(email)===false){
-      newErrors.email= 'Please enter your email';
+      newErrors.email= 'Enter your email';
     }
     if(about.trim()===''){
       newErrors.about= 'This field is required';
@@ -324,7 +362,8 @@ export default function Personal() {
             {/* ------------------------------------------------------------------------------------------------------------------------------- */}
             <Center>
               <VStack spacing={35}>
-                <HStack spacing={39}>
+                
+                <HStack spacing={'66px'}>
                   <FormControl isInvalid={errors.name} 
                   h={0.5} marginBottom={20}
                   >
@@ -342,7 +381,7 @@ export default function Personal() {
                     <Input
                       placeholder="Select Date and Time"
                       size="md"
-                      type="datetime-local"
+                      type="date"
                       rounded={"full"}
                       boxShadow={"base"}
                       width={'100%'}
@@ -367,33 +406,33 @@ export default function Personal() {
                     {errors.gender?(<FormErrorMessage>{errors.gender}</FormErrorMessage>):''}
                   </FormControl>
                 </HStack>
-                <HStack spacing={35}>
+                <HStack spacing={'70px'}>
                   <FormControl isInvalid={errors.category} h={0.5} marginBottom={20}>
                     <FormLabel>Category</FormLabel>
                     <Select
                       color={"gray"}
                       rounded={"full"}
                       boxShadow={"base"}
-                      width={"100%"}
+                      // width={"113%"}
                       onChange={categoryChangeHandler}
                       >
                       <option value=''>Category</option>
                       <option value='general'>General</option>
                       <option value='general-ews'>General-Ews</option>
-                      <option value='obc'>others backwords cast</option>
-                      <option value='sc'>schedule cast</option>
-                      <option value='st'>schedule tribe</option>
+                      <option value='obc'>OBC</option>
+                      <option value='sc'>SC</option>
+                      <option value='st'>ST</option>
                     </Select>
                     {errors.category?(<FormErrorMessage>{errors.category}</FormErrorMessage>):''}
                   </FormControl>
                   <FormControl isInvalid={errors.addhar} h={0.5} marginBottom={20}>
                     <FormLabel>AADHAR NO. (Optional)</FormLabel>
-                    <Input color={"gray"} rounded={"full"} boxShadow={"base"} onChange={aadharChangeHandler}/>
+                    <Input color={"gray"} rounded={"full"} boxShadow={"base"} onChange={aadharChangeHandler} />
                     {/* {errors.addhar?(<FormErrorMessage>{errors.addhar}</FormErrorMessage>):''} */}
                   </FormControl>
                     <FormControl isInvalid={errors.mobileS} h={0.5} marginBottom={20}>
                     <FormLabel>Mobile No.</FormLabel>
-                    <Input color={"gray"} rounded={"full"} boxShadow={"base"} onChange={mobileSChangeHandler}/>
+                    <Input color={"gray"} rounded={"full"} boxShadow={"base"} onChange={mobileSChangeHandler} />
                     {errors.mobileS?(<FormErrorMessage>{errors.mobileS}</FormErrorMessage>):''}
                   </FormControl>
                   <FormControl isInvalid={errors.mobileF} h={0.5} marginBottom={20}>
@@ -447,8 +486,10 @@ export default function Personal() {
                     </FormLabel>
                     <Select color={"gray"} rounded={"full"} boxShadow={"base"} onChange={aboutChangeHandler}>
                       <option value='From a friend'>From a friend</option>
-                      <option value='Form Social Media Add'>Form Social Media Add.</option>
-                      <option value='From Local Adds'>From Local Adds</option>
+                      <option value='Form Social Media Add'>Form Social Media</option>
+                      <option value='From news papers'>From news papers</option>
+                      <option value='From websites'>From websites</option>
+                      <option value='From schools'>From schools</option>
                     </Select>
                     {errors.about?(<FormErrorMessage>{errors.about}</FormErrorMessage>):''}
                   </FormControl>

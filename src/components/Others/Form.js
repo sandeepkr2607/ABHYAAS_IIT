@@ -20,7 +20,7 @@ import { FormErrorMessage } from "@chakra-ui/react";
 
 const Target_courses = [{value:'Brain Gym',text:'Brain Gym'},{value:'Foundation Course',text:'Foundation Course'} ,
 {value:'JEE Mains/Advance',text:'JEE Mains/Advance'},{value:'Maths+ Programme',text:'Maths+ Programme'} , 
-{value:'Free Crash Course',text:'Free Crash Course '}, {value: 'Entrance Test Batch-1',text: 'Entrance Test Batch-1'}
+ {value: 'Entrance Test Batch-1',text: 'Entrance Test Batch-1'}
 ]
 const BrainGym_Target=[6,7];
 const FoundationCourse_Target=[8,9,10];
@@ -87,11 +87,21 @@ const classChangeHandler=(event)=>{
 }
 
 const mobileChangeHandler=(event)=>{
+  const regex = /^[0-9]{10}$/;
   setMobile(event.target.value);
-  setErrors({
-    ...errors,
-    mobile:''
-  })
+  if (regex.test(event.target.value) === false) {
+    setErrors({
+      ...errors,
+      mobile:'Enter Valid Mobile Number'
+    })
+   
+  }
+  else{
+    setErrors({
+      ...errors,
+      mobile:''
+    })
+  }
 }
 
 const nameChangeHandler=(event)=>{
@@ -337,12 +347,13 @@ const selectedCourses=(course)=>{
                   <FormControl  height="2rem">
                     <FormLabel>Study Center</FormLabel>
                     <Select
-                      placeholder="RaghunathPur,Motihari"
-                      color={"gray"}
+                      // placeholder="RaghunathPur,Motihari"
+                      // color={"orange.900"}
                       rounded={"full"}
                       boxShadow={"base"}
                       width={"100%"}
-                      disabled>
+                      >
+                      <option>RaghunathPur,Motihari</option>
                       {/* <option>United Arab Emirates</option>
                       <option>Nigeria</option> */}
                     </Select>
