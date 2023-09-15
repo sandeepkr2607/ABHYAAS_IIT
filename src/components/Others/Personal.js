@@ -61,7 +61,7 @@ export default function Personal() {
   const handleCheckboxChange = (event) => {
     setIsChecked(event.target.checked);
   };
-  
+  const navigate = useNavigate();
 
   const nameChangeHandler=(event)=>{
     setName(event.target.value)
@@ -207,8 +207,11 @@ export default function Personal() {
 
   useEffect(() => {
     window.scrollTo(0, 0)
+    if(!id){
+      navigate('/form')
+    }
   }, [])
-  const navigate = useNavigate();
+  
   const Submithandler =async () => {
     const regex = /^[0-9]{10}$/;
 
@@ -258,6 +261,9 @@ export default function Personal() {
     }
     setErrors(newErrors);
     if (Object.keys(newErrors).length === 0){
+      if(!id){
+        navigate("/application");
+      }
       const response = await fetch(`https://dev.seiasecure.com/api/v1/updateCoachingApplicationById/${id}`, {
         method: 'PUT',
           headers: {

@@ -25,11 +25,20 @@ const FormModal = ({ showModal, setShowModal, onClose }) => {
       })
   }
   const mobile_numberChangeHandler=(event)=>{
-      setMobile_number(event.target.value);
+    const regex = /^[0-9]{10}$/;
+    setMobile_number(event.target.value);
+    if (regex.test(event.target.value) === false) {
+      setErrors({
+        ...errors,
+        mobile_number:'Enter Valid Mobile Number'
+      })
+    }
+    else{
       setErrors({
         ...errors,
         mobile_number:''
       })
+    }
   }
   const stdChangeHandler=(event)=>{
       setStd(event.target.value)
@@ -137,6 +146,7 @@ const FormModal = ({ showModal, setShowModal, onClose }) => {
             onChange={mobile_numberChangeHandler}
           />
            {errors.mobile_number &&  <div className={css.errorMessage}>{errors.mobile_number}</div>}
+        
           <select className={errors.std? css.errorSelectControl: css.select} onChange={stdChangeHandler}>
             <option disabled value=''>
               Std... ?
@@ -169,6 +179,7 @@ const FormModal = ({ showModal, setShowModal, onClose }) => {
               NEET
             </option>
           </select>
+        
           {errors.std &&  <div className={css.errorMessage}>{errors.std}</div>}
           <textarea
             placeholder="Feel free for any kind of query....."

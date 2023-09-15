@@ -144,8 +144,10 @@
 .select {
   width: 95%;
   padding: 8px 12px;
+
   border: 2px solid rgba(239, 240, 246, 1);
   border-radius: 5px;
+ 
   background-color: transparent;
   outline: none;
   font-family: Inter;
@@ -157,6 +159,7 @@
   border-radius: 30px;
   /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 10px 0px; */
 }
+
 .errorMessage {
   color: red !important;
   margin: 0;

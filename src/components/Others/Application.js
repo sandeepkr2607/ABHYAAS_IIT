@@ -17,7 +17,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 
 export default function Application() {
-  
+  const navigate = useNavigate();
   const [info,setInfo]=useState({
     applicationNo:'',
     targetCourse:'',
@@ -29,12 +29,17 @@ export default function Application() {
     state:'',
     pinCode:''
   });
-  const id=localStorage.getItem("id");
+
   
   useEffect(() => {
     window.scrollTo(0, 0)
     async function fetchData() {
-      
+      const id=localStorage.getItem("id");
+      if(!id){
+          navigate('/form')
+          return
+      }
+
       const response = await fetch(`https://dev.seiasecure.com/api/v1/getCoachingApplicationById/${id}`);
       const  data=await response.json();
       const newData = {}
@@ -52,7 +57,7 @@ export default function Application() {
     }
     fetchData();
   }, [])
-  const navigate = useNavigate();
+
   const Submithandler = () => {
     navigate("/success");
   };
