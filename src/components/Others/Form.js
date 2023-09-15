@@ -332,7 +332,7 @@ const selectedCourses=(course)=>{
                     {errors.target_class ? (<FormErrorMessage >{errors.target_class}</FormErrorMessage>) : ''}
                   </FormControl>
                 </HStack>
-                <HStack spacing="24px">
+                <HStack spacing="26px">
                   {/* <Box> */}
                   <FormControl  height="2rem">
                     <FormLabel>Study Center</FormLabel>
@@ -376,7 +376,7 @@ const selectedCourses=(course)=>{
                     colorScheme="orange"
                     size="lg"
                     rounded={"full"}
-                    width={"100%"}
+                    width={"80%"}
                     marginTop={"9.5%"}
                     onClick={Submithandler}
                     >
