@@ -207,9 +207,22 @@ export default function Personal() {
 
   useEffect(() => {
     window.scrollTo(0, 0)
-    if(!id){
-      navigate('/form')
-    }
+   async function fetchData(){
+    const id=localStorage.getItem("id");
+      if(!id){
+          navigate('/form')
+          return
+      }
+      const response = await fetch(`https://dev.seiasecure.com/api/v1/getCoachingApplicationById/${id}`);
+      const  data=await response.json();
+      setName(data.data.studentName)
+      setMobileS(data.data.mobileNo)
+   }
+   
+   
+   fetchData()
+
+
   }, [])
   
   const Submithandler =async () => {
@@ -374,7 +387,7 @@ export default function Personal() {
                   h={0.5} marginBottom={20}
                   >
                     <FormLabel>Name</FormLabel>
-                    <Input color={"gray"} rounded={"full"} width={'100%'} boxShadow={"base"} onChange={nameChangeHandler}/>
+                    <Input color={"gray"} rounded={"full"} width={'100%'} boxShadow={"base"} value={name} onChange={nameChangeHandler}/>
                     {errors.name?(<FormErrorMessage>{errors.name}</FormErrorMessage>):''}
                   </FormControl>
                   <FormControl isInvalid={errors.fatherName} h={0.5} marginBottom={20}>
@@ -438,7 +451,7 @@ export default function Personal() {
                   </FormControl>
                     <FormControl isInvalid={errors.mobileS} h={0.5} marginBottom={20}>
                     <FormLabel>Mobile No.</FormLabel>
-                    <Input color={"gray"} rounded={"full"} boxShadow={"base"} onChange={mobileSChangeHandler} />
+                    <Input color={"gray"} rounded={"full"} boxShadow={"base"} onChange={mobileSChangeHandler} value={mobileS}/>
                     {errors.mobileS?(<FormErrorMessage>{errors.mobileS}</FormErrorMessage>):''}
                   </FormControl>
                   <FormControl isInvalid={errors.mobileF} h={0.5} marginBottom={20}>
@@ -491,6 +504,7 @@ export default function Personal() {
                       How did you came to know about AbhyaasIIT
                     </FormLabel>
                     <Select color={"gray"} rounded={"full"} boxShadow={"base"} onChange={aboutChangeHandler}>
+                      <option value=''>How do you know about AbhyaasIIT</option>
                       <option value='From a friend'>From a friend</option>
                       <option value='Form Social Media Add'>Form Social Media</option>
                       <option value='From news papers'>From news papers</option>
