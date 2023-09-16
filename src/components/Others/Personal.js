@@ -46,6 +46,7 @@ export default function Personal() {
     date: '',
     gender:'',
     category:'',
+    addhar:'',
     mobileS:'',
     mobileF:'',
     address:'',
@@ -99,7 +100,20 @@ export default function Personal() {
     })
   }
   const aadharChangeHandler=(event)=>{
-    setAadhar(event.target.value)
+    const regex = /^[0-9]{12}$/;
+    setAadhar(event.target.value);
+    if (regex.test(event.target.value) === false) {
+      setErrors({
+        ...errors,
+        addhar:'Enter Valid addhar Number'
+      })
+    }
+    else{
+      setErrors({
+        ...errors,
+        addhar:''
+      })
+    }
   }
   const mobileSChangeHandler=(event)=>{
     // setMobileS(event.target.value)
@@ -206,8 +220,9 @@ export default function Personal() {
   const id=localStorage.getItem("id");
 
   useEffect(() => {
-    window.scrollTo(0, 0)
+    
    async function fetchData(){
+    window.scrollTo(0, 0)
     const id=localStorage.getItem("id");
       if(!id){
           navigate('/form')
@@ -215,6 +230,17 @@ export default function Personal() {
       }
       const response = await fetch(`https://dev.seiasecure.com/api/v1/getCoachingApplicationById/${id}`);
       const  data=await response.json();
+      console.log(data);
+      if(data.success===false){
+        navigate('/form')
+        return
+      }
+      //backend 
+      if(data.data.isVerified===false){
+        navigate('/otp')
+        return
+      }
+
       setName(data.data.studentName)
       setMobileS(data.data.mobileNo)
    }
@@ -447,7 +473,7 @@ export default function Personal() {
                   <FormControl isInvalid={errors.addhar} h={0.5} marginBottom={20}>
                     <FormLabel>AADHAR NO. (Optional)</FormLabel>
                     <Input color={"gray"} rounded={"full"} boxShadow={"base"} onChange={aadharChangeHandler} />
-                    {/* {errors.addhar?(<FormErrorMessage>{errors.addhar}</FormErrorMessage>):''} */}
+                    {errors.addhar?(<FormErrorMessage>{errors.addhar}</FormErrorMessage>):''}
                   </FormControl>
                     <FormControl isInvalid={errors.mobileS} h={0.5} marginBottom={20}>
                     <FormLabel>Mobile No.</FormLabel>

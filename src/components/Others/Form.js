@@ -158,7 +158,7 @@ const nameChangeHandler=(event)=>{
       })
       const otpdata=await otpResponse.json();
       // console.log(otpdata.otp.mobileNo)
-      localStorage.setItem("mobile",otpdata.otp.mobileNo)
+      // localStorage.setItem("mobile",otpdata.otp.mobileNo)
       console.log(otpdata)
       if(otpdata.success===true){
 
@@ -276,22 +276,35 @@ const selectedCourses=(course)=>{
             <Center m={3}>
        
               <VStack spacing={20}>
-               
-                <HStack spacing={12}>
+         
+                <HStack spacing="50px">
                   <FormControl isInvalid={errors.academic_session}  height="2rem">
-                    <FormLabel width={'100%'}>Academic Session</FormLabel>
+                    <FormLabel >Academic Session</FormLabel>
                     <Select
-                     
                       color={"gray"}
                       rounded={"full"}
                       boxShadow={"base"}
                       width={"100%"}
                       onChange={sessionChangeHandler}
+                     
                       >
-                      <option value=''>Academic Session</option>
+                      <option value='' >Academic Session</option>
                       <option value="2023-24">2023-2024</option>
-                      <option value="2024-25">2024-2025</option>
+                      <option value="2024-25" >2024-2025</option>
                     </Select>
+                    {/* <Select
+                      color={"gray"}
+                      rounded={"full"}
+                      boxShadow={"base"}
+                      width={"100%"}
+                      // onChange={genderChangeHandler}
+                      >
+                         <option value="not want to disclose">Not want to disclose</option>
+                      <option value=''>Gender</option>
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                     
+                    </Select> */}
                     {errors.academic_session ? (<FormErrorMessage>{errors.academic_session}</FormErrorMessage>) : ''}
                   </FormControl>
                   <FormControl  height="2rem">

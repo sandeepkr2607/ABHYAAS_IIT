@@ -14,39 +14,61 @@ import { useToast } from "@chakra-ui/react";
 export default function Otp() {
   const toast = useToast()
   const navigate = useNavigate();
-  const data=localStorage.getItem("mobile")
+
   const [pin, setPin] = useState('');
+  const [mobile,setMobile]=useState('')
+
+
+  useEffect(() => {
+    async function fetchData() {
+      window.scrollTo(0, 0)
+      const id = localStorage.getItem("id");
+      if (!id) {
+        navigate('/form')
+        return
+      }
+
+      const response = await fetch(`https://dev.seiasecure.com/api/v1/getCoachingApplicationById/${id}`);
+      const data = await response.json();
+      if(data.success===false){
+        navigate('/form')
+        return
+      }
+
+      setMobile(data.data.mobileNo)
+
+    }
+    fetchData();
+  
+  }, [])
 
   const handlePinChange = (value) => {
     setPin(value);
   };
  
   const onSendAgain=async ()=>{
-    const phone=localStorage.getItem("mobile")
+    // const phone=localStorage.getItem("mobile")
     const otpResponse=await fetch("https://dev.seiasecure.com/api/v1/send_otp",{
       method:'POST',
       headers: {
         'Content-Type': 'application/json',
      },
-     body:JSON.stringify({"mobileNo":phone})
+     body:JSON.stringify({"mobileNo":mobile})
     })
     const data=await otpResponse.json();
     console.log(data);
   }
 
-  useEffect(() => {
-    
-    window.scrollTo(0, 0)
-  }, [])
+  
   const Submithandler =async () => {
     // console.log(pin)
-    const phone=localStorage.getItem("mobile")
+    // const phone=localStorage.getItem("mobile")
     const Response=await fetch("https://dev.seiasecure.com/api/v1/verify_otp",{
       method:'POST',
       headers: {
         'Content-Type': 'application/json',
      },
-     body:JSON.stringify({"mobileNo":phone,"otpNumber":pin})
+     body:JSON.stringify({"mobileNo":mobile,"otpNumber":pin})
     })
     const data=await Response.json();
     console.log(data)
@@ -86,7 +108,7 @@ export default function Otp() {
                 <HStack m={3}>
                   <Text textStyle="p">OTP was sended to</Text>
                   <Text color={"orange"} fontWeight={"bold"}>
-                    {data}
+                    {mobile}
                   </Text>
                 </HStack>
                 <Text>Please Enter your OTP below</Text>

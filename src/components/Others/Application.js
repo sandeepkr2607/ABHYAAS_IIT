@@ -1,4 +1,4 @@
-import { Progress } from "@chakra-ui/react";
+import { Input, Progress } from "@chakra-ui/react";
 import {
   Center,
   Box,
@@ -10,6 +10,8 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
+import { Avatar } from "@chakra-ui/react";
+import { FormControl, FormLabel } from "@chakra-ui/react";
 
 import Header from "../header/Header.jsx";
 import Footer from "../footer/Footer.jsx";
@@ -18,46 +20,66 @@ import { useEffect, useState } from "react";
 
 export default function Application() {
   const navigate = useNavigate();
-  const [info,setInfo]=useState({
-    applicationNo:'',
-    targetCourse:'',
-    studentName:'',
-    fatherName:'',
-    category:'',
-    city:'',
-    district:'',
-    state:'',
-    pinCode:''
+  const [info, setInfo] = useState({
+    applicationNo: '',
+    targetCourse: '',
+    studentName: '',
+    fatherName: '',
+    category: '',
+    city: '',
+    district: '',
+    state: '',
+    pinCode: ''
   });
 
-  
+  const [pic,setPic]=useState('');
+
+
   useEffect(() => {
-    window.scrollTo(0, 0)
+
     async function fetchData() {
-      const id=localStorage.getItem("id");
-      if(!id){
-          navigate('/form')
-          return
+      window.scrollTo(0, 0)
+      const id = localStorage.getItem("id");
+      if (!id) {
+        navigate('/form')
+        return
       }
 
       const response = await fetch(`https://dev.seiasecure.com/api/v1/getCoachingApplicationById/${id}`);
-      const  data=await response.json();
+      const data = await response.json();
+      if (data.success === false) {
+        navigate('/form')
+        return
+      }
+      // if(data.data.isVerified===false){
+      //   navigate('/otp')
+      //   return
+      // }
+
       const newData = {}
-      newData.applicationNo=data.data.applicationNo
-      newData.targetCourse=data.data.targetCourse
-      newData.studentName=data.data.studentName
-      newData.fatherName=data.data.fatherName
-      newData.category=data.data.category
-      newData.city=data.data.city
-      newData.district=data.data.district
-      newData.state=data.data.state
-      newData.pinCode=data.data.pinCode
+      newData.applicationNo = data.data.applicationNo
+      newData.targetCourse = data.data.targetCourse
+      newData.studentName = data.data.studentName
+      newData.fatherName = data.data.fatherName
+      newData.category = data.data.category
+      newData.city = data.data.city
+      newData.district = data.data.district
+      newData.state = data.data.state
+      newData.pinCode = data.data.pinCode
       setInfo(newData);
-    
+
     }
     fetchData();
   }, [])
 
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      // Implement your logic to handle the selected file here
+      setPic(file)
+      console.log('Selected file:', file);
+    }
+  };
   const Submithandler = () => {
     navigate("/success");
   };
@@ -206,17 +228,72 @@ export default function Application() {
                   p={10}
                   bgColor={"orange.100"}
                   overflow={"hidden"}>
-                  <VStack spacing={0}>
-                    <Text fontWeight={"bold"}>Kindly Paste</Text>
+                    
+
+              
+                  {!pic?( <VStack spacing={0} p={0} mb={25}>
+                    <Text fontWeight={"bold"}>Kindly Browse</Text>
                     <Text fontWeight={"bold"}>Your resent</Text>
                     <Text fontWeight={"bold"}>Passport size</Text>
                     <Text fontWeight={"bold"}>color</Text>
                     <Text fontWeight={"bold"}>Photograph</Text>
-                  </VStack>
+                  </VStack>):(
+                  <VStack spacing={0} p={0} mb={25}>
+                  <Avatar mr={2}
+                size="2xl"
+                cursor="pointer"
+                    
+                src={pic}
+                
+                ></Avatar>
+                </VStack>)}
+                  {/* <VStack spacing={0} p={0} mb={25}>
+                    <Text fontWeight={"bold"}>Kindly Browse</Text>
+                    <Text fontWeight={"bold"}>Your resent</Text>
+                    <Text fontWeight={"bold"}>Passport size</Text>
+                    <Text fontWeight={"bold"}>color</Text>
+                    <Text fontWeight={"bold"}>Photograph</Text>
+                  </VStack> */}
+                  {/* <Input
+                    type="file"
+                    accept="image/*"
+                    // ref={fileInputRef}
+                    style={{
+                      position: 'absolute',
+                      width: '1px',
+                      height: '1px',
+                      padding: '0',
+                      margin: '-1px',
+                      overflow: 'hidden',
+                      clip: 'rect(0, 0, 0, 0)',
+                      border: '0',
+                    }}
+                    // onChange={handleFileChange}
+                    id="file-input" // Add an id for the label's htmlFor
+                  />
+                      <label htmlFor="file-input">
                   <Button colorScheme="orange" size="lg" rounded={"full"} m={2}>
                     Browse
                   </Button>
+                  </label> */}
+                  <label htmlFor="files" class="btn">Browse</label> 
+                  <Input id="files"  accept='image/*'  style={{ display:'none' }} width={0} type="file" onChange={handleFileChange}/>
+                  
+
                 </Box>
+
+
+
+
+
+
+
+
+
+
+
+
+
                 <Button
                   colorScheme="orange"
                   size="lg"
