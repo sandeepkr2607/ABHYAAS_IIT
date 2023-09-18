@@ -51,10 +51,10 @@ export default function Application() {
         navigate('/form')
         return
       }
-      // if(data.data.isVerified===false){
-      //   navigate('/otp')
-      //   return
-      // }
+      if(data.data.isVerified===false){
+        navigate('/otp')
+        return
+      }
 
       const newData = {}
       newData.applicationNo = data.data.applicationNo
@@ -72,10 +72,23 @@ export default function Application() {
     fetchData();
   }, [])
 
-  const handleFileChange = (event) => {
+  const handleFileChange = async(event) => {
     const file = event.target.files[0];
+ 
     if (file) {
       // Implement your logic to handle the selected file here
+      const id = localStorage.getItem("id");
+      if (!id) {
+        navigate('/form')
+        return
+      }
+      const data=new FormData();
+      data.append('file',file);
+    //   const response=await fetch(`https://dev.seiasecure.com/api/v1/upload_image/${id}`,{ //last image/upload is addded by us with the API base URL
+    //   method:'post',
+    //   body:data
+    // })
+
       setPic(file)
       console.log('Selected file:', file);
     }

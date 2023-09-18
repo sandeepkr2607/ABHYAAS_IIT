@@ -17,6 +17,8 @@ import Header from "../header/Header.jsx";
 import Footer from "../footer/Footer.jsx";
 import { FormErrorMessage } from "@chakra-ui/react";
 
+import { useToast } from "@chakra-ui/react";
+
 
 const Target_courses = [{value:'Brain Gym',text:'Brain Gym'},{value:'Foundation Course',text:'Foundation Course'} ,
 {value:'JEE Mains/Advance',text:'JEE Mains/Advance'},{value:'Maths+ Programme',text:'Maths+ Programme'} , 
@@ -51,7 +53,7 @@ const [errors, setErrors] = useState({
   mobile:''
 });
 
-
+const toast=useToast();
 const [isChecked, setIsChecked] = useState(true);
 
 const handleCheckboxChange = (event) => {
@@ -147,6 +149,21 @@ const nameChangeHandler=(event)=>{
         "targetClass":target_class,"studyCenter":"RaghunathPur,Motihari","studentName":name,"mobileNo":mobile,"agreeToReceiveSMS":isChecked })
       });
       const data=await response.json();
+      if(data.message==="Student with the same mobile number already exists"){
+        toast({
+          title: 'Already Resgistered',
+          description: "This mobile number is allready registered",
+          position:'top',
+          status: 'success',
+          duration: 9000,
+          isClosable: true,
+        })
+        return;
+      }
+
+
+
+
       localStorage.setItem("id",data.data._id)
       console.log(data)
       const otpResponse=await fetch("https://dev.seiasecure.com/api/v1/send_otp",{

@@ -151,31 +151,31 @@ const FormModal = ({ showModal, setShowModal, onClose }) => {
             <option disabled value=''>
               Std... ?
             </option>
-            <option className={css.option} value="option1">
+            <option className={css.option} value="Std 6">
               Std 6
             </option>
-            <option className={css.option} value="option2">
+            <option className={css.option} value="Std 7">
               Std 7
             </option>
-            <option className={css.option} value="option2">
+            <option className={css.option} value="Std 8">
               Std 8
             </option>
-            <option className={css.option} value="option2">
+            <option className={css.option} value="Std 9">
               Std 9
             </option>
-            <option className={css.option} value="option2">
+            <option className={css.option} value="Std 10">
               Std 10
             </option>
-            <option className={css.option} value="option2">
+            <option className={css.option} value="Std 11">
               Std 11
             </option>
-            <option className={css.option} value="option2">
+            <option className={css.option} value="Std 12">
               Std 12
             </option>
-            <option className={css.option} value="option2">
+            <option className={css.option} value="IIT">
               IIT
             </option>
-            <option className={css.option} value="option2">
+            <option className={css.option} value="NEET">
               NEET
             </option>
           </select>
