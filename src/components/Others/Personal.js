@@ -477,8 +477,8 @@ export default function Personal() {
                   </FormControl>
                     <FormControl isInvalid={errors.mobileS} h={0.5} marginBottom={20}>
                     <FormLabel>Mobile No.</FormLabel>
-                    <Input color={"gray"} rounded={"full"} boxShadow={"base"} onChange={mobileSChangeHandler} value={mobileS}/>
-                    {errors.mobileS?(<FormErrorMessage>{errors.mobileS}</FormErrorMessage>):''}
+                    <Input color={"gray"} rounded={"full"} boxShadow={"base"} onChange={mobileSChangeHandler} value={mobileS} disabled/>
+                    {/* {errors.mobileS?(<FormErrorMessage>{errors.mobileS}</FormErrorMessage>):''} */}
                   </FormControl>
                   <FormControl isInvalid={errors.mobileF} h={0.5} marginBottom={20}>
                     <FormLabel>Parent's Mobile No.</FormLabel>
