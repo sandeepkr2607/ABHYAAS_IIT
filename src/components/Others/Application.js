@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { Avatar } from "@chakra-ui/react";
-import { FormControl, FormLabel } from "@chakra-ui/react";
+// import { FormControl, FormLabel } from "@chakra-ui/react";
 
 import Header from "../header/Header.jsx";
 import Footer from "../footer/Footer.jsx";
@@ -44,6 +44,12 @@ export default function Application() {
         navigate('/form')
         return
       }
+      const picture=localStorage.getItem("pic");
+      if(!picture){
+        setPic('');
+      }else{
+        setPic(picture)
+      }
 
       const response = await fetch(`https://dev.seiasecure.com/api/v1/getCoachingApplicationById/${id}`);
       const data = await response.json();
@@ -51,10 +57,10 @@ export default function Application() {
         navigate('/form')
         return
       }
-      // if(data.data.isVerified===false){
-      //   navigate('/otp')
-      //   return
-      // }
+      if(data.data.isVerified===false){
+        navigate('/otp')
+        return
+      }
 
       const newData = {}
       newData.applicationNo = data.data.applicationNo
@@ -90,8 +96,11 @@ export default function Application() {
     })
     const datas=await response.json()
     console.log(datas)
+    localStorage.setItem("pic",datas.profilePicImageUrl.student_pic)
 
-      setPic(datas.profilePicImageUrl.student_pic);
+    const lPic=localStorage.getItem("pic");
+
+      setPic(lPic);
       // console.log('Selected file:', file);
     }
   };

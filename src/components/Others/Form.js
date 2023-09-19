@@ -61,6 +61,10 @@ const [isChecked, setIsChecked] = useState(false);
 
 const handleCheckboxChange = (event) => {
   setIsChecked(event.target.checked);
+  setErrors({
+    ...errors,
+    Checkbox:''
+  })
 };
 
 
@@ -160,7 +164,7 @@ const nameChangeHandler=(event)=>{
         "targetClass":target_class,"studyCenter":"RaghunathPur,Motihari","studentName":name,"mobileNo":mobile,"agreeToReceiveSMS":isChecked })
       });
       const data=await response.json();
-      if(data.result.message==="Student with the same mobile number already exists"){
+      if(data.result.message==="Mobile number is already registered"){
         toast({
           title: 'Already Resgistered',
           description: "This mobile number is allready registered",
@@ -360,9 +364,10 @@ const selectedCourses=(course)=>{
                       color={"gray"}
                       rounded={"full"}
                       boxShadow={"base"}
-                      width={"100%"}
+                      width={"200px"}
                       value={target_course}
                       onChange={CourseChangeHandler}
+                     
                       >
                       {/* {academic_session==='Academic Session'?<option value=''>Target Course</option>:''} */}
                       {academic_session===''?<option value=''> Select Course </option>:academic_session==='2023-24'?
