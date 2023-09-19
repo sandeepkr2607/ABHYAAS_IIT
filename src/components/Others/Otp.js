@@ -47,8 +47,9 @@ export default function Otp() {
   };
  
   const onSendAgain=async ()=>{
+    const id = localStorage.getItem("id");
     // const phone=localStorage.getItem("mobile")
-    const otpResponse=await fetch("https://dev.seiasecure.com/api/v1/send_otp",{
+    const otpResponse=await fetch(`https://dev.seiasecure.com/api/v1/send_otp/${id}`,{
       method:'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -63,7 +64,8 @@ export default function Otp() {
   const Submithandler =async () => {
     // console.log(pin)
     // const phone=localStorage.getItem("mobile")
-    const Response=await fetch("https://dev.seiasecure.com/api/v1/verify_otp",{
+    const id = localStorage.getItem("id");
+    const Response=await fetch(`https://dev.seiasecure.com/api/v1/verify_otp/${id}`,{
       method:'POST',
       headers: {
         'Content-Type': 'application/json',

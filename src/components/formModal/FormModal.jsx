@@ -78,7 +78,7 @@ const FormModal = ({ showModal, setShowModal, onClose }) => {
       }
   
       if (std === '') {
-        newErrors.std = 'Please enter a standerd';
+        newErrors.std = 'Please select a standard';
       }
 
       setErrors(newErrors);
@@ -148,7 +148,7 @@ const FormModal = ({ showModal, setShowModal, onClose }) => {
            {errors.mobile_number &&  <div className={css.errorMessage}>{errors.mobile_number}</div>}
         
           <select className={errors.std? css.errorSelectControl: css.select} onChange={stdChangeHandler}>
-            <option disabled value=''>
+            <option  value=''>
               Std... ?
             </option>
             <option className={css.option} value="Std 6">
@@ -182,7 +182,7 @@ const FormModal = ({ showModal, setShowModal, onClose }) => {
         
           {errors.std &&  <div className={css.errorMessage}>{errors.std}</div>}
           <textarea
-            placeholder="Feel free for any kind of query....."
+            placeholder="Feel free for any kind of query..."
             className={css.text_area}
             onChange={messageChangeHandler}
             ></textarea>

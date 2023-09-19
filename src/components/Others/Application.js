@@ -51,10 +51,10 @@ export default function Application() {
         navigate('/form')
         return
       }
-      if(data.data.isVerified===false){
-        navigate('/otp')
-        return
-      }
+      // if(data.data.isVerified===false){
+      //   navigate('/otp')
+      //   return
+      // }
 
       const newData = {}
       newData.applicationNo = data.data.applicationNo
@@ -84,17 +84,30 @@ export default function Application() {
       }
       const data=new FormData();
       data.append('file',file);
-    //   const response=await fetch(`https://dev.seiasecure.com/api/v1/upload_image/${id}`,{ //last image/upload is addded by us with the API base URL
-    //   method:'post',
-    //   body:data
-    // })
+      const response=await fetch(`https://dev.seiasecure.com/api/v1/upload_image/${id}`,{ //last image/upload is addded by us with the API base URL
+      method:'post',
+      body:data
+    })
+    const datas=await response.json()
+    console.log(datas)
 
-      setPic(file)
-      console.log('Selected file:', file);
+      setPic(datas.profilePicImageUrl.student_pic);
+      // console.log('Selected file:', file);
     }
   };
-  const Submithandler = () => {
-    navigate("/success");
+  const Submithandler =async () => {
+    const id = localStorage.getItem("id");
+    const responseS = await fetch(`https://dev.seiasecure.com/api/v1/send_confirmation_sms/${id}`, {
+      method: 'POST'})
+    const responseE = await fetch(`https://dev.seiasecure.com/api/v1/send_confirmation_email/${id}`, {
+      method: 'POST'})
+    const data=await responseS.json();
+    const Email=await responseE.json();
+    if(data.success===true || Email.success===true){
+
+      navigate("/success");
+    }
+
   };
   return (
     <>

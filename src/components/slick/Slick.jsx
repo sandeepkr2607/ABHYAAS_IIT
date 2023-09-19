@@ -9,10 +9,11 @@ import course3 from "../../assets/course3.png";
 import course4 from "../../assets/course4.png";
 import course5 from "../../assets/course5.png";
 import btn from "../../assets/btn.png";
+import { useNavigate } from "react-router-dom";
 
 const Slick = () => {
   const arrowRef = useRef(null);
-
+  const navigate=useNavigate();
   var settings = {
     // className: "center",
     // centerMode: true,
@@ -53,6 +54,10 @@ const Slick = () => {
       },
     ],
   };
+ const  onclickHandler=()=>{
+    navigate('/form')
+  }
+
 
   return (
     <div className="container" id="courses">
@@ -65,7 +70,7 @@ const Slick = () => {
               <div className="disc">
                 <h2 className="course_title">Brain Gym</h2>
                 <p className="course_class">Class 6-7</p>
-                <button className="btn">Join Now</button>
+                <button className="btn" onClick={onclickHandler}>Join Now</button>
               </div>
             </div>
             <div className="image_box">
@@ -73,7 +78,7 @@ const Slick = () => {
               <div className="disc">
                 <h2 className="course_title">Foundation Course</h2>
                 <p className="course_class">Class 8, 9 & 10</p>
-                <button className="btn">Join Now</button>
+                <button className="btn" onClick={onclickHandler}>Join Now</button>
               </div>
             </div>
             <div className="image_box">
@@ -81,7 +86,7 @@ const Slick = () => {
               <div className="disc">
                 <h2 className="course_title">IIT/JEE Mains</h2>
                 <p className="course_class">Class 11-12</p>
-                <button className="btn">Join Now</button>
+                <button className="btn" onClick={onclickHandler}>Join Now</button>
               </div>
             </div>
             <div className="image_box">
@@ -89,7 +94,7 @@ const Slick = () => {
               <div className="disc">
                 <h2 className="course_title">NEET UG</h2>
                 <p className="course_class">Class 11-12</p>
-                <button className="btn">Join Now</button>
+                <button className="btn" onClick={onclickHandler}>Join Now</button>
               </div>
             </div>
             <div className="image_box">
@@ -97,7 +102,7 @@ const Slick = () => {
               <div className="disc">
                 <h2 className="course_title">Maths+ Programme</h2>
                 <p className="course_class">Class 6-11</p>
-                <button className="btn">Join Now</button>
+                <button className="btn" onClick={onclickHandler}>Join Now</button>
               </div>
             </div>
           </Slider>

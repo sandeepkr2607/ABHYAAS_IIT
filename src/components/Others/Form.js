@@ -1,6 +1,6 @@
 
 import React, { useState,useEffect } from "react";
-import { Box, ChakraProvider } from "@chakra-ui/react"
+import { Box, ChakraProvider, Flex } from "@chakra-ui/react"
 import { Heading } from "@chakra-ui/react";
 import { Center } from "@chakra-ui/react";
 import { Progress } from "@chakra-ui/react";
@@ -16,19 +16,21 @@ import { useNavigate } from "react-router-dom";
 import Header from "../header/Header.jsx";
 import Footer from "../footer/Footer.jsx";
 import { FormErrorMessage } from "@chakra-ui/react";
+// import { Text } from "@chakra-ui/react";
 
 import { useToast } from "@chakra-ui/react";
 
 
-const Target_courses = [{value:'Brain Gym',text:'Brain Gym'},{value:'Foundation Course',text:'Foundation Course'} ,
-{value:'JEE Mains/Advance',text:'JEE Mains/Advance'},{value:'Maths+ Programme',text:'Maths+ Programme'} , 
+const Target_courses = [{value:'',text:'Select Course'},{value:'Brain Gym',text:'Brain Gym'},{value:'Foundation Course',text:'Foundation Course'} ,
+{value:'JEE Mains/Advance',text:'JEE Mains/Advance'},{value:'Maths + Programme',text:'Maths+ Programme'} ,
  {value: 'Entrance Test Batch-1',text: 'Entrance Test Batch-1'}
 ]
-const BrainGym_Target=[6,7];
-const FoundationCourse_Target=[8,9,10];
-const JEE_Target=[11,12]
-const Maths_Target=[6,7,8,10,11,12]
-const FreeCrash_Target=[8,9,10,12]
+const BrainGym_Target=['6th','7th'];
+const FoundationCourse_Target=['8th','9th','10th'];
+const JEE_Target=['11th','12th']
+const Maths_Target=['6th','7th','8th','10th','11th','12th']
+const FreeCrash_Target=['8th','9th','10th','12th']
+const Entrance_Target=['6th','7th','8th','9th','10th','11th']
 
 
 
@@ -50,11 +52,12 @@ const [errors, setErrors] = useState({
   target_course: '',
   target_class: '',
   name:'',
-  mobile:''
+  mobile:'',
+  Checkbox:''
 });
 
 const toast=useToast();
-const [isChecked, setIsChecked] = useState(true);
+const [isChecked, setIsChecked] = useState(false);
 
 const handleCheckboxChange = (event) => {
   setIsChecked(event.target.checked);
@@ -64,6 +67,9 @@ const handleCheckboxChange = (event) => {
 
 const sessionChangeHandler=(event)=>{
     setAcademic_session(event.target.value);
+    if(event.target.value==='2023-24'){
+      setTarget_course('Free Crash Course')
+    }
     setErrors({
       ...errors,
       academic_session:''
@@ -74,6 +80,7 @@ const sessionChangeHandler=(event)=>{
 
 const CourseChangeHandler=(event)=>{
   setTarget_course(event.target.value);
+  console.log(event.target.value)
   setErrors({
     ...errors,
     target_course:''
@@ -136,6 +143,10 @@ const nameChangeHandler=(event)=>{
     if (regex.test(mobile) === false) {
       newErrors.mobile = 'Enter Valid Mobile Number';
     }
+    if(isChecked===false){
+      newErrors.Checkbox='Please tick the checkbox';
+    }
+
     setErrors(newErrors);
 
 
@@ -149,7 +160,7 @@ const nameChangeHandler=(event)=>{
         "targetClass":target_class,"studyCenter":"RaghunathPur,Motihari","studentName":name,"mobileNo":mobile,"agreeToReceiveSMS":isChecked })
       });
       const data=await response.json();
-      if(data.message==="Student with the same mobile number already exists"){
+      if(data.result.message==="Student with the same mobile number already exists"){
         toast({
           title: 'Already Resgistered',
           description: "This mobile number is allready registered",
@@ -164,25 +175,28 @@ const nameChangeHandler=(event)=>{
 
 
 
-      localStorage.setItem("id",data.data._id)
+      localStorage.setItem("id",data.result.data._id)
       console.log(data)
-      const otpResponse=await fetch("https://dev.seiasecure.com/api/v1/send_otp",{
-        method:'POST',
-        headers: {
-          'Content-Type': 'application/json',
-       },
-       body:JSON.stringify({"mobileNo":mobile})
-      })
-      const otpdata=await otpResponse.json();
-      // console.log(otpdata.otp.mobileNo)
-      // localStorage.setItem("mobile",otpdata.otp.mobileNo)
-      console.log(otpdata)
-      if(otpdata.success===true){
+      // const otpResponse=await fetch("https://dev.seiasecure.com/api/v1/send_otp",{
+      //   method:'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //  },
+      //  body:JSON.stringify({"mobileNo":mobile})
+      // })
+      // const otpdata=await otpResponse.json();
+      // // console.log(otpdata.otp.mobileNo)
+      // // localStorage.setItem("mobile",otpdata.otp.mobileNo)
+      // console.log(otpdata)
+      if(data.otp){
 
         navigate("/otp");
       }
     }
   };
+
+
+
 
 const selectedCourses=(course)=>{
     if(course===" ")return " ";
@@ -195,8 +209,11 @@ const selectedCourses=(course)=>{
     if(course==='JEE Mains/Advance'){
       return JEE_Target.map((e)=>{return <option key={e} value={e}>{e}</option>})
     }
-    if(course==='Maths+ Programme'){
+    if(course==='Maths + Programme'){
       return Maths_Target.map((e)=>{return <option key={e} value={e}>{e}</option>})
+    }
+    if(course==='Entrance Test Batch-1'){
+        return Entrance_Target.map((e)=>{return <option key={e} value={e}>{e}</option>})
     }
     if(course==='Free Crash Course'){
       return FreeCrash_Target.map((e)=>{return <option key={e} value={e}>{e}</option>})
@@ -347,15 +364,23 @@ const selectedCourses=(course)=>{
                       value={target_course}
                       onChange={CourseChangeHandler}
                       >
-                      <option value=''>Target Course</option>
-                      {academic_session==='2023-24'?<option value="Free Crash Course">Free Crash Course</option>:Target_courses.map((e)=>
+                      {/* {academic_session==='Academic Session'?<option value=''>Target Course</option>:''} */}
+                      {academic_session===''?<option value=''> Select Course </option>:academic_session==='2023-24'?
+                      (<option value='Free Crash Course' selected>Free Crash Course </option>)
+
+                        :Target_courses.map((e)=>
                         <option key={e.value} value={e.value}>{e.text}</option>
                       )}
+
+                      {/* <option value=''>Target Course</option>
+                      {Target_courses.map((e)=>
+                        <option key={e.value} value={e.value}>{e.text}</option>
+                      )} */}
                       {/* {Target_courses.map((e)=>
                         <option key={e.value} value={e.value}>{e.text}</option>
                       )} */}
                     </Select>
-                    {errors.target_course ? (<FormErrorMessage >{errors.target_course}</FormErrorMessage>) : ''}
+                    {errors.target_course && academic_session!== '2023-24' ? (<FormErrorMessage >{errors.target_course}</FormErrorMessage>) :''}
                   </FormControl>
                   <FormControl isInvalid={errors.target_class}   height="2rem">
                     <FormLabel>Target Class</FormLabel>
@@ -366,7 +391,7 @@ const selectedCourses=(course)=>{
                       boxShadow={"base"}
                       width={"100%"}
                       onChange={classChangeHandler} >
-                     <option value=''>Target Class</option>
+                     <option value=''>Select Class</option>
                      {selectedCourses(target_course)}
                     </Select>
                     {errors.target_class ? (<FormErrorMessage >{errors.target_class}</FormErrorMessage>) : ''}
@@ -383,7 +408,7 @@ const selectedCourses=(course)=>{
                       boxShadow={"base"}
                       width={"100%"}
                       >
-                      <option>RaghunathPur,Motihari</option>
+                      <option>Raghunathpur,Motihari</option>
                       {/* <option>United Arab Emirates</option>
                       <option>Nigeria</option> */}
                     </Select>
@@ -424,18 +449,43 @@ const selectedCourses=(course)=>{
                     next
                   </Button>
                 </HStack>
+                {/* <Box  marginLeft={0} left={0}>
                 <Checkbox
                   colorScheme="orange"
-                  defaultChecked
-                  marginLeft={0}
+                  // marginLeft={0}
+                  // marginBottom={5}
+                  isInvalid={errors.Checkbox}
                   isChecked={isChecked}
                   width={"100%"}
                   onChange={handleCheckboxChange}
                   >
                   I Agree to receive SMS/Call from AbhyaasIIT
                 </Checkbox>
+                {errors.Checkbox ? (<Text color={'red'}>{errors.Checkbox}</Text>) : ''}
+                </Box> */}
               </VStack>
             </Center>
+
+            <Flex direction={"column"}  marginLeft={'208px'} left={0} marginTop={10} marginBottom={8}>
+                <Checkbox
+                  colorScheme="orange"
+                  // marginLeft={0}
+                  // marginBottom={5}
+                  isInvalid={errors.Checkbox}
+                  isChecked={isChecked}
+                  width={"100%"}
+                  onChange={handleCheckboxChange}
+                  >
+                  I Agree to receive SMS/Call from AbhyaasIIT
+                </Checkbox>
+                <Flex>
+                {errors.Checkbox ? (<Text color={'red'} padding={0} margin={0}>{errors.Checkbox}</Text>) : ''}
+                </Flex>
+                </Flex>
+
+
+
+
           </Box>
         </Center>
         <Box>
