@@ -103,6 +103,7 @@
   text-align: center;
   background-color: rgba(255, 145, 76, 1);
   cursor: pointer;
+  margin-right: 4px;
 }
 
 .btn:hover {

@@ -175,23 +175,13 @@ const nameChangeHandler=(event)=>{
         })
         return;
       }
-
+      localStorage.clear();
 
 
 
       localStorage.setItem("id",data.result.data._id)
       console.log(data)
-      // const otpResponse=await fetch("https://dev.seiasecure.com/api/v1/send_otp",{
-      //   method:'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //  },
-      //  body:JSON.stringify({"mobileNo":mobile})
-      // })
-      // const otpdata=await otpResponse.json();
-      // // console.log(otpdata.otp.mobileNo)
-      // // localStorage.setItem("mobile",otpdata.otp.mobileNo)
-      // console.log(otpdata)
+
       if(data.otp){
 
         navigate("/otp");
@@ -420,7 +410,7 @@ const selectedCourses=(course)=>{
                   </FormControl>
                   {/* </Box> */}
                   <FormControl isInvalid={errors.name}  height="2rem" >
-                    <FormLabel>Student name</FormLabel>
+                    <FormLabel>Student's Name</FormLabel>
                     <Input
                       placeholder="Student name"
                       color={"gray"}

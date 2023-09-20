@@ -8,6 +8,7 @@ import Otp from "./components/Others/Otp";
 import Personal from "./components/Others/Personal";
 import Application from "./components/Others/Application";
 import Success from "./components/Others/Success";
+import Pdfgenerator from "./components/Others/Pdfgenerator";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           path="/application"
           element={<Application></Application>}></Route>
         <Route path="/success" element={<Success></Success>}></Route>
+        <Route path="/pdf"element={<Pdfgenerator></Pdfgenerator>}></Route>
       </Routes>
 
     </div>

@@ -12,14 +12,19 @@ import {
 import { useNavigate } from "react-router-dom";
 import { Avatar } from "@chakra-ui/react";
 // import { FormControl, FormLabel } from "@chakra-ui/react";
-
+import { useRef } from "react";
 import Header from "../header/Header.jsx";
 import Footer from "../footer/Footer.jsx";
 import { ChakraProvider } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 
+
+
 export default function Application() {
   const navigate = useNavigate();
+  const [fetchAgain,setFetchAgain]=useState(false);
+
+
   const [info, setInfo] = useState({
     applicationNo: '',
     targetCourse: '',
@@ -62,6 +67,9 @@ export default function Application() {
         return
       }
 
+      if(data.data.student_pic){
+        setPic(data.data.student_pic);
+      }
       const newData = {}
       newData.applicationNo = data.data.applicationNo
       newData.targetCourse = data.data.targetCourse
@@ -77,6 +85,28 @@ export default function Application() {
     }
     fetchData();
   }, [])
+
+  useEffect(()=>{
+
+    async function fetchData(){
+      const id = localStorage.getItem("id");
+      if (!id) {
+        navigate('/form')
+        return
+      }
+      
+      const response = await fetch(`https://dev.seiasecure.com/api/v1/getCoachingApplicationById/${id}`);
+      const data = await response.json();
+      if(data.data.student_pic){
+        setPic(data.data.student_pic);
+        console.log('running')
+      }
+    }
+   fetchData();
+
+  },[fetchAgain])
+
+
 
   const handleFileChange = async(event) => {
     const file = event.target.files[0];
@@ -96,14 +126,23 @@ export default function Application() {
     })
     const datas=await response.json()
     console.log(datas)
-    localStorage.setItem("pic",datas.profilePicImageUrl.student_pic)
+    // localStorage.setItem("pic",datas.profilePicImageUrl.student_pic)
+    console.log(datas.profilePicImageUrl.student_pic);
 
-    const lPic=localStorage.getItem("pic");
+    // if(datas.profilePicImageUrl.student_pic){
+    //   setFetchAgain(!fetchAgain);
+    // }
+    if(datas.message==='Image uploaded successfully'){
+      setFetchAgain(!fetchAgain);
+    }
 
-      setPic(lPic);
+    // const lPic=localStorage.getItem("pic");
+
+      // setPic(lPic);
       // console.log('Selected file:', file);
     }
   };
+
   const Submithandler =async () => {
     const id = localStorage.getItem("id");
     const responseS = await fetch(`https://dev.seiasecure.com/api/v1/send_confirmation_sms/${id}`, {
@@ -202,7 +241,7 @@ export default function Application() {
               </Box>
             </Center>
             <HStack spacing={10}>
-              <Box boxShadow={"base"} rounded={"2xl"} m={"3"} width={"60%"}>
+              <Box boxShadow={"base"} rounded={"2xl"} m={"3"} width={"60%"} >
                 <HStack px={50} spacing={20} py={10}>
                   <VStack spacing={2} alignItems={"start"}>
                     <Text fontWeight={"bold"}>Application No.</Text>
@@ -222,25 +261,11 @@ export default function Application() {
                     <Text fontWeight={"bold"}>Application From Free</Text>
                   </VStack>
                   <VStack spacing={2} alignItems={"start"}>
-                    {/* <Text>2300922</Text>
-                    <Text>iAKHIL</Text>
-                    <Text>JEE(Main)</Text>
-                    <Text>Mumbai - Churchgate</Text>
-                    <Text>E</Text>
-                    <Text>Online</Text>
-                    <Text>13-Aug-2023 11.00 AM</Text>
-                    <Text>SHRUTHI</Text>
-                    <Text>SELVAKUMAR</Text>
-                    <Text>sc</Text>
-                    <Text>Bangalore</Text>
-                    <Text>Bijapur</Text>
-                    <Text>Karnataka</Text>
-                    <Text>560049</Text>
-                    <Text>500</Text> */}
+                 
                     <Text>{info.applicationNo}</Text>
                     <Text>{info.targetCourse}</Text>
                     <Text>JEE(Main)</Text>
-                    <Text>Mumbai - Churchgate</Text>
+                    <Text>Raghunathpur,Motihari</Text>
                     <Text>E</Text>
                     <Text>Online</Text>
                     <Text>13-Aug-2023 11.00 AM</Text>
@@ -263,9 +288,6 @@ export default function Application() {
                   p={10}
                   bgColor={"orange.100"}
                   overflow={"hidden"}>
-                    
-
-              
                   {!pic?( <VStack spacing={0} p={0} mb={25}>
                     <Text fontWeight={"bold"}>Kindly Browse</Text>
                     <Text fontWeight={"bold"}>Your resent</Text>
@@ -276,59 +298,13 @@ export default function Application() {
                   <VStack spacing={0} p={0} mb={25}>
                   <Avatar mr={2}
                 size="2xl"
-                cursor="pointer"
-                    
+                cursor="pointer"                    
                 src={pic}
-                
                 ></Avatar>
                 </VStack>)}
-                  {/* <VStack spacing={0} p={0} mb={25}>
-                    <Text fontWeight={"bold"}>Kindly Browse</Text>
-                    <Text fontWeight={"bold"}>Your resent</Text>
-                    <Text fontWeight={"bold"}>Passport size</Text>
-                    <Text fontWeight={"bold"}>color</Text>
-                    <Text fontWeight={"bold"}>Photograph</Text>
-                  </VStack> */}
-                  {/* <Input
-                    type="file"
-                    accept="image/*"
-                    // ref={fileInputRef}
-                    style={{
-                      position: 'absolute',
-                      width: '1px',
-                      height: '1px',
-                      padding: '0',
-                      margin: '-1px',
-                      overflow: 'hidden',
-                      clip: 'rect(0, 0, 0, 0)',
-                      border: '0',
-                    }}
-                    // onChange={handleFileChange}
-                    id="file-input" // Add an id for the label's htmlFor
-                  />
-                      <label htmlFor="file-input">
-                  <Button colorScheme="orange" size="lg" rounded={"full"} m={2}>
-                    Browse
-                  </Button>
-                  </label> */}
-                  <label htmlFor="files" class="btn">Browse</label> 
+                  <label htmlFor="files" className="btn">Browse</label> 
                   <Input id="files"  accept='image/*'  style={{ display:'none' }} width={0} type="file" onChange={handleFileChange}/>
-                  
-
                 </Box>
-
-
-
-
-
-
-
-
-
-
-
-
-
                 <Button
                   colorScheme="orange"
                   size="lg"

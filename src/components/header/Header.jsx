@@ -155,6 +155,15 @@ const Header = () => {
               duration={500}>
               <button className={css.btn}>CONTACT US</button>
             </Link>
+            <Link
+              to="footer"
+              activeClass="active"
+              spy={true}
+              smooth={true}
+              offset={-40}
+              duration={500}>
+              <button className={css.btn}>DOWNLOAD PDF</button>
+            </Link>
           </div>
         </div>
       </div>

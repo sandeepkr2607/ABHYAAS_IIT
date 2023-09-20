@@ -167,11 +167,21 @@ export default function Personal() {
     })
   }
   const pincodeChangeHandler=(event)=>{
+    const regex = /^[0-9]{6}$/;
     setPincode(event.target.value)
-    setErrors({
-      ...errors,
-      pincode:''
-    })
+    if (regex.test(event.target.value) === false) {
+      setErrors({
+        ...errors,
+        pincode:'Enter Valid pin Number'
+      })
+    }
+    else{
+      setErrors({
+        ...errors,
+        pincode:''
+      })
+    }
+
   }
   const stateChangeHandler=(event)=>{
     setState(event.target.value)
@@ -253,6 +263,7 @@ export default function Personal() {
   
   const Submithandler =async () => {
     const regex = /^[0-9]{10}$/;
+    const pinregex = /^[0-9]{6}$/;
 
     const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
     const newErrors = {};
@@ -283,8 +294,8 @@ export default function Personal() {
     if(city.trim()===''){
       newErrors.city= 'Enter your city';
     }
-    if(pincode.trim()===''){
-      newErrors.pincode= 'Enter your Pincode';
+    if(pinregex.test(pincode)===false){
+      newErrors.pincode= 'Enter a valid Pincode';
     }
     if(state.trim()===''){
       newErrors.state= 'Enter your state';
