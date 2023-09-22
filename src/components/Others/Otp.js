@@ -95,59 +95,62 @@ export default function Otp() {
         <Box>
           <Header></Header>
         </Box>
+
         <Center>
-          <Box
-            boxShadow={"base"}
-            width={["100%", "50%"]}
-            rounded={"lg"}
-            p={10}
-            m={10}>
-            <Center>
-              <Box m={3} marginTop={8}>
-                <Heading textStyle="h1" fontWeight={"bold"} fontSize={"lg"} m={3}>
-                  Enter Your OTP
-                </Heading>
-                <HStack m={3}>
-                  <Text textStyle="p">OTP was sended to</Text>
-                  <Text color={"orange"} fontWeight={"bold"}>
-                    {mobile}
-                  </Text>
-                </HStack>
-                <Text>Please Enter your OTP below</Text>
-              </Box>
-            </Center>
-            <Center>
-              <HStack p={10}>
-                <PinInput value={pin} onChange={handlePinChange}>
-                  <PinInputField boxShadow={"base"} />
-                  <PinInputField boxShadow={"base"} />
-                  <PinInputField boxShadow={"base"} />
-                  <PinInputField boxShadow={"base"} />
-                  <PinInputField boxShadow={"base"} />
-                  <PinInputField boxShadow={"base"} />
-                </PinInput>
-              </HStack>
-            </Center>
-            <Button
-              colorScheme="orange"
-              size="lg"
-              rounded={"full"}
-              width={"40%"}
-              marginTop={"4%"}
-              marginBottom={"2%"}
-              onClick={Submithandler}>
-              next
-            </Button>
-            <Center>
-              <HStack>
-                <Text textStyle="p">OTP Not Received?</Text>
-                
-                  <Button color={"orange"} bgColor={"white"} onClick={onSendAgain}>Send Again</Button>
-               
-              </HStack>
-            </Center>
+      <Box
+        width={["100%", "80%", "50%"]} // Adjust width for different screen sizes
+        rounded={"lg"}
+        p={[5, 10]}
+        m={[3, 10]}
+        boxShadow={"base"}
+      >
+        <Center>
+          <Box m={3} marginTop={8}>
+            <Heading fontWeight={"bold"} fontSize={["xl", "2xl"]} m={3}>Enter Your OTP</Heading>
+            <HStack m={3}>
+              <Text>OTP was sent to</Text>
+              <Text color={"orange"} fontWeight={"bold"}>
+                {mobile}
+              </Text>
+            </HStack>
+            <Text>Please enter your OTP below</Text>
           </Box>
         </Center>
+        <Center>
+          <HStack p={3}>
+            <PinInput value={pin} onChange={handlePinChange}>
+              {[1, 2, 3, 4, 5, 6].map((index) => (
+                <PinInputField key={index} boxShadow={"base"} />
+              ))}
+            </PinInput>
+          </HStack>
+        </Center>
+        <Button
+          colorScheme="orange"
+          size="lg"
+          rounded={"full"}
+          width={["100%","60%","40%"]} // Adjust button width for different screen sizes
+          marginTop={"4%"}
+          marginBottom={"2%"}
+          onClick={Submithandler}
+        >
+          Next
+        </Button>
+        <Center>
+          <HStack>
+            <Text>OTP Not Received?</Text>
+            <Button
+              color={"orange"}
+              bgColor={"white"}
+              onClick={onSendAgain}
+              fontSize={["sm", "md"]} // Adjust font size for different screen sizes
+            >
+              Send Again
+            </Button>
+          </HStack>
+        </Center>
+      </Box>
+    </Center>
         <Box>
           <Footer></Footer>
         </Box>

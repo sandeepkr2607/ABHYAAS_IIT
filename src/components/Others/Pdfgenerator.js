@@ -8,10 +8,14 @@ import {
   HStack,
   VStack,
   Button,
+  Divider
 } from "@chakra-ui/react";
+import { UnorderedList, ListItem } from "@chakra-ui/react";
 // import { Input } from "@chakra-ui/react";
+import { Heading, Flex } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { Avatar } from "@chakra-ui/react";
+import logo from "../../assets/logo.png"
 
 import { useRef } from "react";
 
@@ -28,6 +32,8 @@ import {
   // TableCaption,
   TableContainer,
 } from '@chakra-ui/react'
+import { Image, Stack } from "@chakra-ui/react";
+import Header from "../header/Header";
 
 
 
@@ -77,7 +83,7 @@ export default function Pdfgenerator() {
         navigate('/otp')
         return
       }
-      if(data.data.student_pic){
+      if (data.data.student_pic) {
         setPic(data.data.student_pic)
       }
 
@@ -90,9 +96,14 @@ export default function Pdfgenerator() {
       newData.category = data.data.category
       newData.city = data.data.city
       newData.district = data.data.district
+      newData.targetClass = data.data.targetClass
       newData.state = data.data.state
       newData.pinCode = data.data.pinCode
       newData.mobileNo = data.data.mobileNo
+      newData.gender = data.data.gender
+      newData.academicSession = data.data.academicSession
+      newData.email = data.data.email
+      newData.createdAt = data.data.createdAt
       setInfo(newData);
 
     }
@@ -106,7 +117,7 @@ export default function Pdfgenerator() {
     onAfterPrint: () => alert("Data saved in PDF")
   });
 
-  const homepagehandler=()=>{
+  const homepagehandler = () => {
     navigate('/')
   }
 
@@ -115,126 +126,154 @@ export default function Pdfgenerator() {
     <>
       <ChakraProvider>
         <Center>
-          <Box  boxShadow={"none"}
-            width={["100%", "100%", "100%", "50%"]}
-            rounded={"lg"}
-            m={"4"}>
-            <Center>
+          <VStack>
+            <Box
+              // bg="blue.200"
+              p={4}
+              borderRadius="md"
+              boxShadow="md"
+              // width="1000px"
+              textAlign="center"
+              ref={PDF}
+            >
+              <Flex align="center" justify="center">
+                <Image src={logo} boxSize={'65px'} >
+
+                </Image>
+                <Heading fontSize="xl" mb={2} style={{ marginTop: "22px" }} >
+                  Application Form {info.academicSession}
+                </Heading>
+
+              </Flex>
+              <Divider orientation="horizontal" bgColor={"black"} height={'1px'} />
               <HStack>
-                <VStack>
-                
 
-                  <Box ref={PDF}>
-                  <Center>
-                    <Text m={2} fontWeight={"bold"} color={"orange"}>Your personal Details</Text>
-                  </Center>
-                    <Center>
-                    {pic ? (   <Avatar mr={2}
-                        size="md"
-                        cursor="pointer"
-                        src={pic}
-                      ></Avatar>) : (
-                  '')}
-                
-                    </Center>
-                    <TableContainer>
-                      <Table size='sm' variant='striped' colorScheme='teal' mt={5}>
-                        {/* <Thead>
-                          <Tr>
-                            <Th>Fields</Th>
-                            <Th>Details</Th>
-                          </Tr>
-                        </Thead> */}
-                        <Tbody>
-                          <Tr>
-                            <Td>Application No.</Td>
-                            <Td>{info.applicationNo}</Td>
+                <div
+                  style={{
+                    width: "180px", // Adjust the size for a passport photo
+                    height: "180px", // Adjust the size for a passport photo
+                    margin: "0 auto", // Center the avatar horizontally
+                    overflow: "hidden", // Hide overflow if the image is larger
+                    // border: "2px solid blue.200", 
+                    border: "2px solid white", // Add a white border
+                    marginTop: "-150px"
+                  }}
+                >
+                  {/* <Avatar
+                    size="full"
+                    src={pic}
+                    // alt={dummyData.name}
+                    w="100%" // Make sure the image takes 100% of the container
+                    h="100%" // Make sure the image takes 100% of the container
+                    borderRadius={'none'}
 
-                          </Tr>
-                          <Tr>
-                            <Td>Course Name</Td>
-                            <Td>{info.targetCourse}</Td>
+                  /> */}
+                </div>
+                <Box pt={0} >
 
-                          </Tr>
-                          <Tr>
-                            <Td>Study Center</Td>
-                            <Td>Raghunathpur,Motihari</Td>
+                  <TableContainer style={{ marginTop: "0px" }}>
+                    <Table variant={"simple"} style={{ marginTop: "0" }}>
+                      <Tbody style={{ marginTop: "0" }}>
+                        <Tr>
+                          <Td p={1}>Application No.</Td>
+                          <Td p={1}>{info.applicationNo}</Td>
+                        </Tr>
+                        <Tr >
+                          <Td p={1}>Student Name</Td>
+                          <Td p={1}>{info.studentName}</Td>
+                        </Tr>
+                        <Tr >
+                          <Td p={1}>Father Name</Td>
+                          <Td p={1}>{info.fatherName}</Td>
+                        </Tr>
+                        <Tr>
+                          <Td p={1}>Gender</Td>
+                          <Td p={1}>{info.gender}</Td>
+                        </Tr>
+                        <Tr>
+                          <Td p={1}>Course</Td>
+                          <Td p={1}>{info.targetCourse}</Td>
+                        </Tr>
+                        <Tr>
+                          <Td p={1}>Class</Td>
+                          <Td p={1}>{info.targetClass}</Td>
+                        </Tr>
+                        <Tr>
+                          <Td p={1}>Study Center</Td>
+                          <Td p={1}>Raghunathpur,Motihari</Td>
+                        </Tr>
+                        <Tr>
+                          <Td p={1}>Mobile No.</Td>
+                          <Td p={1}>{info.mobileNo}</Td>
+                        </Tr>
+                        <Tr>
+                          <Td p={1}>Email</Td>
+                          <Td p={1}>{info.email}</Td>
+                        </Tr>
+                        <Tr>
+                          <Td p={1}>Pincode</Td>
+                          <Td p={1}>{info.pinCode}</Td>
+                        </Tr>
+                        <Tr>
+                          <Td p={1}>State</Td>
+                          <Td p={1}>{info.state}</Td>
+                        </Tr>
+                      </Tbody>
+                    </Table>
+                  </TableContainer>
+                </Box>
+                <div
+                  style={{
+                    width: "100px", // Adjust the size for a passport photo
+                    height: "120px", // Adjust the size for a passport photo
+                    margin: "0 auto", // Center the avatar horizontally
+                    overflow: "hidden", // Hide overflow if the image is larger
+                    border: "2px solid none", 
+                    marginTop: "-150px"// Add a white border
+                  }}
+                >
+                     <Avatar
+                    size="full"
+                    src={pic}
+                    // alt={dummyData.name}
+                    w="100%" // Make sure the image takes 100% of the container
+                    h="100%" // Make sure the image takes 100% of the container
+                    borderRadius={'none'}
 
-                          </Tr>
-                          <Tr>
-                            <Td>Medium</Td>
-                            <Td>E</Td>
-
-                          </Tr>
-                          <Tr>
-                            <Td>Test City</Td>
-                            <Td>Online</Td>
-
-                          </Tr>
-                          <Tr>
-                            <Td>Test Date</Td>
-                            <Td>13-Aug-2023 11.00 AM</Td>
-
-                          </Tr>
-                          <Tr>
-                            <Td>Student Name</Td>
-                            <Td>{info.studentName}</Td>
-
-                          </Tr>
-                          <Tr>
-                            <Td>Father's Name</Td>
-                            <Td>{info.fatherName}</Td>
-
-                          </Tr>
-                          <Tr>
-                            <Td>Category</Td>
-                            <Td>{info.category}</Td>
-
-                          </Tr>
-                          <Tr>
-                            <Td>Mobile No.</Td>
-                            <Td>{info.mobileNo}</Td>
-
-                          </Tr>
-                          <Tr>
-                            <Td>City</Td>
-                            <Td>{info.city}</Td>
-
-                          </Tr>
-                          <Tr>
-                            <Td>District</Td>
-                            <Td>{info.district}</Td>
-
-                          </Tr>
-                          <Tr>
-                            <Td>State</Td>
-                            <Td>{info.state}</Td>
-
-                          </Tr>
-                          <Tr>
-                            <Td>PinCode</Td>
-                            <Td>{info.pinCode}</Td>
-
-                          </Tr>
-                          <Tr>
-                            <Td>Application From Free</Td>
-                            <Td>500</Td>
-
-                          </Tr>
-                        </Tbody>
-
-                      </Table>
-                    </TableContainer>
-                  </Box>
-                  <HStack>
-                  <Button onClick={generatePDF} m={5}>Download PDF</Button>
-                  <Button onClick={homepagehandler} m={5}>Go to home Page</Button>
-                  </HStack>
-                </VStack>  
+                  />
+                </div>
               </HStack>
-            </Center>
-          </Box>
-          {/*  */}
+              <Text fontWeight={'bold'} textAlign={'start'} mt={5}>Important Instrustions:-</Text>
+              <Text textAlign={'start'} ml={50}>
+                <UnorderedList>
+                  <ListItem>Lorem ipsum dolor sit amet</ListItem>
+                  <ListItem>Consectetur adipiscing elit</ListItem>
+                  <ListItem>Integer molestie lorem at massa</ListItem>
+                  <ListItem>Facilisis in pretium nisl aliquet</ListItem>
+                </UnorderedList>
+              </Text>
+              <Text fontWeight={'bold'} textAlign={'start'} mt={5}>IMPORTANT:-Lorem ipsum dolor sit amet Consectetur adipiscing elit
+              Integer molestie </Text>
+              <Text fontWeight={'bold'} textAlign={'start'}>
+              lorem at massa 
+              Facilisis in pretium nisl aliquet
+              </Text>
+        
+              <Flex justify="center" mt={4}>
+                <Text fontSize="sm" fontStyle="italic">
+                  This admit card is valid for the specified exam only. Submitted at {info.createdAt}
+                </Text>
+              </Flex>
+            </Box>
+            <HStack>
+            <Button onClick={generatePDF}>
+              Download PDF
+            </Button>
+            <Button onClick={homepagehandler}>
+              Go to Home Page
+            </Button>
+            </HStack>
+          </VStack>
         </Center>
       </ChakraProvider>
     </>
