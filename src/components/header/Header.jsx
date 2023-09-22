@@ -155,7 +155,6 @@ const Header = () => {
               duration={500}>
               <button className={css.btn}>CONTACT US</button>
             </Link>
-
           </div>
         </div>
       </div>

@@ -240,10 +240,10 @@ export default function Personal() {
         return;
       }
       //backend
-      if (data.data.isVerified === false) {
-        navigate("/otp");
-        return;
-      }
+      // if (data.data.isVerified === false) {
+      //   navigate("/otp");
+      //   return;
+      // }
 
       setName(data.data.studentName);
       setMobileS(data.data.mobileNo);

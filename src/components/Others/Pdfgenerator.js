@@ -79,10 +79,10 @@ export default function Pdfgenerator() {
         navigate('/form')
         return
       }
-      if (data.data.isVerified === false) {
-        navigate('/otp')
-        return
-      }
+      // if (data.data.isVerified === false) {
+      //   navigate('/otp')
+      //   return
+      // }
       if (data.data.student_pic) {
         setPic(data.data.student_pic)
       }
@@ -281,90 +281,7 @@ export default function Pdfgenerator() {
             </Heading>
           </Flex>
           <Divider orientation="horizontal" bgColor={"black"} height={'1px'} />
-          {/* <HStack> */}
-            {/* ... Rest of your code ... */}
-            {/* <div
-                  style={{
-                    width: "180px", 
-                    height: "180px", 
-                    margin: "0 auto", 
-                    overflow: "hidden", 
-                    border: "2px solid white", 
-                    marginTop: "-150px"
-                  }}
-                >
-                </div>
-                <Box pt={0} >
-
-                  <TableContainer style={{ marginTop: "0px" }}>
-                    <Table variant={"simple"} style={{ marginTop: "0" }}>
-                      <Tbody style={{ marginTop: "0" }}>
-                        <Tr>
-                          <Td p={1}>Application No.</Td>
-                          <Td p={1}>{info.applicationNo}</Td>
-                        </Tr>
-                        <Tr >
-                          <Td p={1}>Student Name</Td>
-                          <Td p={1}>{info.studentName}</Td>
-                        </Tr>
-                        <Tr >
-                          <Td p={1}>Father Name</Td>
-                          <Td p={1}>{info.fatherName}</Td>
-                        </Tr>
-                        <Tr>
-                          <Td p={1}>Gender</Td>
-                          <Td p={1}>{info.gender}</Td>
-                        </Tr>
-                        <Tr>
-                          <Td p={1}>Course</Td>
-                          <Td p={1}>{info.targetCourse}</Td>
-                        </Tr>
-                        <Tr>
-                          <Td p={1}>Class</Td>
-                          <Td p={1}>{info.targetClass}</Td>
-                        </Tr>
-                        <Tr>
-                          <Td p={1}>Study Center</Td>
-                          <Td p={1}>Raghunathpur,Motihari</Td>
-                        </Tr>
-                        <Tr>
-                          <Td p={1}>Mobile No.</Td>
-                          <Td p={1}>{info.mobileNo}</Td>
-                        </Tr>
-                        <Tr>
-                          <Td p={1}>Email</Td>
-                          <Td p={1}>{info.email}</Td>
-                        </Tr>
-                        <Tr>
-                          <Td p={1}>Pincode</Td>
-                          <Td p={1}>{info.pinCode}</Td>
-                        </Tr>
-                        <Tr>
-                          <Td p={1}>State</Td>
-                          <Td p={1}>{info.state}</Td>
-                        </Tr>
-                      </Tbody>
-                    </Table>
-                  </TableContainer>
-                </Box>
-                <div
-                  style={{
-                    width: "100px", 
-                    height: "120px", 
-                    margin: "0 auto", 
-                    overflow: "hidden", 
-                    border: "2px solid none", 
-                    marginTop: "-150px"
-                  }}
-                >
-                     <Avatar
-                    size="full"
-                    src={pic}
-                    w="100%" 
-                    h="100%" 
-                    borderRadius={'none'}
-                  />
-                </div> */}
+      
                   <Flex justify="center">
       <Box
         p={4}
@@ -377,12 +294,7 @@ export default function Pdfgenerator() {
         flexDirection={{ base: 'column', lg: 'row' }} // Adjust layout based on screen size
         alignItems={{ base: 'center', lg: 'flex-start' }}
       >
-        {/* <Flex align="center" justify="center"  direction={{ base: "column", lg: "row" }}> */}
-          {/* Add your image or avatar here */}
-
-        {/* </Flex> */}
-        {/* <Divider orientation="horizontal" bgColor={"black"} height={'1px'} /> */}
-
+      
         <Flex
           flexDirection={{ base: 'column', lg: 'row' }} // Adjust layout based on screen size
           align={{ base: 'center', lg: 'flex-start' }} // Align items to top on large screens

@@ -62,10 +62,10 @@ export default function Application() {
         navigate('/form')
         return
       }
-      if(data.data.isVerified===false){
-        navigate('/otp')
-        return
-      }
+      // if(data.data.isVerified===false){
+      //   navigate('/otp')
+      //   return
+      // }
 
       if(data.data.student_pic){
         setPic(data.data.student_pic);
@@ -299,11 +299,8 @@ export default function Application() {
         </Box>
       </HStack>
     </Center>
-
-
-
-
-            <Divider orientation="horizontal" bgColor={"black"} />
+  <Divider orientation="horizontal" bgColor={"black"} />
+           
             <Center>
               <Box m={3}>
                 <Heading textStyle="h1" fontWeight={"bold"} fontSize={"lg"} m={3}>

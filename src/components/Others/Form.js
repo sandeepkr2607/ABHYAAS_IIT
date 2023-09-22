@@ -24,8 +24,8 @@ const Target_courses = [
   { value: "Brain Gym", text: "Brain Gym" },
   { value: "Foundation Course", text: "Foundation Course" },
   { value: "JEE Mains/Advance", text: "JEE Mains/Advance" },
-  { value: "Maths + Programme", text: "Maths+ Programme" },
-  { value: "Entrance Test Batch-1", text: "Entrance Test Batch-1" },
+  { value: "Maths + Programme", text: "Maths+ Programme" }
+  // { value: "Entrance Test Batch-1", text: "Entrance Test Batch-1" }
 ];
 
 const BrainGym_Target = ["6th", "7th"];
@@ -33,7 +33,7 @@ const FoundationCourse_Target = ["8th", "9th", "10th"];
 const JEE_Target = ["11th", "12th"];
 const Maths_Target = ["6th", "7th", "8th", "10th", "11th", "12th"];
 const FreeCrash_Target = ["8th", "9th", "10th", "12th"];
-const Entrance_Target = ["6th", "7th", "8th", "9th", "10th", "11th"];
+// const Entrance_Target = ["6th", "7th", "8th", "9th", "10th", "11th"];
 
 export default function Form() {
   const [academic_session, setAcademic_session] = useState("");
@@ -164,7 +164,7 @@ export default function Form() {
         }
       );
       const data = await response.json();
-      if (data.result.message === "Mobile number is already registered") {
+      if (data.message === "Mobile number is already registered") {
         toast({
           title: "Already Resgistered",
           description: "This mobile number is allready registered",
@@ -176,11 +176,12 @@ export default function Form() {
         return;
       }
       localStorage.clear();
-      localStorage.setItem("id", data.result.data._id);
+      localStorage.setItem("id", data.data._id);
       console.log(data);
-      if (data.otp) {
-        navigate("/otp");
-      }
+      // if (data.otp) {
+      //   navigate("/otp");
+      // }
+      navigate('/personal')
     }
   };
   const selectedCourses = (course) => {
@@ -221,15 +222,15 @@ export default function Form() {
         );
       });
     }
-    if (course === "Entrance Test Batch-1") {
-      return Entrance_Target.map((e) => {
-        return (
-          <option key={e} value={e}>
-            {e}
-          </option>
-        );
-      });
-    }
+    // if (course === "Entrance Test Batch-1") {
+    //   return Entrance_Target.map((e) => {
+    //     return (
+    //       <option key={e} value={e}>
+    //         {e}
+    //       </option>
+    //     );
+    //   });
+    // }
     if (course === "Free Crash Course") {
       return FreeCrash_Target.map((e) => {
         return (
