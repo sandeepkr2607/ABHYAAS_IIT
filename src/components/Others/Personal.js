@@ -15,6 +15,7 @@ import {
   Checkbox,
   Flex,
 } from "@chakra-ui/react";
+import { useRef } from "react";
 // import { InputRightElement, InputGroup } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import Header from "../header/Header.jsx";
@@ -39,6 +40,8 @@ export default function Personal() {
   const [district, setDistrict] = useState("");
   const [email, setEmail] = useState("");
   const [about, setAbout] = useState("");
+
+
 
   const [errors, setErrors] = useState({
     name: "",
@@ -193,11 +196,6 @@ export default function Personal() {
     });
   };
   const emailChangeHandler = (event) => {
-    // setEmail(event.target.value)
-    // setErrors({
-    //   ...errors,
-    //   email:''
-    // })
     const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
     setEmail(event.target.value);
     if (emailRegex.test(email) === false) {
@@ -211,7 +209,29 @@ export default function Personal() {
         email: "",
       });
     }
+
+    
   };
+
+
+
+  const handleBlur = () => {
+    const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+    // Check if the input value matches a Google saved email pattern
+   
+      if (!emailRegex.test(email)) {
+        setErrors('Enter Valid Email');
+      } else {
+        setErrors('');
+      }
+    
+  };
+
+
+
+
+
+
   const aboutChangeHandler = (event) => {
     setAbout(event.target.value);
     setErrors({
@@ -251,6 +271,8 @@ export default function Personal() {
 
     fetchData();
   }, []);
+
+
 
   const Submithandler = async () => {
     const regex = /^[0-9]{10}$/;
@@ -297,6 +319,7 @@ export default function Personal() {
     if (emailRegex.test(email) === false) {
       newErrors.email = "Enter your email";
     }
+ 
     if (about.trim() === "") {
       newErrors.about = "This field is required";
     }
@@ -433,162 +456,6 @@ export default function Personal() {
                 </Text>
               </Box>
             </Center>
-            {/* <Center>
-              <VStack spacing={35}>  
-                <HStack spacing={'66px'}>
-                  <FormControl isInvalid={errors.name} 
-                  h={0.5} marginBottom={20}
-                  >
-                    <FormLabel>Name</FormLabel>
-                    <Input color={"gray"} rounded={"full"} width={'100%'} boxShadow={"base"} value={name} onChange={nameChangeHandler}/>
-                    {errors.name?(<FormErrorMessage>{errors.name}</FormErrorMessage>):''}
-                  </FormControl>
-                  <FormControl isInvalid={errors.fatherName} h={0.5} marginBottom={20}>
-                    <FormLabel>Father's Name</FormLabel>
-                    <Input color={"gray"} rounded={"full"} boxShadow={"base"} width={'100%'} onChange={fathernameChangeHandler}/>
-                    {errors.fatherName?(<FormErrorMessage>{errors.fatherName}</FormErrorMessage>):''}
-                  </FormControl>
-                  <FormControl isInvalid={errors.date} h={0.5} marginBottom={20}>
-                    <FormLabel>Date of Birth</FormLabel>
-                    <Input
-                      placeholder="Select Date and Time"
-                      size="md"
-                      type="date"
-                      rounded={"full"}
-                      boxShadow={"base"}
-                      width={'100%'}
-                      onChange={dateChangeHandler}
-                    />
-                    {errors.date?(<FormErrorMessage>{errors.date}</FormErrorMessage>):''}
-                  </FormControl>
-                  <FormControl h={0.5} marginBottom={20} isInvalid={errors.gender}>
-                    <FormLabel>Gender</FormLabel>
-                    <Select
-                      color={"gray"}
-                      rounded={"full"}
-                      boxShadow={"base"}
-                      width={"100%"}
-                      onChange={genderChangeHandler}
-                      >
-                      <option value=''>Gender</option>
-                      <option value="male">Male</option>
-                      <option value="female">Female</option>
-                      <option value="not want to disclose">Not want to disclose</option>
-                    </Select>
-                    {errors.gender?(<FormErrorMessage>{errors.gender}</FormErrorMessage>):''}
-                  </FormControl>
-                </HStack>
-                <HStack spacing={'70px'}>
-                  <FormControl isInvalid={errors.category} h={0.5} marginBottom={20}>
-                    <FormLabel>Category</FormLabel>
-                    <Select
-                      color={"gray"}
-                      rounded={"full"}
-                      boxShadow={"base"}
-                      onChange={categoryChangeHandler}
-                      >
-                      <option value=''>Category</option>
-                      <option value='general'>General</option>
-                      <option value='general-ews'>General-Ews</option>
-                      <option value='obc'>OBC</option>
-                      <option value='sc'>SC</option>
-                      <option value='st'>ST</option>
-                    </Select>
-                    {errors.category?(<FormErrorMessage>{errors.category}</FormErrorMessage>):''}
-                  </FormControl>
-                  <FormControl isInvalid={errors.addhar} h={0.5} marginBottom={20}>
-                    <FormLabel>AADHAR NO. (Optional)</FormLabel>
-                    <Input color={"gray"} rounded={"full"} boxShadow={"base"} onChange={aadharChangeHandler} />
-                    {errors.addhar?(<FormErrorMessage>{errors.addhar}</FormErrorMessage>):''}
-                  </FormControl>
-                    <FormControl isInvalid={errors.mobileS} h={0.5} marginBottom={20}>
-                    <FormLabel>Mobile No.</FormLabel>
-                    <Input color={"gray"} rounded={"full"} boxShadow={"base"} onChange={mobileSChangeHandler} value={mobileS} disabled/>
-                  </FormControl>
-                  <FormControl isInvalid={errors.mobileF} h={0.5} marginBottom={20}>
-                    <FormLabel>Parent's Mobile No.</FormLabel>
-                    <Input color={"gray"} rounded={"full"} boxShadow={"base"} onChange={mobileFChangeHandler}/>
-                    {errors.mobileF?(<FormErrorMessage>{errors.mobileF}</FormErrorMessage>):''}
-                  </FormControl>
-                </HStack>
-                <HStack width={"100%"} spacing={30}>
-                  <FormControl width={"180%"} isInvalid={errors.address} h={0.5} marginBottom={20}>
-                    <FormLabel>Permanent Address</FormLabel>
-                    <Input color={"gray"} rounded={"full"} boxShadow={"base"} onChange={addressChangeHandler}/>
-                    {errors.address?(<FormErrorMessage>{errors.address}</FormErrorMessage>):''}
-                  </FormControl>
-                  <FormControl width={"80%"} isInvalid={errors.city} h={0.5} marginBottom={20}>
-                    <FormLabel>City/Town/Village</FormLabel>
-                    <Input color={"gray"} rounded={"full"} boxShadow={"base"} onChange={cityChangeHandler}/>
-                    {errors.city?(<FormErrorMessage>{errors.city}</FormErrorMessage>):''}
-                  </FormControl>
-                </HStack>
-                <HStack width={"100%"} spacing={30}>
-                  <FormControl isInvalid={errors.pincode} h={0.5} marginBottom={20}>
-                    <FormLabel>Pin Code</FormLabel>
-                    <Input color={"gray"} rounded={"full"} boxShadow={"base"} onChange={pincodeChangeHandler}/>
-                    {errors.pincode?(<FormErrorMessage>{errors.pincode}</FormErrorMessage>):''}
-                  </FormControl>
-                  <FormControl isInvalid={errors.state} h={0.5} marginBottom={20}>
-                    <FormLabel>State</FormLabel>
-                    <Input color={"gray"} rounded={"full"} boxShadow={"base"} onChange={stateChangeHandler}/>
-                    {errors.state?(<FormErrorMessage>{errors.state}</FormErrorMessage>):''}
-                  </FormControl>
-                  <FormControl isInvalid={errors.district} h={0.5} marginBottom={20}>
-                    <FormLabel>District</FormLabel>
-                    <Input color={"gray"} rounded={"full"} boxShadow={"base"} onChange={districtChangeHandler}/>
-                    {errors.district?(<FormErrorMessage>{errors.district}</FormErrorMessage>):''}
-                  </FormControl>
-                  <FormControl isInvalid={errors.email} h={0.5} marginBottom={20}>
-                    <FormLabel>Email</FormLabel>
-                    <Input color={"gray"} rounded={"full"} boxShadow={"base"} onChange={emailChangeHandler}/>
-                    {errors.email?(<FormErrorMessage>{errors.email}</FormErrorMessage>):''}
-                  </FormControl>
-                </HStack>
-                <HStack width={"95%"}>
-                
-                
-                </HStack>
-                <HStack width={"100%"}>
-                  <FormControl width={"180%"} isInvalid={errors.about} h={0.5} marginBottom={20}>
-                    <FormLabel>
-                      How did you came to know about AbhyaasIIT
-                    </FormLabel>
-                    <Select color={"gray"} rounded={"full"} boxShadow={"base"} onChange={aboutChangeHandler}>
-                      <option value=''>How do you know about AbhyaasIIT</option>
-                      <option value='From a friend'>From a friend</option>
-                      <option value='Form Social Media Add'>Form Social Media</option>
-                      <option value='From news papers'>From news papers</option>
-                      <option value='From websites'>From websites</option>
-                      <option value='From schools'>From schools</option>
-                    </Select>
-                    {errors.about?(<FormErrorMessage>{errors.about}</FormErrorMessage>):''}
-                  </FormControl>
-              
-                </HStack>
-                <HStack width={"100%"} marginBottom={8}>
-                  <Checkbox
-                    colorScheme="orange"
-                    defaultChecked
-                    marginLeft={0}
-                    width={"150%"}
-                    onChange={handleCheckboxChange}
-                    disabled
-                    >
-                    I Agree to receive SMS/Call from AbhyaasIIT
-                  </Checkbox>
-                  <Button
-                    colorScheme="orange"
-                    size="lg"
-                    rounded={"full"}
-                    width={"80%"}
-                    marginTop={"2%"}
-                    onClick={Submithandler}>
-                    next
-                  </Button>
-                </HStack>
-              </VStack>
-            </Center> */}
 
             <Flex
               direction={{ base: "column", lg: "row" }}
@@ -777,7 +644,9 @@ export default function Personal() {
                   // marginBottom={20}
                   >
                     <FormLabel>Email</FormLabel>
-                    <Input color={"gray"} rounded={"full"} boxShadow={"base"} onChange={emailChangeHandler}/>
+                    <Input color={"gray"} rounded={"full"} boxShadow={"base"} onChange={emailChangeHandler} 
+                    onBlur={handleBlur}
+                    />
                     {errors.email?(<FormErrorMessage>{errors.email}</FormErrorMessage>):''}
                   </FormControl>
                   </Flex>
@@ -791,7 +660,7 @@ export default function Personal() {
                 mt={{ base: "50px", lg: 6 }}
               >    
                   <FormControl width={["100%","100%","100%","180%"]} isInvalid={errors.about} height="2rem"
-                  marginBottom={10}
+                  marginBottom={"80px"}
                   >
                     <FormLabel>
                       How did you came to know about AbhyaasIIT

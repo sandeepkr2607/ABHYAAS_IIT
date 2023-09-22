@@ -64,8 +64,15 @@ export default function Form() {
   const sessionChangeHandler = (event) => {
     setAcademic_session(event.target.value);
     if (event.target.value === "2023-24") {
-      setTarget_course("Free Crash Course");
+      setTarget_course("Free Crash Course");  
     }
+    if (event.target.value === "") {
+      setTarget_course("");  
+    }
+    if (event.target.value === "2024-25") {
+      setTarget_course("");  
+    }
+    console.log(event.target.value);
     // setTarget_class("")
     // setTarget_course("")
     setErrors({
@@ -258,72 +265,6 @@ export default function Form() {
               marginTop={3}
               marginBottom={[0, 10]}
             >
-              {/* Progress bar */}
-              {/* <Center>
-                <HStack spacing={2} my={8}>
-                  <Box
-                    bgColor={"orange"}
-                    rounded={"xl"}
-                    width={6}
-                    height={"auto"}
-                    textColor={"white"}
-                  >
-                    1
-                  </Box>
-                  <Progress
-                    value={50}
-                    size="sm"
-                    ml={0}
-                    width={20}
-                    colorScheme="orange"
-                    rounded={"md"}
-                  />
-                  <Box
-                    bgColor={"gray.200"}
-                    rounded={"xl"}
-                    width={6}
-                    height={"auto"}
-                    textColor={"gray.700"}
-                  >
-                    2
-                  </Box>
-                  <Progress
-                    value={0}
-                    size="sm"
-                    ml={0}
-                    width={20}
-                    colorScheme="orange"
-                    rounded={"md"}
-                  />
-                  <Box
-                    bgColor={"gray.200"}
-                    rounded={"xl"}
-                    width={6}
-                    height={"auto"}
-                    textColor={"gray.700"}
-                  >
-                    3
-                  </Box>
-                  <Progress
-                    value={0}
-                    size="sm"
-                    ml={0}
-                    width={20}
-                    colorScheme="orange"
-                    rounded={"md"}
-                  />
-                  <Box
-                    bgColor={"gray.200"}
-                    rounded={"xl"}
-                    width={6}
-                    height={"auto"}
-                    textColor={"gray.700"}
-                  >
-                    4
-                  </Box>
-                </HStack>
-              </Center> */}
-
 <Center>
       <HStack spacing={2} my={8}>
         <Box
@@ -412,153 +353,7 @@ export default function Form() {
                   </Text>
                 </Box>
               </Center>
-              {/* Main form component */}
-              {/* <Center m={3}>
-       
-              <VStack spacing={20}>
-         
-                <HStack spacing="50px">
-                  <FormControl isInvalid={errors.academic_session}  height="2rem">
-                    <FormLabel >Academic Session</FormLabel>
-                    <Select
-                      color={"gray"}
-                      rounded={"full"}
-                      boxShadow={"base"}
-                      width={"100%"}
-                      onChange={sessionChangeHandler}
-                     
-                      >
-                      <option value='' >Academic Session</option>
-                      <option value="2023-24">2023-2024</option>
-                      <option value="2024-25" >2024-2025</option>
-                    </Select>
-             
-                    {errors.academic_session ? (<FormErrorMessage>{errors.academic_session}</FormErrorMessage>) : ''}
-                  </FormControl>
-                  <FormControl  height="2rem">
-                    <FormLabel>Study Mode</FormLabel>
-                    <Select
-                      placeholder="Offline Mode"
-                      color={"black"}
-                      rounded={"full"}
-                      boxShadow={"base"}
-                      width={"100%"} disabled>
-                 
-                    </Select>     
-                  </FormControl>
-                  <FormControl isInvalid={errors.target_course}  height="2rem">   
-                    <FormLabel>Target Course</FormLabel>
-                    <Select
-           
-                      color={"gray"}
-                      rounded={"full"}
-                      boxShadow={"base"}
-                      width={"200px"}
-                      value={target_course}
-                      onChange={CourseChangeHandler}
-                     
-                      >
-                    
-                      {academic_session===''?<option value=''> Select Course </option>:academic_session==='2023-24'?
-                      (<option value='Free Crash Course' selected>Free Crash Course </option>)
 
-                        :Target_courses.map((e)=>
-                        <option key={e.value} value={e.value}>{e.text}</option>
-                      )}
-
-                     
-                    
-                    </Select>
-                    {errors.target_course && academic_session!== '2023-24' ? (<FormErrorMessage >{errors.target_course}</FormErrorMessage>) :''}
-                  </FormControl>
-                  <FormControl isInvalid={errors.target_class}   height="2rem">
-                    <FormLabel>Target Class</FormLabel>
-                    <Select
-                    
-                      color={"gray"}
-                      rounded={"full"}
-                      boxShadow={"base"}
-                      width={"100%"}
-                      onChange={classChangeHandler} >
-                     <option value=''>Select Class</option>
-                     {selectedCourses(target_course)}
-                    </Select>
-                    {errors.target_class ? (<FormErrorMessage >{errors.target_class}</FormErrorMessage>) : ''}
-                  </FormControl>
-                </HStack>
-                <HStack spacing="26px">
-           
-                  <FormControl  height="2rem">
-                    <FormLabel>Study Center</FormLabel>
-                    <Select
-                  
-                      rounded={"full"}
-                      boxShadow={"base"}
-                      width={"100%"}
-                      >
-                      <option>Raghunathpur,Motihari</option>
-           
-                    </Select>
-                  </FormControl>
-              
-                  <FormControl isInvalid={errors.name}  height="2rem" >
-                    <FormLabel>Student's Name</FormLabel>
-                    <Input
-                      placeholder="Student name"
-                      color={"gray"}
-                      rounded={"full"}
-                      boxShadow={"base"}
-                      width={"100%"}
-                      onChange={nameChangeHandler}
-                    />
-                    {errors.name ? (<FormErrorMessage>{errors.name}</FormErrorMessage>) : ''}
-                  </FormControl>
-                  <FormControl isInvalid={errors.mobile}  height="2rem">
-                    <FormLabel>Mobile No.</FormLabel>
-                    <Input
-                      placeholder="Mobile No."
-                      color={"gray"}
-                      rounded={"full"}
-                      boxShadow={"base"}
-                      width={"100%"}
-                      onChange={mobileChangeHandler}
-                    />
-                     {errors.mobile ? (<FormErrorMessage>{errors.mobile}</FormErrorMessage>) : ''}
-                  </FormControl>
-                  <Button
-                    colorScheme="orange"
-                    size="lg"
-                    rounded={"full"}
-                    width={"80%"}
-                    marginTop={"9.5%"}
-                    onClick={Submithandler}
-                    >
-                    next
-                  </Button>
-                </HStack>
-   
-              </VStack>
-            </Center> */}
-              {/* Main form component */}
-
-              {/* Checkbox */}
-              {/* <Flex direction={"column"}  marginLeft={'208px'} left={0} marginTop={10} marginBottom={8}>
-                <Checkbox
-                  colorScheme="orange"
-                  
-                  isInvalid={errors.Checkbox}
-                  isChecked={isChecked}
-                  width={"100%"}
-                  onChange={handleCheckboxChange}
-                  >
-                  I Agree to receive SMS/Call from AbhyaasIIT
-                </Checkbox>
-                <Flex>
-                {errors.Checkbox ? (<Text color={'red'} padding={0} margin={0}>{errors.Checkbox}</Text>) : ''}
-                </Flex>
-                </Flex> */}
-              {/* Checkbox */}
-              {/* New styles */}
 
               <Flex
                 direction={{ base: "column", lg: "row" }}

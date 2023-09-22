@@ -1,4 +1,4 @@
-import { Input, Progress } from "@chakra-ui/react";
+import { Input, Progress, Table, TableContainer,Tr,Td } from "@chakra-ui/react";
 import {
   Center,
   Box,
@@ -166,69 +166,9 @@ export default function Application() {
         <Center>
           <Box
             boxShadow={"base"}
-            width={["100%", "100%", "100%", "75%"]}
+            width={["100%", "100%", "100%", "60%"]}
             rounded={"lg"}
             m={"3"}>
-            {/* <Center>
-              <HStack spacing={2} my={8}>
-                <Box
-                  bgColor={"orange"}
-                  rounded={"xl"}
-                  width={6}
-                  height={"auto"}
-                  textColor={"white"}>
-                  1
-                </Box>
-                <Progress
-                  value={100}
-                  size="sm"
-                  ml={0}
-                  width={20}
-                  colorScheme="orange"
-                  rounded={"md"}
-                />
-                <Box
-                  bgColor={"orange"}
-                  rounded={"xl"}
-                  width={6}
-                  height={"auto"}
-                  textColor={"white"}>
-                  2
-                </Box>
-                <Progress
-                  value={100}
-                  size="sm"
-                  ml={0}
-                  width={20}
-                  colorScheme="orange"
-                  rounded={"md"}
-                />
-                <Box
-                  bgColor={"orange"}
-                  rounded={"xl"}
-                  width={6}
-                  height={"auto"}
-                  textColor={"white"}>
-                  3
-                </Box>
-                <Progress
-                  value={0}
-                  size="sm"
-                  ml={0}
-                  width={20}
-                  colorScheme="orange"
-                  rounded={"md"}
-                />
-                <Box
-                  bgColor={"gray.200"}
-                  rounded={"xl"}
-                  width={6}
-                  height={"auto"}
-                  textColor={"gray.700"}>
-                  4
-                </Box>
-              </HStack>
-            </Center> */}
             <Center>
       <HStack spacing={2} my={8}>
         <Box
@@ -311,7 +251,7 @@ export default function Application() {
                 </Text>
               </Box>
             </Center>
-            <HStack spacing={10}>
+            {/* <HStack spacing={10}>
               <Box boxShadow={"base"} rounded={"2xl"} m={"3"} width={"60%"} >
                 <HStack px={50} spacing={20} py={10}>
                   <VStack spacing={2} alignItems={"start"}>
@@ -386,7 +326,324 @@ export default function Application() {
                   next
                 </Button>
               </VStack>
-            </HStack>
+            </HStack> */}
+
+{/* <VStack spacing={5} align="center">
+      <Box
+        // boxShadow="base"
+        rounded="2xl"
+        m={3}
+        w={{ base: '90%', lg: '60%' }} // Responsive width
+      >
+        <HStack spacing={20} px={8} py={10} justify="space-between">
+          <VStack spacing={2} alignItems="start">
+            <Text fontWeight="bold">Application No.</Text>
+            
+          </VStack>
+          <VStack spacing={2} alignItems="start">
+            <Text>{info.applicationNo}</Text>
+            
+          </VStack>
+        </HStack>
+      </Box>
+      <VStack m={10} alignItems="center">
+        <Box
+          boxShadow="base"
+          rounded="2xl"
+          m={3}
+          p={10}
+          bgColor="orange.100"
+          overflow="hidden"
+        >
+          {!pic ? (
+            <VStack spacing={0} p={0} mb={25}>
+              <Text fontWeight="bold">Kindly Browse</Text>
+              <Text fontWeight="bold">Your recent</Text>
+              <Text fontWeight="bold">Passport size</Text>
+              <Text fontWeight="bold">color</Text>
+              <Text fontWeight="bold">Photograph</Text>
+            </VStack>
+          ) : (
+            <Avatar
+              mr={2}
+              size="2xl"
+              cursor="pointer"
+              src={pic}
+            />
+          )}
+          <label htmlFor="files" className="btn">
+            Browse
+          </label>
+          <Input
+            id="files"
+            accept="image/*"
+            style={{ display: 'none' }}
+            width={0}
+            type="file"
+            onChange={handleFileChange}
+          />
+        </Box>
+        <Button
+          colorScheme="orange"
+          size="lg"
+          rounded="full"
+          w="80%"
+          mt={2}
+          onClick={Submithandler}
+        >
+          Next
+        </Button>
+      </VStack>
+    </VStack> */}
+
+{/* <VStack spacing={5} align="center">
+      <HStack spacing={5} w="100%" justify="center">
+        <Box
+          boxShadow="base"
+          rounded="2xl"
+          m={3}
+          w={{ base: '90%', lg: '45%' }} // Responsive width
+        >
+          <HStack spacing={20} px={8} py={10} justify="space-between">
+            <VStack spacing={2} alignItems="start">
+              <Text fontWeight="bold">Application No.</Text>
+           
+            </VStack>
+            <VStack spacing={2} alignItems="start">
+              <Text>{info.applicationNo}</Text>
+        
+            </VStack>
+          </HStack>
+        </Box>
+        <Box
+          boxShadow="base"
+          rounded="2xl"
+          m={3}
+          p={10}
+          bgColor="orange.100"
+          overflow="hidden"
+          flex={{ base: 'none', lg: '1' }} // Adjust flex based on screen size
+        >
+          {!pic ? (
+            <VStack spacing={0} p={0} mb={25}>
+              <Text fontWeight="bold">Kindly Browse</Text>
+              <Text fontWeight="bold">Your recent</Text>
+              <Text fontWeight="bold">Passport size</Text>
+              <Text fontWeight="bold">color</Text>
+              <Text fontWeight="bold">Photograph</Text>
+            </VStack>
+          ) : (
+            <Avatar
+              mr={2}
+              size="2xl"
+              cursor="pointer"
+              src={pic}
+            />
+          )}
+          <label htmlFor="files" className="btn">
+            Browse
+          </label>
+          <Input
+            id="files"
+            accept="image/*"
+            style={{ display: 'none' }}
+            width={0}
+            type="file"
+            onChange={handleFileChange}
+          />
+        </Box>
+      </HStack>
+      <Button
+        colorScheme="orange"
+        size="lg"
+        rounded="full"
+        w="80%"
+        mt={2}
+        onClick={Submithandler}
+      >
+        Next
+      </Button>
+    </VStack> */}
+
+<VStack spacing={5} align="center">
+      <HStack
+        spacing={5}
+        w="100%"
+        justify={{ base: 'center', lg: 'space-between' }} // Adjust alignment based on screen size
+        flexDirection={{ base: 'column', lg: 'row' }} // Stack vertically on small screens, side by side on large screens
+      >
+        <Box
+          // boxShadow="base"
+          rounded="2xl"
+          m={3}
+          w="100%" // Full width on small screens
+          maxW={{ base: '90%', lg: '45%' }} // Responsive width
+        >
+          {/* <HStack spacing={20} px={8} py={10} justify="space-between">
+            <VStack spacing={2} alignItems="start">
+              <Text fontWeight="bold">Application No.</Text>
+              <Text fontWeight={"bold"}>Course Name</Text>
+                    <Text fontWeight={"bold"}>Division</Text>
+                    <Text fontWeight={"bold"}>Study Center</Text>
+                    <Text fontWeight={"bold"}>Medium</Text>
+                    <Text fontWeight={"bold"}>Test City</Text>
+                    <Text fontWeight={"bold"}>Test Date</Text>
+                    <Text fontWeight={"bold"}>Student Name</Text>
+                    <Text fontWeight={"bold"}>Father's Name</Text>
+                    <Text fontWeight={"bold"}>Category</Text>
+                    <Text fontWeight={"bold"}>City</Text>
+                    <Text fontWeight={"bold"}>District</Text>
+                    <Text fontWeight={"bold"}>State</Text>
+                    <Text fontWeight={"bold"}>PinCode</Text>
+                    <Text fontWeight={"bold"}>Application From Free</Text>
+
+            </VStack>
+            <VStack spacing={2} alignItems="start">
+              <Text>{info.applicationNo}</Text>
+              <Text>{info.targetCourse}</Text>
+                    <Text>JEE(Main)</Text>
+                    <Text>Raghunathpur,Motihari</Text>
+                    <Text>E</Text>
+                    <Text>Online</Text>
+                    <Text>13-Aug-2023 11.00 AM</Text>
+                    <Text>{info.studentName}</Text>
+                    <Text>{info.fatherName}</Text>
+                    <Text>{info.category}</Text>
+                    <Text>{info.city}</Text>
+                    <Text>{info.district}</Text>
+                    <Text>{info.state}</Text>
+                    <Text>{info.pinCode}</Text>
+                    <Text>500</Text>
+
+
+            </VStack>
+          </HStack> */}
+
+          <TableContainer>
+            <Table variant={'simple'} 
+            style={{ marginTop: "0" }}>
+                <Tr>
+                  <Td p={1}>Application No.</Td>
+                  <Td p={1}>{info.applicationNo}</Td>
+                </Tr>
+                <Tr>
+                  <Td p={1}>Course Name</Td>
+                  <Td p={1}>{info.targetCourse}</Td>
+                </Tr>
+                <Tr>
+                  <Td p={1}>Division</Td>
+                  <Td p={1}>Raghunathpur,Motihari</Td>
+                </Tr>
+                <Tr>
+                  <Td p={1}>Study Center</Td>
+                  <Td p={1}>JEE(Main)</Td>
+                </Tr>
+                <Tr>
+                  <Td p={1}>Medium</Td>
+                  <Td p={1}>E</Td>
+                </Tr>
+                <Tr>
+                  <Td p={1}>Test City</Td>
+                  <Td p={1}>Online</Td>
+                </Tr>
+                <Tr>
+                  <Td p={1}>Test Date</Td>
+                  <Td p={1}>13-Aug-2023 11.00 AM</Td>
+                </Tr>
+                <Tr>
+                  <Td p={1}>Student Name</Td>
+                  <Td p={1}>{info.studentName}</Td>
+                </Tr>
+                <Tr>
+                  <Td p={1}>Father's Name</Td>
+                  <Td p={1}>{info.fatherName}</Td>
+                </Tr>
+                <Tr>
+                  <Td p={1}>Category</Td>
+                  <Td p={1}>{info.category}</Td>
+                </Tr>
+                <Tr>
+                  <Td p={1}>City</Td>
+                  <Td p={1}>{info.city}</Td>
+                </Tr>
+                <Tr>
+                  <Td p={1}>District</Td>
+                  <Td p={1}>{info.district}</Td>
+                </Tr>
+                <Tr>
+                  <Td p={1}>State</Td>
+                  <Td p={1}>{info.state}</Td>
+                </Tr>
+                <Tr>
+                  <Td p={1}>PinCode</Td>
+                  <Td p={1}>{info.pinCode}</Td>
+                </Tr>
+                <Tr>
+                  <Td p={1}>Application From Free</Td>
+                  <Td p={1}>500</Td>
+                </Tr>
+
+            </Table>
+          </TableContainer>
+
+
+
+
+
+        </Box>
+        <Box
+          boxShadow="base"
+          rounded="2xl"
+          m={3}
+          p={10}
+          bgColor="orange.100"
+          overflow="hidden"
+          flex={{ base: 'none', lg: '1' }} // Adjust flex based on screen size
+          maxW={{ base: '90%', lg: '40%' ,xl:'30%'}} // Responsive width
+        >
+          {!pic ? (
+            <VStack spacing={0} p={0} mb={25}>
+              <Text fontWeight="bold">Kindly Browse</Text>
+              <Text fontWeight="bold">Your recent</Text>
+              <Text fontWeight="bold">Passport size</Text>
+              <Text fontWeight="bold">color</Text>
+              <Text fontWeight="bold">Photograph</Text>
+            </VStack>
+          ) : (
+            <Avatar
+              mr={2}
+              size="2xl"
+              cursor="pointer"
+              src={pic}
+              mb={5}
+            />
+          )}
+          <label htmlFor="files" className="btn">
+            Browse
+          </label>
+          <Input
+            id="files"
+            accept="image/*"
+            style={{ display: 'none' }}
+            width={0}
+            type="file"
+            onChange={handleFileChange}
+          />
+        </Box>
+      </HStack>
+      <Button
+        colorScheme="orange"
+        size="lg"
+        rounded="full"
+        w={["80%","30%"]}
+        mt={2}
+        mb={2}
+        onClick={Submithandler}
+      >
+        Next
+      </Button>
+    </VStack>
+
           </Box>
         </Center>
         <Box>
