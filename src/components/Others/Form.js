@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 import Header from "../header/Header.jsx";
 import Footer from "../footer/Footer.jsx";
 import { FormErrorMessage } from "@chakra-ui/react";
-// import { Text } from "@chakra-ui/react";
+
 
 import { useToast } from "@chakra-ui/react";
 
@@ -66,7 +66,8 @@ export default function Form() {
     if (event.target.value === "2023-24") {
       setTarget_course("Free Crash Course");
     }
-    setTarget_class("")
+    // setTarget_class("")
+    // setTarget_course("")
     setErrors({
       ...errors,
       academic_session: "",
@@ -183,7 +184,7 @@ export default function Form() {
     }
   };
   const selectedCourses = (course) => {
-    if (course === " ") return " ";
+    if (course === "") return "";
     if (course === "Brain Gym") {
       return BrainGym_Target.map((e) => {
         return (
@@ -609,7 +610,7 @@ export default function Form() {
                     value={target_course}
                     onChange={CourseChangeHandler}
                   >
-                    {academic_session === "" ? (
+                    {academic_session === '' ? (
                       <option value=""> Select Course </option>
                     ) : academic_session === "2023-24" ? (
                       <option value="Free Crash Course" selected>
@@ -639,6 +640,7 @@ export default function Form() {
                     onChange={classChangeHandler}
                     value={target_class}
                   >
+                    {/* {academic_session===''} */}
                     <option value="">Select Class</option>
                     {selectedCourses(target_course)}
                   </Select>

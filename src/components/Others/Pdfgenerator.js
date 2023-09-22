@@ -125,14 +125,12 @@ export default function Pdfgenerator() {
   return (
     <>
       <ChakraProvider>
-        <Center>
+        {/* <Center>
           <VStack>
             <Box
-              // bg="blue.200"
               p={4}
               borderRadius="md"
               boxShadow="md"
-              // width="1000px"
               textAlign="center"
               ref={PDF}
             >
@@ -150,24 +148,14 @@ export default function Pdfgenerator() {
 
                 <div
                   style={{
-                    width: "180px", // Adjust the size for a passport photo
-                    height: "180px", // Adjust the size for a passport photo
-                    margin: "0 auto", // Center the avatar horizontally
-                    overflow: "hidden", // Hide overflow if the image is larger
-                    // border: "2px solid blue.200", 
-                    border: "2px solid white", // Add a white border
+                    width: "180px", 
+                    height: "180px", 
+                    margin: "0 auto", 
+                    overflow: "hidden", 
+                    border: "2px solid white", 
                     marginTop: "-150px"
                   }}
                 >
-                  {/* <Avatar
-                    size="full"
-                    src={pic}
-                    // alt={dummyData.name}
-                    w="100%" // Make sure the image takes 100% of the container
-                    h="100%" // Make sure the image takes 100% of the container
-                    borderRadius={'none'}
-
-                  /> */}
                 </div>
                 <Box pt={0} >
 
@@ -224,22 +212,20 @@ export default function Pdfgenerator() {
                 </Box>
                 <div
                   style={{
-                    width: "100px", // Adjust the size for a passport photo
-                    height: "120px", // Adjust the size for a passport photo
-                    margin: "0 auto", // Center the avatar horizontally
-                    overflow: "hidden", // Hide overflow if the image is larger
+                    width: "100px", 
+                    height: "120px", 
+                    margin: "0 auto", 
+                    overflow: "hidden", 
                     border: "2px solid none", 
-                    marginTop: "-150px"// Add a white border
+                    marginTop: "-150px"
                   }}
                 >
                      <Avatar
                     size="full"
                     src={pic}
-                    // alt={dummyData.name}
-                    w="100%" // Make sure the image takes 100% of the container
-                    h="100%" // Make sure the image takes 100% of the container
+                    w="100%" 
+                    h="100%" 
                     borderRadius={'none'}
-
                   />
                 </div>
               </HStack>
@@ -274,7 +260,253 @@ export default function Pdfgenerator() {
             </Button>
             </HStack>
           </VStack>
-        </Center>
+        </Center> */}
+
+<Center>
+      <VStack>
+        <Box
+          p={4}
+          borderRadius="md"
+          boxShadow="md"
+          textAlign="center"
+          ref={PDF}
+          maxW="1000px" // Set a maximum width for the box
+          width="90%" // Set a responsive width
+          mx="auto" // Center the box horizontally
+        >
+          <Flex align="center" justify="center">
+            <Image src={logo} boxSize={'65px'} />
+            <Heading fontSize="xl" mb={2} style={{ marginTop: "22px" }}>
+              Application Form {info.academicSession}
+            </Heading>
+          </Flex>
+          <Divider orientation="horizontal" bgColor={"black"} height={'1px'} />
+          {/* <HStack> */}
+            {/* ... Rest of your code ... */}
+            {/* <div
+                  style={{
+                    width: "180px", 
+                    height: "180px", 
+                    margin: "0 auto", 
+                    overflow: "hidden", 
+                    border: "2px solid white", 
+                    marginTop: "-150px"
+                  }}
+                >
+                </div>
+                <Box pt={0} >
+
+                  <TableContainer style={{ marginTop: "0px" }}>
+                    <Table variant={"simple"} style={{ marginTop: "0" }}>
+                      <Tbody style={{ marginTop: "0" }}>
+                        <Tr>
+                          <Td p={1}>Application No.</Td>
+                          <Td p={1}>{info.applicationNo}</Td>
+                        </Tr>
+                        <Tr >
+                          <Td p={1}>Student Name</Td>
+                          <Td p={1}>{info.studentName}</Td>
+                        </Tr>
+                        <Tr >
+                          <Td p={1}>Father Name</Td>
+                          <Td p={1}>{info.fatherName}</Td>
+                        </Tr>
+                        <Tr>
+                          <Td p={1}>Gender</Td>
+                          <Td p={1}>{info.gender}</Td>
+                        </Tr>
+                        <Tr>
+                          <Td p={1}>Course</Td>
+                          <Td p={1}>{info.targetCourse}</Td>
+                        </Tr>
+                        <Tr>
+                          <Td p={1}>Class</Td>
+                          <Td p={1}>{info.targetClass}</Td>
+                        </Tr>
+                        <Tr>
+                          <Td p={1}>Study Center</Td>
+                          <Td p={1}>Raghunathpur,Motihari</Td>
+                        </Tr>
+                        <Tr>
+                          <Td p={1}>Mobile No.</Td>
+                          <Td p={1}>{info.mobileNo}</Td>
+                        </Tr>
+                        <Tr>
+                          <Td p={1}>Email</Td>
+                          <Td p={1}>{info.email}</Td>
+                        </Tr>
+                        <Tr>
+                          <Td p={1}>Pincode</Td>
+                          <Td p={1}>{info.pinCode}</Td>
+                        </Tr>
+                        <Tr>
+                          <Td p={1}>State</Td>
+                          <Td p={1}>{info.state}</Td>
+                        </Tr>
+                      </Tbody>
+                    </Table>
+                  </TableContainer>
+                </Box>
+                <div
+                  style={{
+                    width: "100px", 
+                    height: "120px", 
+                    margin: "0 auto", 
+                    overflow: "hidden", 
+                    border: "2px solid none", 
+                    marginTop: "-150px"
+                  }}
+                >
+                     <Avatar
+                    size="full"
+                    src={pic}
+                    w="100%" 
+                    h="100%" 
+                    borderRadius={'none'}
+                  />
+                </div> */}
+                  <Flex justify="center">
+      <Box
+        p={4}
+        borderRadius="md"
+        // boxShadow="md"
+        textAlign="center"
+        maxWidth="1000px"
+        width="90%"
+        mx="auto"
+        flexDirection={{ base: 'column', lg: 'row' }} // Adjust layout based on screen size
+        alignItems={{ base: 'center', lg: 'flex-start' }}
+      >
+        {/* <Flex align="center" justify="center"  direction={{ base: "column", lg: "row" }}> */}
+          {/* Add your image or avatar here */}
+
+        {/* </Flex> */}
+        {/* <Divider orientation="horizontal" bgColor={"black"} height={'1px'} /> */}
+
+        <Flex
+          flexDirection={{ base: 'column', lg: 'row' }} // Adjust layout based on screen size
+          align={{ base: 'center', lg: 'flex-start' }} // Align items to top on large screens
+        >
+
+
+        <Box pt={0} flex={{ base: 'none', lg: '1' }}>
+          <TableContainer style={{ marginTop: "0px" }}>
+            <Table variant={"simple"} style={{ marginTop: "0" }}>
+              <Tbody style={{ marginTop: "0" }}>
+                <Tr>
+                  <Td p={1}>Application No.</Td>
+                  <Td p={1}>{info.applicationNo}</Td>
+                </Tr>
+                <Tr>
+                  <Td p={1}>Student Name</Td>
+                  <Td p={1}>{info.studentName}</Td>
+                </Tr>
+                <Tr >
+                          <Td p={1}>Father Name</Td>
+                          <Td p={1}>{info.fatherName}</Td>
+                        </Tr>
+                        <Tr>
+                          <Td p={1}>Gender</Td>
+                          <Td p={1}>{info.gender}</Td>
+                        </Tr>
+                        <Tr>
+                          <Td p={1}>Course</Td>
+                          <Td p={1}>{info.targetCourse}</Td>
+                        </Tr>
+                        <Tr>
+                          <Td p={1}>Class</Td>
+                          <Td p={1}>{info.targetClass}</Td>
+                        </Tr>
+                        <Tr>
+                          <Td p={1}>Study Center</Td>
+                          <Td p={1}>Raghunathpur,Motihari</Td>
+                        </Tr>
+                        <Tr>
+                          <Td p={1}>Mobile No.</Td>
+                          <Td p={1}>{info.mobileNo}</Td>
+                        </Tr>
+                        <Tr>
+                          <Td p={1}>Email</Td>
+                          <Td p={1}>{info.email}</Td>
+                        </Tr>
+                        <Tr>
+                          <Td p={1}>Pincode</Td>
+                          <Td p={1}>{info.pinCode}</Td>
+                        </Tr>
+                        <Tr>
+                          <Td p={1}>State</Td>
+                          <Td p={1}>{info.state}</Td>
+                        </Tr>
+                {/* Add other info fields in a similar manner */}
+              </Tbody>
+            </Table>
+          </TableContainer>
+        </Box>
+        <Flex
+            align="center"
+            justify="center"
+            flex={{ base: 'none', lg: '1' }}
+            mt={{ base: '4', lg: '0' }} // Add top margin on small screens
+          >
+            <Box
+              width="120px"
+              height="120px"
+              margin="0 auto"
+              overflow="hidden"
+              border="2px solid white"
+              marginTop={{ base: '0', lg: '0' }} // Adjust top margin on large screens
+              marginLeft={{ base: '0', lg: '90px' }}
+            >
+              <Avatar
+                size="full"
+                src={pic}
+                w="100%"
+                h="100%"
+                borderRadius="none"
+              />
+            </Box>
+          </Flex>
+
+
+        </Flex>
+      </Box>
+    </Flex>
+          {/* </HStack> */}
+          <Text fontWeight={'bold'} textAlign={'start'} mt={5}>Important Instrustions:-</Text>
+          <Text textAlign={'start'} ml={50}>
+            <UnorderedList>
+              <ListItem>Lorem ipsum dolor sit amet</ListItem>
+              <ListItem>Consectetur adipiscing elit</ListItem>
+              <ListItem>Integer molestie lorem at massa</ListItem>
+              <ListItem>Facilisis in pretium nisl aliquet</ListItem>
+            </UnorderedList>
+          </Text>
+          <Text fontWeight={'bold'} textAlign={'start'} mt={5}>IMPORTANT:-Lorem ipsum dolor sit amet Consectetur adipiscing elit
+            Integer molestie </Text>
+          <Text fontWeight={'bold'} textAlign={'start'}>
+            lorem at massa 
+            Facilisis in pretium nisl aliquet
+          </Text>
+          <Flex justify="center" mt={4}>
+            <Text fontSize="sm" fontStyle="italic">
+              This admit card is valid for the specified exam only. Submitted at {info.createdAt}
+            </Text>
+          </Flex>
+        </Box>
+        <HStack>
+          <Button onClick={generatePDF}>
+            Download PDF
+          </Button>
+          <Button onClick={homepagehandler}>
+            Go to Home Page
+          </Button>
+        </HStack>
+      </VStack>
+    </Center>
+
+
+
+
       </ChakraProvider>
     </>
   );

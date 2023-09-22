@@ -728,14 +728,14 @@ export default function Personal() {
                 flexGrow={3}
                 mt={{ base: "50px", lg: 6 }}
               >
-                 <FormControl width={["100%","180%"]} isInvalid={errors.address} height="2rem" 
+                 <FormControl width={["100%","100%","100%","180%"]} isInvalid={errors.address} height="2rem" 
                 //  marginBottom={20}
                  >
                     <FormLabel>Permanent Address</FormLabel>
                     <Input color={"gray"} rounded={"full"} boxShadow={"base"} onChange={addressChangeHandler}/>
                     {errors.address?(<FormErrorMessage>{errors.address}</FormErrorMessage>):''}
                   </FormControl>
-                  <FormControl width={["100%","80%"]} isInvalid={errors.city} height="2rem" 
+                  <FormControl width={["100%","100%","100%","80%"]} isInvalid={errors.city} height="2rem" 
                   // marginBottom={20}
                   >
                     <FormLabel>City/Town/Village</FormLabel>
@@ -789,9 +789,8 @@ export default function Personal() {
                 p={{ base: 1, lg: 50 }}
                 flexGrow={3}
                 mt={{ base: "50px", lg: 6 }}
-              >
-                  
-                  <FormControl width={["100%","180%"]} isInvalid={errors.about} height="2rem"
+              >    
+                  <FormControl width={["100%","100%","100%","180%"]} isInvalid={errors.about} height="2rem"
                   marginBottom={10}
                   >
                     <FormLabel>
@@ -820,7 +819,7 @@ export default function Personal() {
                     colorScheme="orange"
                     defaultChecked
                     marginLeft={0}
-                    width={["100%","150%"]}
+                    width={["100%","100%","100%","150%"]}
                     onChange={handleCheckboxChange}
                     marginTop={{base:'10px'}}
                     disabled

@@ -169,7 +169,7 @@ export default function Application() {
             width={["100%", "100%", "100%", "75%"]}
             rounded={"lg"}
             m={"3"}>
-            <Center>
+            {/* <Center>
               <HStack spacing={2} my={8}>
                 <Box
                   bgColor={"orange"}
@@ -228,7 +228,81 @@ export default function Application() {
                   4
                 </Box>
               </HStack>
-            </Center>
+            </Center> */}
+            <Center>
+      <HStack spacing={2} my={8}>
+        <Box
+          bgColor={"orange"}
+          rounded={"xl"}
+          width={{ base: 6, md: 6 }}
+          height={"auto"}
+          textColor={"white"}
+        >
+          1
+        </Box>
+        <Progress
+          value={50}
+          size="sm"
+          ml={0}
+          width={{ base: 12, md: 20 }}
+          colorScheme="orange"
+          rounded={"md"}
+        />
+
+        {/* Step 2 */}
+        <Box
+          bgColor={"gray.200"}
+          rounded={"xl"}
+          width={{ base: 6, md: 6 }}
+          height={"auto"}
+          textColor={"gray.700"}
+        >
+          2
+        </Box>
+        <Progress
+          value={0}
+          size="sm"
+          ml={0}
+          width={{ base: 12, md: 20 }}
+          colorScheme="orange"
+          rounded={"md"}
+        />   
+
+        {/* Step 3 */}
+        <Box
+          bgColor={"gray.200"}
+          rounded={"xl"}
+          width={{ base: 6, md: 6 }}
+          height={"auto"}
+          textColor={"gray.700"}
+        >
+          3
+        </Box>
+        <Progress
+          value={0}
+          size="sm"
+          ml={0}
+          width={{ base: 12, md: 20 }}
+          colorScheme="orange"
+          rounded={"md"}
+        />
+
+        {/* Step 4 */}
+        <Box
+          bgColor={"gray.200"}
+          rounded={"xl"}
+          width={{ base: 6, md: 6 }}
+          height={"auto"}
+          textColor={"gray.700"}
+        >
+          4
+        </Box>
+      </HStack>
+    </Center>
+
+
+
+
             <Divider orientation="horizontal" bgColor={"black"} />
             <Center>
               <Box m={3}>
