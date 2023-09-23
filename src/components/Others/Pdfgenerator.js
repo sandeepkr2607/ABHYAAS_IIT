@@ -242,34 +242,34 @@ export default function Pdfgenerator() {
       </Text>
       <UnorderedList ml={["0", "20px"]} spacing={2}>
         <ListItem>
-          <Text textAlign="start" width={['100%', '500px']}>
+          <Text textAlign="start" width={['100%', '600px']}>
             Limited seats only. Registration for these classes shall close once a batch is full. Any Registration request received after that shall be liable to be Cancelled even after automated mail reply is received by students.
           </Text>
         </ListItem>
         <ListItem>
-          <Text textAlign="start" width={['100%', '500px']}>
+          <Text textAlign="start" width={['100%', '600px']}>
             Students are advised to make a confirmatory call to the Institute after Registration for the crash course.
           </Text>
         </ListItem>
         {/* ... Add more list items as needed */}
         <ListItem>
-          <Text textAlign="start" width={['100%', '500px']}>
+          <Text textAlign="start" width={['100%', '600px']}>
           Students who plan to join AbhyaasIIT Institute in the upcoming session are advised to take the Crash Course as it will help improve
            their performance in Admission Entrance Tests (AET) for the courses of 2024 session
           </Text>
         </ListItem>
         <ListItem>
-          <Text textAlign="start" width={['100%', '500px']}>
+          <Text textAlign="start" width={['100%', '600px']}>
           This course shall cover Mathematics and Science upto Olympiad level where a student will be enabled to compete at National and International stage
           </Text>
         </ListItem>
         <ListItem>
-          <Text textAlign="start" width={['100%', '500px']}>
+          <Text textAlign="start" width={['100%', '600px']}>
           The students will go through a highly intense competitive environment with Daily Practice Papers(DPPs) and weekly Output Tests(OTs).
           </Text>
         </ListItem>
         <ListItem>
-          <Text textAlign="start" width={['100%', '500px']}>
+          <Text textAlign="start" width={['100%', '600px']}>
           Each student will be assigned to a personal IITian Mentor who will conduct bi-Monthly review of the student and conduct meeting with Parents every month in order to develop
            the environment of child In and Out of the Institute
           </Text>

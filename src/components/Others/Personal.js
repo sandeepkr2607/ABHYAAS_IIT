@@ -387,7 +387,7 @@ export default function Personal() {
                   1
                 </Box>
                 <Progress
-                  value={50}
+                  value={100}
                   size="sm"
                   ml={0}
                   width={{ base: 12, md: 20 }}
@@ -395,16 +395,16 @@ export default function Personal() {
                   rounded={"md"}
                 />
                 <Box
-                  bgColor={"gray.200"}
+                  bgColor={"orange"}
                   rounded={"xl"}
                   width={{ base: 6, md: 6 }}
                   height={"auto"}
-                  textColor={"gray.700"}
+                  textColor={"white"}
                 >
                   2
                 </Box>
                 <Progress
-                  value={0}
+                  value={50}
                   size="sm"
                   ml={0}
                   width={{ base: 12, md: 20 }}
