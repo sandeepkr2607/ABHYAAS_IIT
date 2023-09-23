@@ -198,7 +198,7 @@ export default function Personal() {
   const emailChangeHandler = (event) => {
     const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
     setEmail(event.target.value);
-    if (emailRegex.test(email) === false) {
+    if (emailRegex.test(event.target.value) === false) {
       setErrors({
         ...errors,
         email: "Enter Valid Email",
@@ -215,14 +215,20 @@ export default function Personal() {
 
 
 
-  const handleBlur = () => {
+  const handleBlur = (event) => {
     const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
     // Check if the input value matches a Google saved email pattern
-   
-      if (!emailRegex.test(email)) {
-        setErrors('Enter Valid Email');
+    setEmail(event.target.value)
+      if (!emailRegex.test(event.target.value)) {
+        setErrors({
+          ...errors,
+          email: "Enter Valid Email",
+        });
       } else {
-        setErrors('');
+        setErrors({
+          ...errors,
+          email: "",
+        });
       }
     
   };
