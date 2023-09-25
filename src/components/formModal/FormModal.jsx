@@ -11,8 +11,10 @@ const FormModal = ({ showModal, setShowModal, onClose }) => {
   const [mobile_number,setMobile_number]=useState("");
   const [std,setStd]=useState("");
   const [message,setMessage]=useState("");
+  const [school,setSchool]=useState("")
   const [errors, setErrors] = useState({
     input: '',
+    school:'',
     mobile_number: '',
     std: '',
   });
@@ -22,6 +24,13 @@ const FormModal = ({ showModal, setShowModal, onClose }) => {
       setErrors({
         ...errors,
         input:''
+      })
+  }
+  const schoolChangeHandler=(event)=>{
+      setSchool(event.target.value)
+      setErrors({
+        ...errors,
+        school:''
       })
   }
   const mobile_numberChangeHandler=(event)=>{
@@ -76,13 +85,17 @@ const FormModal = ({ showModal, setShowModal, onClose }) => {
       if (regex.test(mobile_number) === false) {
         newErrors.mobile_number = 'Enter Valid Mobile Number';
       }
+
+      if(school.trim()===''){
+        newErrors.school='School Name required'
+      }
   
       if (std === '') {
         newErrors.std = 'Please select a standard';
       }
 
       setErrors(newErrors);
-      // console.log(errors)
+      // console.log(errors) 
 
 
       if (Object.keys(newErrors).length === 0){
@@ -92,7 +105,7 @@ const FormModal = ({ showModal, setShowModal, onClose }) => {
           headers: {
            'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ "name":input,"mobile_number":mobile_number, "std":std , "message":message })
+        body: JSON.stringify({ "name":input,"mobile_number":mobile_number,"school":school, "std":std , "message":message })
       });
       const data=await response.json();
       console.log(data)
@@ -146,6 +159,13 @@ const FormModal = ({ showModal, setShowModal, onClose }) => {
             onChange={mobile_numberChangeHandler}
           />
            {errors.mobile_number &&  <div className={css.errorMessage}>{errors.mobile_number}</div>}
+           <input
+            type="text"
+            placeholder="Your school please!"
+            className={  errors.school ? css.errorControl : css.name}
+            onChange={schoolChangeHandler}
+          />
+          {errors.school &&  <div className={css.errorMessage}>{errors.school}</div>}
         
           <select className={errors.std? css.errorSelectControl: css.select} onChange={stdChangeHandler}>
             <option  value=''>
