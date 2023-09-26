@@ -98,6 +98,18 @@ const Footer = () => {
         <p className={css.bottom_para}>Security</p>
         <p className={css.bottom_para}>Data Processing Record</p>
       </div>
+      <div className={css.dev}>
+        <p className={css.text}>
+          Designed and Developed by{" "}
+          <a
+            className={css.nixLink}
+            target="_blank"
+            rel="noreferrer"
+            href="https://nixonbit.com/">
+            NixonBit
+          </a>
+        </p>
+      </div>
     </div>
   );
 };
