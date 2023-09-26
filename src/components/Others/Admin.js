@@ -10,6 +10,7 @@ const headers=[
   {label:'Course', key:'targetCourse'},
   {label:'Class', key:'targetClass'},
   {label:'Mobile', key:'mobileNo'},
+  {label:'Creation Date', key:'creation_Date'},
 ]
 export default function Admin() {
 const [data,setData]=useState([]);
@@ -24,14 +25,19 @@ useEffect(()=>{
                 academicSession:item.academicSession,
                 targetCourse:item.targetCourse,
                 targetClass:item.targetClass,
-                mobileNo:item.mobileNo
+                mobileNo:item.mobileNo,
+                creation_Date:item.createdAt
               }
               info.push(object)
         });
         setData(info)
+        
  }
  fetchData();
 },[])
+
+
+
 
   return (
     <ChakraProvider>
