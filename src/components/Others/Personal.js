@@ -550,7 +550,7 @@ export default function Personal() {
                 gap={{ base: "62px" }}
                 p={{ base: 1, lg: 50 }}
                 // flexGrow={3}
-                mt={{ base: "70px", lg: 6 }}
+                mt={{ base: "60px", lg: 6 }}
               >
                   <FormControl isInvalid={errors.category} height="2rem"
                   // marginBottom={20}
@@ -687,16 +687,16 @@ export default function Personal() {
               direction={{ base: "column", lg: "row" }}
               alignItems={{ base: "center", lg: "flex-start" }}
               justify={{ lg: "space-between" }}
-              gap={{ base: "62px" }}
+              gap={{ base: "15px" }}
               p={{ base: 1, lg: 50 }}
             >
                  <Checkbox
                     colorScheme="orange"
                     defaultChecked
-                    marginLeft={0}
+                    // marginLeft={0}
                     width={["100%","100%","100%","150%"]}
                     onChange={handleCheckboxChange}
-                    marginTop={{base:'10px'}}
+                    // marginTop={{base:'10px'}}
                     disabled
                     >
                     I Agree to receive SMS/Call from AbhyaasIIT

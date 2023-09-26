@@ -536,26 +536,10 @@ export default function Form() {
                     ""
                   )}
                 </FormControl>
-                {/* <Button
-                  colorScheme="orange"
-                  size="lg"
-                  rounded={"full"}
-                  width={["100%", "80%"]}
-                  marginTop={"2%"}
-                  onClick={Submithandler}
-                >
-                  next
-                </Button> */}
+      
               </Flex>
 
-              {/* <Flex
-                direction={"column"}
-                marginLeft={[2,12]}
-                left={0}
-                marginTop={8}
-                marginBottom={8}
-                alignItems={{ base: "flex-start", lg: "flex-start" }}
-              > */}
+        
                    <Flex
               direction={{ base: "column", lg: "row" }}
               alignItems={{ base: "center", lg: "flex-start" }}
@@ -563,13 +547,7 @@ export default function Form() {
               gap={{ base: "15px" }}
               p={{ base: 1, lg: 50 }}
             >
-                {/* <Checkbox
-                  colorScheme="orange"
-                  isInvalid={errors.Checkbox}
-                  isChecked={isChecked}
-                  width={"100%"}
-                  onChange={handleCheckboxChange}
-                > */}
+    
                 <Box>
                   <Checkbox
                     colorScheme="orange"
@@ -596,7 +574,7 @@ export default function Form() {
                     colorScheme="orange"
                     size="lg"
                     rounded={"full"}
-                    width={"30%"}
+                    width={["80%","30%"]}
                     marginTop={0}
                     marginBottom={0}
                     onClick={Submithandler}>
