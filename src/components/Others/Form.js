@@ -47,9 +47,10 @@ export default function Form() {
     target_class: "",
     name: "",
     mobile: "",
+    school:"",
     Checkbox: "",
   });
-
+  const [school,setSchool]=useState("");
   const toast = useToast();
   const [isChecked, setIsChecked] = useState(false);
 
@@ -122,6 +123,14 @@ export default function Form() {
     });
   };
 
+  const schoolChangeHandler=(event)=>{
+    setSchool(event.target.value);
+    setErrors({
+      ...errors,
+      school:""
+    })
+  }
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -141,12 +150,16 @@ export default function Form() {
     if (name.trim() === "") {
       newErrors.name = "Name is required";
     }
+    if(school.trim()===""){
+      newErrors.school="School is required";
+    }
     if (regex.test(mobile) === false) {
       newErrors.mobile = "Enter Valid Mobile Number";
     }
     if (isChecked === false) {
       newErrors.Checkbox = "Please tick the checkbox";
     }
+
 
     setErrors(newErrors);
 
@@ -165,6 +178,7 @@ export default function Form() {
             targetClass: target_class,
             studyCenter: "RaghunathPur,Motihari",
             studentName: name,
+            school:school,
             mobileNo: mobile,
             agreeToReceiveSMS: isChecked,
           }),
@@ -182,6 +196,18 @@ export default function Form() {
         });
         return;
       }
+      if(data.message==="Validation failed"){
+        toast({
+          title:"Validation failed",
+          description: "Error occurred from the server",
+          position: "top",
+          status: "error",
+          duration: 9000,
+          isClosable: true,
+        })
+        return;
+      }
+
       localStorage.clear();
       localStorage.setItem("id", data.data._id);
       console.log(data);
@@ -265,7 +291,7 @@ export default function Form() {
               marginTop={3}
               marginBottom={[0, 10]}
             >
-<Center>
+        <Center>
       <HStack spacing={2} my={8}>
         <Box
           bgColor={"orange"}
@@ -494,7 +520,23 @@ export default function Form() {
                     ""
                   )}
                 </FormControl>
-                <Button
+                <FormControl isInvalid={errors.school} height="2rem">
+                  <FormLabel>School</FormLabel>
+                  <Input
+                    placeholder="School"
+                    color={"gray"}
+                    rounded={"full"}
+                    boxShadow={"base"}
+                    width={"100%"}
+                    onChange={schoolChangeHandler}
+                  />
+                  {errors.school ? (
+                    <FormErrorMessage>{errors.school}</FormErrorMessage>
+                  ) : (
+                    ""
+                  )}
+                </FormControl>
+                {/* <Button
                   colorScheme="orange"
                   size="lg"
                   rounded={"full"}
@@ -503,27 +545,44 @@ export default function Form() {
                   onClick={Submithandler}
                 >
                   next
-                </Button>
+                </Button> */}
               </Flex>
 
-              <Flex
+              {/* <Flex
                 direction={"column"}
                 marginLeft={[2,12]}
                 left={0}
                 marginTop={8}
                 marginBottom={8}
                 alignItems={{ base: "flex-start", lg: "flex-start" }}
-              >
-                <Checkbox
+              > */}
+                   <Flex
+              direction={{ base: "column", lg: "row" }}
+              alignItems={{ base: "center", lg: "flex-start" }}
+              justify={{ lg: "space-between" }}
+              gap={{ base: "15px" }}
+              p={{ base: 1, lg: 50 }}
+            >
+                {/* <Checkbox
                   colorScheme="orange"
                   isInvalid={errors.Checkbox}
                   isChecked={isChecked}
                   width={"100%"}
                   onChange={handleCheckboxChange}
-                >
+                > */}
+                <Box>
+                  <Checkbox
+                    colorScheme="orange"
+                    isInvalid={errors.Checkbox}
+                    isChecked={isChecked}
+                    marginLeft={0}
+                    width={["100%","100%","100%","150%"]}
+                    onChange={handleCheckboxChange}
+                    marginTop={{base:'80px',lg:'10px'}}
+                    >
                   I Agree to receive SMS/Call from AbhyaasIIT
                 </Checkbox>
-                <Flex>
+                <Flex direction={"row"} alignContent={"flex-start"}>
                   {errors.Checkbox ? (
                     <Text color={"red"} padding={0} margin={0}>
                       {errors.Checkbox}
@@ -532,6 +591,17 @@ export default function Form() {
                     ""
                   )}
                 </Flex>
+                </Box>
+                <Button
+                    colorScheme="orange"
+                    size="lg"
+                    rounded={"full"}
+                    width={"30%"}
+                    marginTop={0}
+                    marginBottom={0}
+                    onClick={Submithandler}>
+                    next
+                  </Button>
               </Flex>
             </Box>
           </Center>
