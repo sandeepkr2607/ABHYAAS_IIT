@@ -6,11 +6,27 @@ import { ChakraProvider } from '@chakra-ui/react';
 
 const headers=[
   {label:'Name', key:'name'},
+  {label:'Application No',key:'applicationNo'},
   {label:'Academic Session', key:'academicSession'},
   {label:'Course', key:'targetCourse'},
   {label:'Class', key:'targetClass'},
   {label:'Mobile', key:'mobileNo'},
   {label:'Creation Date', key:'creation_Date'},
+  {label:'School',key:'school'},
+  {label:'Category',key:'category'},
+  {label:'Email',key:'email'},
+  {label:'State',key:'state'},
+  {label:'District',key:'district'},
+  {label:'Source',key:'sourceConnection'},
+  {label:'Pincode',key:'pincode'},
+  {label:'Father Name',key:'fatherName'},
+  {label:'Father Mobile',key:'fatherMobileNo'},
+  {label:'Date of birth',key:'DOB'},
+  {label:'Student Picture',key:'studentPic'},
+  {label:'Aadhar',key:'aadhar'},
+  {label:'City',key:'city'},
+  {label:'Address',key:'Address'},
+  {label:'Updated Time',key:'Updated'}
 ]
 export default function Admin() {
 const [data,setData]=useState([]);
@@ -26,19 +42,30 @@ useEffect(()=>{
                 targetCourse:item.targetCourse,
                 targetClass:item.targetClass,
                 mobileNo:item.mobileNo,
-                creation_Date:item.createdAt
+                school:item.school,
+                category:item.category,
+                email:item.email,
+                fatherMobileNo:item.fatherMobileNo,
+                fatherName:item.fatherName,
+                state:item.state,
+                district:item.district,
+                city:item.city,
+                pincode:item.pincode,
+                sourceConnection:item.sourceConnection,
+                creation_Date:item.createdAt,
+                applicationNo:item.applicationNo,
+                studentPic:item.student_pic,
+                DOB:item.dateOfBirth,
+                aadhar:item.aadharNo,
+                Address:item.permanentAddress,
+                Updated:item.updatedAt
               }
               info.push(object)
         });
-        setData(info)
-        
+        setData(info)     
  }
  fetchData();
 },[])
-
-
-
-
   return (
     <ChakraProvider>
    <CSVLink data={data} filename='StudentData.csv' headers={headers}>

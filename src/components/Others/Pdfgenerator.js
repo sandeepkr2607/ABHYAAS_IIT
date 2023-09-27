@@ -46,6 +46,8 @@ export default function Pdfgenerator() {
     fatherName: "",
     category: "",
     city: "",
+    school:"",
+    gender:"",
     district: "",
     state: "",
     pinCode: "",
@@ -100,6 +102,7 @@ export default function Pdfgenerator() {
       newData.academicSession = data.data.academicSession;
       newData.email = data.data.email;
       newData.createdAt = data.data.createdAt;
+      newData.school=data.data.school
       setInfo(newData);
     }
     fetchData();
@@ -200,6 +203,15 @@ export default function Pdfgenerator() {
                             <Tr>
                               <Td p={1}>Gender</Td>
                               <Td p={1}>{info.gender}</Td>
+                            </Tr>
+                            <Tr>
+                              <Td p={1}>Category</Td>
+                              <Td p={1}>{info.category}</Td>
+                            </Tr>
+                            
+                            <Tr>
+                              <Td p={1}>School</Td>
+                              <Td p={1}>{info.school}</Td>
                             </Tr>
                             <Tr>
                               <Td p={1}>Course</Td>

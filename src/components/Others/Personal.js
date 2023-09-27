@@ -40,7 +40,7 @@ export default function Personal() {
   const [district, setDistrict] = useState("");
   const [email, setEmail] = useState("");
   const [about, setAbout] = useState("");
-
+  
 
 
   const [errors, setErrors] = useState({

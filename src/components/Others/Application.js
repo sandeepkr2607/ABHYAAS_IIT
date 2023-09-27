@@ -22,6 +22,8 @@ import { useToast } from "@chakra-ui/react";
 
 
 
+
+
 export default function Application() {
   const navigate = useNavigate();
   const [fetchAgain,setFetchAgain]=useState(false);
@@ -35,9 +37,11 @@ export default function Application() {
     fatherName: '',
     category: '',
     city: '',
+    class:'',
     district: '',
     state: '',
-    pinCode: ''
+    pinCode: '',
+    school:''
   });
 
   const [pic,setPic]=useState('');
@@ -80,9 +84,11 @@ export default function Application() {
       newData.fatherName = data.data.fatherName
       newData.category = data.data.category
       newData.city = data.data.city
+      newData.class=data.data.targetClass
       newData.district = data.data.district
       newData.state = data.data.state
       newData.pinCode = data.data.pinCode
+      newData.school=data.data.school
       setInfo(newData);
 
     }
@@ -173,7 +179,7 @@ export default function Application() {
   };
   return (
     <>
-      <ChakraProvider>
+      <ChakraProvider >
         <Box>
           <Header></Header>
         </Box>
@@ -287,8 +293,12 @@ export default function Application() {
                   <Td p={1}>{info.targetCourse}</Td>
                 </Tr>
                 <Tr>
-                  <Td p={1}>Division</Td>
-                  <Td p={1}>JEE(Main)</Td>
+                  <Td p={1}>Class</Td>
+                  <Td p={1}>{info.class}</Td>
+                </Tr>
+                <Tr>
+                  <Td p={1}>School</Td>
+                  <Td p={1}>{info.school}</Td>
                 </Tr>
                 <Tr>
                   <Td p={1}>Study Center</Td>
@@ -300,7 +310,7 @@ export default function Application() {
                 </Tr>
                 <Tr>
                   <Td p={1}>Test City</Td>
-                  <Td p={1}>Online</Td>
+                  <Td p={1}>Raghunathpur,Motihari</Td>
                 </Tr>
                 <Tr>
                   <Td p={1}>Test Date</Td>
@@ -351,6 +361,7 @@ export default function Application() {
          height={'30%'}
           flex={{ base: 'none', lg: 'none' }} // Adjust flex based on screen size
           width={{ base: '80%',sm:'45%',md:'35%', lg: '40%' ,xl:'35%',"2xl":'30%'}} // Responsive width
+         
         >
           
           {!pic && !loading ? (
