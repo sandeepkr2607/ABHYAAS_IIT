@@ -1,4 +1,4 @@
-import { Input, Progress, Table, TableContainer,Tr,Td } from "@chakra-ui/react";
+import { Input, Progress, Table, TableContainer,Tr,Td, Toast } from "@chakra-ui/react";
 import {
   Center,
   Box,
@@ -17,13 +17,16 @@ import Header from "../header/Header.jsx";
 import Footer from "../footer/Footer.jsx";
 import { ChakraProvider } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
+import { Spinner } from "@chakra-ui/react";
+import { useToast } from "@chakra-ui/react";
 
 
 
 export default function Application() {
   const navigate = useNavigate();
   const [fetchAgain,setFetchAgain]=useState(false);
-
+  const [loading,setLoading]=useState(false);
+  const toast=useToast();
 
   const [info, setInfo] = useState({
     applicationNo: '',
@@ -100,6 +103,7 @@ export default function Application() {
       if(data.data.student_pic){
         setPic(data.data.student_pic);
         console.log('running')
+        setLoading(false)
       }
     }
    fetchData();
@@ -110,8 +114,22 @@ export default function Application() {
 
   const handleFileChange = async(event) => {
     const file = event.target.files[0];
- 
+    const maxSizeInBytes = 200 * 1024;
     if (file) {
+      if(file.size>maxSizeInBytes){
+        toast({
+          title:"Image greater than 200kb",
+          description: "Image should be less than 200kb",
+          position: "top",
+          status: "error",
+          duration: 9000,
+          isClosable: true,
+        })
+        return;
+      }
+
+
+      setLoading(true)
       // Implement your logic to handle the selected file here
       const id = localStorage.getItem("id");
       if (!id) {
@@ -136,13 +154,9 @@ export default function Application() {
       setFetchAgain(!fetchAgain);
     }
 
-    // const lPic=localStorage.getItem("pic");
-
-      // setPic(lPic);
-      // console.log('Selected file:', file);
     }
   };
-
+//error if server not response
   const Submithandler =async () => {
     const id = localStorage.getItem("id");
     const responseS = await fetch(`https://dev.seiasecure.com/api/v1/send_confirmation_sms/${id}`, {
@@ -188,7 +202,6 @@ export default function Application() {
           colorScheme="orange"
           rounded={"md"}
         />
-
         {/* Step 2 */}
         <Box
           bgColor={"orange"}
@@ -207,7 +220,6 @@ export default function Application() {
           colorScheme="orange"
           rounded={"md"}
         />   
-
         {/* Step 3 */}
         <Box
           bgColor={"orange"}
@@ -226,7 +238,6 @@ export default function Application() {
           colorScheme="orange"
           rounded={"md"}
         />
-
         {/* Step 4 */}
         <Box
           bgColor={"gray.200"}
@@ -240,7 +251,6 @@ export default function Application() {
       </HStack>
     </Center>
   <Divider orientation="horizontal" bgColor={"black"} />
-           
             <Center>
               <Box m={3}>
                 <Heading textStyle="h1" fontWeight={"bold"} fontSize={"lg"} m={3}>
@@ -251,10 +261,6 @@ export default function Application() {
                 </Text>
               </Box>
             </Center>
-          
-
-
-
 <VStack spacing={5} align="center">
       <HStack
         spacing={5}
@@ -269,8 +275,6 @@ export default function Application() {
           w="100%" // Full width on small screens
           maxW={{ base: '90%', lg: '45%' }} // Responsive width
         >
-         
-
           <TableContainer>
             <Table variant={'simple'} 
             style={{ marginTop: "0" }}>
@@ -334,15 +338,9 @@ export default function Application() {
                   <Td p={1}>Application From Free</Td>
                   <Td p={1}>500</Td>
                 </Tr>
-
             </Table>
           </TableContainer>
-
-
-
-
-
-        </Box>
+      </Box>
         <Box
           boxShadow="base"
           rounded="2xl"
@@ -350,11 +348,12 @@ export default function Application() {
           p={10}
           bgColor="orange.100"
           overflow="hidden"
-         
+         height={'30%'}
           flex={{ base: 'none', lg: 'none' }} // Adjust flex based on screen size
-          maxW={{ base: '80%',sm:'45%',md:'35%', lg: '40%' ,xl:'35%',"2xl":'30%'}} // Responsive width
+          width={{ base: '80%',sm:'45%',md:'35%', lg: '40%' ,xl:'35%',"2xl":'30%'}} // Responsive width
         >
-          {!pic ? (
+          
+          {!pic && !loading ? (
             <VStack spacing={0} p={0} mb={25}>
               <Text fontWeight="bold">Kindly Browse</Text>
               <Text fontWeight="bold">Your recent</Text>
@@ -362,7 +361,14 @@ export default function Application() {
               <Text fontWeight="bold">color</Text>
               <Text fontWeight="bold">Photograph</Text>
             </VStack>
-          ) : (
+          ) : (loading?(<Box height={'100%'} p={'47px'}> <Spinner thickness='4px'
+          speed='0.65s'
+          emptyColor='gray.200'
+          color='orange'
+          size='xl' ></Spinner></Box>)
+         :
+          
+          (
             <Avatar
               mr={2}
               size="2xl"
@@ -370,7 +376,8 @@ export default function Application() {
               src={pic}
               mb={5}
             />
-          )}
+          ))
+        }
           <label htmlFor="files" className="btn">
             Browse
           </label>
@@ -382,6 +389,7 @@ export default function Application() {
             type="file"
             onChange={handleFileChange}
           />
+          
         </Box>
       </HStack>
       <Button

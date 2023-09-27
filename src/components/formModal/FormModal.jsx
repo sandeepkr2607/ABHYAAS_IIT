@@ -192,12 +192,12 @@ const FormModal = ({ showModal, setShowModal, onClose }) => {
             <option className={css.option} value="Std 12">
               Std 12
             </option>
-            <option className={css.option} value="IIT">
+            {/* <option className={css.option} value="IIT">
               IIT
             </option>
             <option className={css.option} value="NEET">
               NEET
-            </option>
+            </option> */}
           </select>
         
           {errors.std &&  <div className={css.errorMessage}>{errors.std}</div>}
