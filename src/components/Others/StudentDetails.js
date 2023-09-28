@@ -45,7 +45,7 @@ import {
     TableContainer,
   } from "@chakra-ui/react";
   import { Image, Stack } from "@chakra-ui/react";
-  import Header from "../header/Header";
+  // import Header from "../header/Header";
   
   export default function StudentDetails(props) {
         const location=useLocation();
@@ -72,18 +72,21 @@ import {
     useEffect(() => {
       async function fetchData() {
         window.scrollTo(0, 0);
-        const id = localStorage.getItem("id");
-        if (!id) {
-          navigate("/form");
-          return;
-        }
+        // const id = localStorage.getItem("id");
+        // if (!id) {
+        //   navigate("/form");
+        //   return;
+        // }
         // const picture = localStorage.getItem("pic");
         // if (!picture) {
         //   setPic('');
         // } else {
         //   setPic(picture)
         // }
-  
+        if(!state){
+            navigate("/error");
+            return;
+        }
         const response = await fetch(
           `https://dev.seiasecure.com/api/v1/getCoachingApplicationById/${state}`
         );
@@ -99,7 +102,7 @@ import {
         if (data.data.student_pic) {
           setPic(data.data.student_pic);
         }
-  
+        
         const newData = {};
         newData.applicationNo = data.data.applicationNo;
         newData.targetCourse = data.data.targetCourse;

@@ -7,6 +7,7 @@ import { Input, Progress, Table, TableContainer,Tr,Td, Toast } from "@chakra-ui/
 import { Thead,Th,Tbody } from '@chakra-ui/react';
 import {Link} from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { Text } from '@chakra-ui/react';
 
 const headers=[
   {label:'Name', key:'name'},
@@ -33,6 +34,7 @@ const headers=[
   {label:'Updated Time',key:'Updated'}
 ]
 export default function Admin() {
+  let count=1;
   const navigate=useNavigate();
 const [data,setData]=useState([]);
 useEffect(()=>{
@@ -83,13 +85,14 @@ const handleClick = (props) => {
     <ChakraProvider>
    <CSVLink data={data} filename='StudentData.csv' headers={headers}>
      <Button colorScheme='orange' size='lg' mt={2}>
-    Button
+    DOWNLOAD CSV
   </Button>
  </CSVLink>
 <TableContainer>
   <Table variant='striped' colorScheme='orange'>
    <Thead>
     <Tr>
+      <Th>Index</Th>
       <Th>Name</Th>
       <Th>Application No</Th>
       <Th>Academic Session</Th>
@@ -119,6 +122,11 @@ const handleClick = (props) => {
        {data.map(item=>{
         return(
         <Tr key={item.id}>
+          <Td>
+            <Text fontWeight={'bold'}>
+            {count++}
+            </Text>
+            </Td>
           <Td>{item.name}</Td>
           <Td>{item.applicationNo}</Td>
           <Td>{item.academicSession}</Td>
@@ -147,7 +155,7 @@ const handleClick = (props) => {
             {/* <Link to={{pathname: '/studentdetails', state:item.id }}>Student Link</Link> */}
             <Button 
             onClick={()=>handleClick(item.id)}
-            >Onclick</Button>
+            >Download</Button>
             </Td>
         </Tr>
        )})}
