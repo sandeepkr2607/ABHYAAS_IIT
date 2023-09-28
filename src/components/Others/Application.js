@@ -363,7 +363,6 @@ export default function Application() {
           width={{ base: '80%',sm:'45%',md:'35%', lg: '40%' ,xl:'35%',"2xl":'30%'}} // Responsive width
          
         >
-          
           {!pic && !loading ? (
             <VStack spacing={0} p={0} mb={25}>
               <Text fontWeight="bold">Kindly Browse</Text>

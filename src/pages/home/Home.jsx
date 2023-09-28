@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import css from "./Home.module.css";
-import Header from "../../components/header/Header";
+import Header from "../../components/header/HeaderHome";
 import Footer from "../../components/footer/Footer";
 import Classes from "../../components/classes/Classes";
 import AboutUs from "../../components/aboutUs/AboutUs";
@@ -28,7 +28,6 @@ const Home = () => {
   return (
     <div className={css.home}>
       <Header />
-
       <Hero />
       <Classes />
       <AboutUs />

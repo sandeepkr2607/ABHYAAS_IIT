@@ -10,6 +10,7 @@ import Application from "./components/Others/Application";
 import Success from "./components/Others/Success";
 import Pdfgenerator from "./components/Others/Pdfgenerator";
 import Admin from "./components/Others/Admin"
+import StudentDetails from "./components/Others/StudentDetails";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/application" element={<Application></Application>}></Route>
         <Route path="/success" element={<Success></Success>}></Route>
         <Route path="/pdf"element={<Pdfgenerator></Pdfgenerator>}></Route>
+        <Route path='/studentdetails' element={<StudentDetails></StudentDetails>}></Route>
       </Routes>
 
     </div>
