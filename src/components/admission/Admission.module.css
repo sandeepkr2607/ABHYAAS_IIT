@@ -64,6 +64,7 @@
   background-color: rgba(114, 48, 55, 1);
   color: rgba(255, 255, 255, 1);
   margin-top: 40px;
+  cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease,
     background-color 0.3s ease;
 }
