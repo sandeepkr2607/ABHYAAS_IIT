@@ -163,7 +163,6 @@ export default function Pdfgenerator() {
                     }} // Adjust layout based on screen size
                     align={{ base: "center", lg: "flex-start" }} // Align items to top on large screens
                   >
-
                     <Box
                       width={["180px","250px"]}
                       height={["180px","160px"]}

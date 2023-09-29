@@ -24,7 +24,8 @@ const Target_courses = [
   { value: "Brain Gym", text: "Brain Gym" },
   { value: "Foundation Course", text: "Foundation Course" },
   { value: "JEE Mains/Advance", text: "JEE Mains/Advance" },
-  { value: "Maths + Programme", text: "Maths+ Programme" }
+  { value: "Maths + Programme", text: "Maths+ Programme" },
+  { value: "1 year IIT JEE Mains/Advance Course", text: "1 year IIT JEE Mains/Advance Course" }
   // { value: "Entrance Test Batch-1", text: "Entrance Test Batch-1" }
 ];
 
@@ -33,6 +34,7 @@ const FoundationCourse_Target = ["8th", "9th", "10th"];
 const JEE_Target = ["11th", "12th"];
 const Maths_Target = ["6th", "7th", "8th", "10th", "11th", "12th"];
 const FreeCrash_Target = ["8th", "9th", "10th", "12th"];
+const IIT_JEE=['13th','12th pass']
 // const Entrance_Target = ["6th", "7th", "8th", "9th", "10th", "11th"];
 
 export default function Form() {
@@ -248,6 +250,15 @@ export default function Form() {
     }
     if (course === "Maths + Programme") {
       return Maths_Target.map((e) => {
+        return (
+          <option key={e} value={e}>
+            {e}
+          </option>
+        );
+      });
+    }
+    if (course === "1 year IIT JEE Mains/Advance Course") {
+      return IIT_JEE.map((e) => {
         return (
           <option key={e} value={e}>
             {e}
