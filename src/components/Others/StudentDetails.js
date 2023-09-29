@@ -131,7 +131,7 @@ import {
     });
   
     const homepagehandler = () => {
-      navigate("/");
+      navigate("/error");
     };
   
     return (
