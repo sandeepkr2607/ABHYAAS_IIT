@@ -36,11 +36,11 @@ const FoundationCourse_Target = ["8th", "9th", "10th"];
 const JEE_Target = ["11th", "12th"];
 const Maths_Target = ["6th", "7th", "8th", "10th", "11th", "12th"];
 const FreeCrash_Target = ["8th", "9th", "10th", "12th"];
-<<<<<<< HEAD
+
 const IIT_JEE=['12th pass/13th']
-=======
-const IIT_JEE = ["12th pass/13th"];
->>>>>>> 6d6801b5888f7e3288e69990494ae5b600522084
+
+
+
 // const Entrance_Target = ["6th", "7th", "8th", "9th", "10th", "11th"];
 
 export default function Form() {
