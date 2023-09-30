@@ -84,7 +84,7 @@ import {
         //   setPic(picture)
         // }
         if(!state){
-            navigate("/error");
+            navigate("/errorregabhyaasIIT2023");
             return;
         }
         const response = await fetch(
@@ -92,7 +92,7 @@ import {
         );
         const data = await response.json();
         if (data.success === false) {
-          navigate("/form");
+          navigate("/errorregabhyaasIIT2023");
           return;
         }
         // if (data.data.isVerified === false) {
@@ -131,7 +131,7 @@ import {
     });
   
     const homepagehandler = () => {
-      navigate("/error");
+      navigate("/login");
     };
   
     return (
