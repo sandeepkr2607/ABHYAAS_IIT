@@ -16,7 +16,6 @@ import Header from "../header/Header.jsx";
 import Footer from "../footer/Footer.jsx";
 import { FormErrorMessage } from "@chakra-ui/react";
 
-
 import { useToast } from "@chakra-ui/react";
 
 const Target_courses = [
@@ -25,7 +24,10 @@ const Target_courses = [
   { value: "Foundation Course", text: "Foundation Course" },
   { value: "JEE Mains/Advance", text: "JEE Mains/Advance" },
   { value: "Maths + Programme", text: "Maths+ Programme" },
-  { value: "1 year IIT JEE Mains/Advance Course", text: "1 year IIT JEE Mains/Advance Course" }
+  {
+    value: "1 year IIT JEE Mains/Advance Course",
+    text: "1 year IIT JEE Mains/Advance Course",
+  },
   // { value: "Entrance Test Batch-1", text: "Entrance Test Batch-1" }
 ];
 
@@ -34,7 +36,7 @@ const FoundationCourse_Target = ["8th", "9th", "10th"];
 const JEE_Target = ["11th", "12th"];
 const Maths_Target = ["6th", "7th", "8th", "10th", "11th", "12th"];
 const FreeCrash_Target = ["8th", "9th", "10th", "12th"];
-const IIT_JEE=['13th','12th pass']
+const IIT_JEE = ["12th pass/13th"];
 // const Entrance_Target = ["6th", "7th", "8th", "9th", "10th", "11th"];
 
 export default function Form() {
@@ -49,10 +51,10 @@ export default function Form() {
     target_class: "",
     name: "",
     mobile: "",
-    school:"",
+    school: "",
     Checkbox: "",
   });
-  const [school,setSchool]=useState("");
+  const [school, setSchool] = useState("");
   const toast = useToast();
   const [isChecked, setIsChecked] = useState(false);
 
@@ -67,13 +69,13 @@ export default function Form() {
   const sessionChangeHandler = (event) => {
     setAcademic_session(event.target.value);
     if (event.target.value === "2023-24") {
-      setTarget_course("Free Crash Course");  
+      setTarget_course("Free Crash Course");
     }
     if (event.target.value === "") {
-      setTarget_course("");  
+      setTarget_course("");
     }
     if (event.target.value === "2024-25") {
-      setTarget_course("");  
+      setTarget_course("");
     }
     console.log(event.target.value);
     // setTarget_class("")
@@ -125,13 +127,13 @@ export default function Form() {
     });
   };
 
-  const schoolChangeHandler=(event)=>{
+  const schoolChangeHandler = (event) => {
     setSchool(event.target.value);
     setErrors({
       ...errors,
-      school:""
-    })
-  }
+      school: "",
+    });
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -152,8 +154,8 @@ export default function Form() {
     if (name.trim() === "") {
       newErrors.name = "Name is required";
     }
-    if(school.trim()===""){
-      newErrors.school="School is required";
+    if (school.trim() === "") {
+      newErrors.school = "School is required";
     }
     if (regex.test(mobile) === false) {
       newErrors.mobile = "Enter Valid Mobile Number";
@@ -161,7 +163,6 @@ export default function Form() {
     if (isChecked === false) {
       newErrors.Checkbox = "Please tick the checkbox";
     }
-
 
     setErrors(newErrors);
 
@@ -180,7 +181,7 @@ export default function Form() {
             targetClass: target_class,
             studyCenter: "RaghunathPur,Motihari",
             studentName: name,
-            school:school,
+            school: school,
             mobileNo: mobile,
             agreeToReceiveSMS: isChecked,
           }),
@@ -198,15 +199,15 @@ export default function Form() {
         });
         return;
       }
-      if(data.message==="Validation failed"){
+      if (data.message === "Validation failed") {
         toast({
-          title:"Validation failed",
+          title: "Validation failed",
           description: "Error occurred from the server",
           position: "top",
           status: "error",
           duration: 9000,
           isClosable: true,
-        })
+        });
         return;
       }
 
@@ -216,7 +217,7 @@ export default function Form() {
       // if (data.otp) {
       //   navigate("/otp");
       // }
-      navigate('/personal')
+      navigate("/personal");
     }
   };
   const selectedCourses = (course) => {
@@ -300,78 +301,73 @@ export default function Form() {
               rounded={"lg"}
               mx={2}
               marginTop={3}
-              marginBottom={[0, 10]}
-            >
-        <Center>
-      <HStack spacing={2} my={8}>
-        <Box
-          bgColor={"orange"}
-          rounded={"xl"}
-          width={{ base: 6, md: 6 }}
-          height={"auto"}
-          textColor={"white"}
-        >
-          1
-        </Box>
-        <Progress
-          value={50}
-          size="sm"
-          ml={0}
-          width={{ base: 12, md: 20 }}
-          colorScheme="orange"
-          rounded={"md"}
-        />
+              marginBottom={[0, 10]}>
+              <Center>
+                <HStack spacing={2} my={8}>
+                  <Box
+                    bgColor={"orange"}
+                    rounded={"xl"}
+                    width={{ base: 6, md: 6 }}
+                    height={"auto"}
+                    textColor={"white"}>
+                    1
+                  </Box>
+                  <Progress
+                    value={50}
+                    size="sm"
+                    ml={0}
+                    width={{ base: 12, md: 20 }}
+                    colorScheme="orange"
+                    rounded={"md"}
+                  />
 
-        {/* Step 2 */}
-        <Box
-          bgColor={"gray.200"}
-          rounded={"xl"}
-          width={{ base: 6, md: 6 }}
-          height={"auto"}
-          textColor={"gray.700"}
-        >
-          2
-        </Box>
-        <Progress
-          value={0}
-          size="sm"
-          ml={0}
-          width={{ base: 12, md: 20 }}
-          colorScheme="orange"
-          rounded={"md"}
-        />   
+                  {/* Step 2 */}
+                  <Box
+                    bgColor={"gray.200"}
+                    rounded={"xl"}
+                    width={{ base: 6, md: 6 }}
+                    height={"auto"}
+                    textColor={"gray.700"}>
+                    2
+                  </Box>
+                  <Progress
+                    value={0}
+                    size="sm"
+                    ml={0}
+                    width={{ base: 12, md: 20 }}
+                    colorScheme="orange"
+                    rounded={"md"}
+                  />
 
-        {/* Step 3 */}
-        <Box
-          bgColor={"gray.200"}
-          rounded={"xl"}
-          width={{ base: 6, md: 6 }}
-          height={"auto"}
-          textColor={"gray.700"}
-        >
-          3
-        </Box>
-        <Progress
-          value={0}
-          size="sm"
-          ml={0}
-          width={{ base: 12, md: 20 }}
-          colorScheme="orange"
-          rounded={"md"}
-        />
+                  {/* Step 3 */}
+                  <Box
+                    bgColor={"gray.200"}
+                    rounded={"xl"}
+                    width={{ base: 6, md: 6 }}
+                    height={"auto"}
+                    textColor={"gray.700"}>
+                    3
+                  </Box>
+                  <Progress
+                    value={0}
+                    size="sm"
+                    ml={0}
+                    width={{ base: 12, md: 20 }}
+                    colorScheme="orange"
+                    rounded={"md"}
+                  />
 
-        {/* Step 4 */}
-        <Box
-          bgColor={"gray.200"}
-          rounded={"xl"}
-          width={{ base: 6, md: 6 }}
-          height={"auto"}
-          textColor={"gray.700"}
-        >
-          4
-        </Box>
-      </HStack>
-    </Center>
+                  {/* Step 4 */}
+                  <Box
+                    bgColor={"gray.200"}
+                    rounded={"xl"}
+                    width={{ base: 6, md: 6 }}
+                    height={"auto"}
+                    textColor={"gray.700"}>
+                    4
+                  </Box>
+                </HStack>
+              </Center>
 
               {/* Progress bar */}
               <Divider orientation="horizontal" bgColor={"black"} />
@@ -381,8 +377,7 @@ export default function Form() {
                     textStyle="h1"
                     fontWeight={"bold"}
                     fontSize={"lg"}
-                    m={3}
-                  >
+                    m={3}>
                     Course Details
                   </Heading>
                   <Text textStyle="p" fontFamily={""}>
@@ -391,14 +386,12 @@ export default function Form() {
                 </Box>
               </Center>
 
-
               <Flex
                 direction={{ base: "column", lg: "row" }}
                 alignItems={{ base: "center", lg: "flex-start" }}
                 justify={{ lg: "space-between" }}
                 gap={{ base: "62px" }}
-                p={{ base: 2, lg: 50 }}
-              >
+                p={{ base: 2, lg: 50 }}>
                 <FormControl isInvalid={errors.academic_session} height="2rem">
                   <FormLabel>Academic Session</FormLabel>
                   <Select
@@ -406,9 +399,8 @@ export default function Form() {
                     rounded={"full"}
                     boxShadow={"base"}
                     width={"100%"}
-                    onChange={sessionChangeHandler}
-                  >
-                    <option value=''>Academic Session</option>
+                    onChange={sessionChangeHandler}>
+                    <option value="">Academic Session</option>
                     <option value="2023-24">2023-2024</option>
                     <option value="2024-25">2024-2025</option>
                   </Select>
@@ -429,8 +421,7 @@ export default function Form() {
                     rounded={"full"}
                     boxShadow={"base"}
                     width={"100%"}
-                    disabled
-                  ></Select>
+                    disabled></Select>
                 </FormControl>
                 <FormControl isInvalid={errors.target_course} height="2rem">
                   <FormLabel>Target Course</FormLabel>
@@ -441,9 +432,8 @@ export default function Form() {
                     // width={"200px"}
                     width={"100%"}
                     value={target_course}
-                    onChange={CourseChangeHandler}
-                  >
-                    {academic_session === '' ? (
+                    onChange={CourseChangeHandler}>
+                    {academic_session === "" ? (
                       <option value=""> Select Course </option>
                     ) : academic_session === "2023-24" ? (
                       <option value="Free Crash Course" selected>
@@ -471,8 +461,7 @@ export default function Form() {
                     boxShadow={"base"}
                     width={"100%"}
                     onChange={classChangeHandler}
-                    value={target_class}
-                  >
+                    value={target_class}>
                     {/* {academic_session===''} */}
                     <option value="">Select Class</option>
                     {selectedCourses(target_course)}
@@ -491,8 +480,7 @@ export default function Form() {
                 gap={{ base: "62px" }}
                 p={{ base: 2, lg: 50 }}
                 flexGrow={3}
-                mt={{ base: "50px", lg: 6 }}
-              >
+                mt={{ base: "50px", lg: 6 }}>
                 <FormControl height="2rem">
                   <FormLabel>Study Center</FormLabel>
                   <Select rounded={"full"} boxShadow={"base"} width={"100%"}>
@@ -547,50 +535,45 @@ export default function Form() {
                     ""
                   )}
                 </FormControl>
-      
               </Flex>
 
-        
-                   <Flex
-              direction={{ base: "column", lg: "row" }}
-              alignItems={{ base: "center", lg: "flex-start" }}
-              justify={{ lg: "space-between" }}
-              gap={{ base: "15px" }}
-              p={{ base: 1, lg: 50 }}
-            >
-    
+              <Flex
+                direction={{ base: "column", lg: "row" }}
+                alignItems={{ base: "center", lg: "flex-start" }}
+                justify={{ lg: "space-between" }}
+                gap={{ base: "15px" }}
+                p={{ base: 1, lg: 50 }}>
                 <Box>
                   <Checkbox
                     colorScheme="orange"
                     isInvalid={errors.Checkbox}
                     isChecked={isChecked}
                     marginLeft={0}
-                    width={["100%","100%","100%","150%"]}
+                    width={["100%", "100%", "100%", "150%"]}
                     onChange={handleCheckboxChange}
-                    marginTop={{base:'80px',lg:'10px'}}
-                    >
-                  I Agree to receive SMS/Call from AbhyaasIIT
-                </Checkbox>
-                <Flex direction={"row"} alignContent={"flex-start"}>
-                  {errors.Checkbox ? (
-                    <Text color={"red"} padding={0} margin={0}>
-                      {errors.Checkbox}
-                    </Text>
-                  ) : (
-                    ""
-                  )}
-                </Flex>
+                    marginTop={{ base: "80px", lg: "10px" }}>
+                    I Agree to receive SMS/Call from AbhyaasIIT
+                  </Checkbox>
+                  <Flex direction={"row"} alignContent={"flex-start"}>
+                    {errors.Checkbox ? (
+                      <Text color={"red"} padding={0} margin={0}>
+                        {errors.Checkbox}
+                      </Text>
+                    ) : (
+                      ""
+                    )}
+                  </Flex>
                 </Box>
                 <Button
-                    colorScheme="orange"
-                    size="lg"
-                    rounded={"full"}
-                    width={["80%","30%"]}
-                    marginTop={0}
-                    marginBottom={0}
-                    onClick={Submithandler}>
-                    next
-                  </Button>
+                  colorScheme="orange"
+                  size="lg"
+                  rounded={"full"}
+                  width={["80%", "30%"]}
+                  marginTop={0}
+                  marginBottom={0}
+                  onClick={Submithandler}>
+                  next
+                </Button>
               </Flex>
             </Box>
           </Center>
