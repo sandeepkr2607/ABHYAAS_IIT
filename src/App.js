@@ -9,27 +9,29 @@ import Personal from "./components/Others/Personal";
 import Application from "./components/Others/Application";
 import Success from "./components/Others/Success";
 import Pdfgenerator from "./components/Others/Pdfgenerator";
-import Admin from "./components/Others/Admin"
+import Admin from "./components/Others/Admin";
 import StudentDetails from "./components/Others/StudentDetails";
 
 function App() {
   return (
     <div className="App">
-  
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about-us" element={<About />} />
-      
+
         <Route path="/form" element={<Form></Form>}></Route>
         <Route path="/otp" element={<Otp></Otp>}></Route>
         <Route path="/error" element={<Admin></Admin>}></Route>
         <Route path="/personal" element={<Personal></Personal>}></Route>
-        <Route path="/application" element={<Application></Application>}></Route>
+        <Route
+          path="/application"
+          element={<Application></Application>}></Route>
         <Route path="/success" element={<Success></Success>}></Route>
-        <Route path="/pdf"element={<Pdfgenerator></Pdfgenerator>}></Route>
-        <Route path='/studentdetails' element={<StudentDetails></StudentDetails>}></Route>
+        <Route path="/pdf" element={<Pdfgenerator></Pdfgenerator>}></Route>
+        <Route
+          path="/studentdetails"
+          element={<StudentDetails></StudentDetails>}></Route>
       </Routes>
-
     </div>
   );
 }
