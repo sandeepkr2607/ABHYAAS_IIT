@@ -7,7 +7,8 @@ import {
   Button,
   useToast,
 } from "@chakra-ui/react";
-import { ChakraProvider } from "@chakra-ui/react";
+
+import { ChakraProvider,Box } from "@chakra-ui/react";
 
 export default function Admin() {
   const [password, setPassword] = useState("");
@@ -46,11 +47,12 @@ export default function Admin() {
 
   return (
     <>
-      <div
+    <ChakraProvider>
+      <Box
         style={{
           textAlign: "center",
           margin: "20px",
-          width: "100%",
+          width: "90%",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -93,7 +95,8 @@ export default function Admin() {
             Submit
           </Button>
         </FormControl>
-      </div>
+      </Box>
+      </ChakraProvider>
     </>
   );
 }
