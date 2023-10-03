@@ -246,7 +246,7 @@ export default function Data(props) {
                   <Td>{item.DOB}</Td>
                   <Td>
                     <Link to={item.studentPic}>
-                      <Image src={item.studentPic}></Image>
+                      <Image src={item.studentPic} boxSize={'100px'}></Image>
                     </Link>
                   </Td>
                   <Td>{item.aadhar}</Td>
