@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import Home from "./pages/home/Home";
 import About from "./pages/about/About";
+import BrainGym from "./pages/brainGym/BrainGym";
 import { Route, Routes } from "react-router-dom";
 import Form from "./components/Others/Form";
 import Otp from "./components/Others/Otp";
@@ -12,6 +13,9 @@ import Pdfgenerator from "./components/Others/Pdfgenerator";
 import Admin from "./components/Others/Admin";
 import StudentDetails from "./components/Others/StudentDetails";
 import Data from "./components/Others/Data";
+import Maths from "./pages/maths/Maths";
+import IitJee from "./pages/iitjee/IitJee";
+import Foundation from "./pages/foundation/Foundation";
 
 function App() {
   return (
@@ -19,6 +23,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about-us" element={<About />} />
+        <Route path="/brain-gym" element={<BrainGym />} />
+        <Route path="/maths" element={<Maths />} />
+        <Route path="/iitjee" element={<IitJee />} />
+        <Route path="/foundation" element={<Foundation />} />
 
         <Route path="/form" element={<Form></Form>}></Route>
         <Route path="/otp" element={<Otp></Otp>}></Route>
