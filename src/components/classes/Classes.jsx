@@ -8,6 +8,9 @@ const Classes = () => {
   const Submithandler = () => {
     navigate("/form");
   };
+  const SubmithandlerCrash = () => {
+    navigate("/crash-course");
+  };
   return (
     <div className={css.classes}>
       <h3 className={css.heading}>
@@ -20,7 +23,7 @@ const Classes = () => {
             <span className={css.color_text}> Free Crash Course </span>
             by 6+ IITians Starting From December 2023
           </p>
-          <button className={css.btn} onClick={Submithandler}>
+          <button className={css.btn} onClick={SubmithandlerCrash}>
             Register Now
           </button>
         </div>

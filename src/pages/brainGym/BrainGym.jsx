@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import css from "./BrainGym.module.css";
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
@@ -13,6 +13,10 @@ const BrainGym = () => {
   const onclickHandler = () => {
     navigate("/form");
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <Header />
@@ -41,6 +45,7 @@ const BrainGym = () => {
           Children's Brain in a manner that he/she can tackle the various
           Competitive Challenges of All subjects.
           <br />
+          <br />
           This course shall cover Mathematics and Science upto Olympiad level
           where a student will be enabled to compete at National and
           International stage. It shall include advanced training methodologies
@@ -49,8 +54,10 @@ const BrainGym = () => {
           Computational skills and this improve the overall performance of the
           student.
           <br />
+          <br />
           Limited seats only. Registration for these classes shall be through a
           common Admission Entrance Test (AET).
+          <br />
           <br />
           Students are advised to make a confirmatory call to the Institute
           after Registration for the AET.{" "}

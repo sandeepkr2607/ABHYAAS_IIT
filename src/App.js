@@ -16,6 +16,7 @@ import Data from "./components/Others/Data";
 import Maths from "./pages/maths/Maths";
 import IitJee from "./pages/iitjee/IitJee";
 import Foundation from "./pages/foundation/Foundation";
+import CrashCoursh from "./pages/crashCoursh/CrashCoursh";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/maths" element={<Maths />} />
         <Route path="/iitjee" element={<IitJee />} />
         <Route path="/foundation" element={<Foundation />} />
+        <Route path="/crash-course" element={<CrashCoursh />} />
 
         <Route path="/form" element={<Form></Form>}></Route>
         <Route path="/otp" element={<Otp></Otp>}></Route>
