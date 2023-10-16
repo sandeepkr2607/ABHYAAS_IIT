@@ -213,12 +213,13 @@ export default function Form() {
       }
 
       localStorage.clear();
-      localStorage.setItem("id", data.data._id);
-      console.log(data);
-      // if (data.otp) {
-      //   navigate("/otp");
-      // }
-      navigate("/personal");
+      localStorage.setItem("id", data.data[0].data._id);
+      console.log(data.data[0].data._id);
+      console.log(data.data[1].otpNumber);
+      if (data.data[1].otpNumber) {
+        navigate("/otp");
+      }
+      // navigate("/personal");
     }
   };
   const selectedCourses = (course) => {
