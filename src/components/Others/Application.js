@@ -174,12 +174,27 @@ export default function Application() {
 //error if server not response
   const Submithandler =async () => {
     const id = localStorage.getItem("id");
+    if(!pic){
+      toast({
+        title: "Please upload a image",
+        description: "Image is not uploaded",
+        position: "top",
+        status: "error",
+        duration: 9000,
+        isClosable: true,
+      });
+      return;
+    }
+
+
     const responseS = await fetch(`https://dev.seiasecure.com/api/v1/send_confirmation_sms/${id}`, {
       method: 'POST'})
     const responseE = await fetch(`https://dev.seiasecure.com/api/v1/send_confirmation_email/${id}`, {
       method: 'POST'})
     const data=await responseS.json();
     const Email=await responseE.json();
+
+
     if(data.success===true || Email.success===true){
 
       navigate("/success");
