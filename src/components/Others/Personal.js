@@ -334,6 +334,8 @@ export default function Personal() {
       if (!id) {
         navigate("/application");
       }
+      
+
       const response = await fetch(
         `https://dev.seiasecure.com/api/v1/updateCoachingApplicationById/${id}`,
         {
@@ -363,6 +365,7 @@ export default function Personal() {
       );
       const data = await response.json();
       console.log(data);
+      console.log(pincode)
       if (data.success === true) {
         navigate("/application");
       }

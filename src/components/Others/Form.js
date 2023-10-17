@@ -190,10 +190,10 @@ export default function Form() {
       );
       const data = await response.json();
       console.log(data)
-      if (data.data[0].message === "Mobile number is already registered") {
+      if (data.message === "Mobile number is already registered.") {
         toast({
           title: "Already Resgistered",
-          description: "This mobile number is allready registered",
+          description: "This mobile number is already registered",
           position: "top",
           status: "success",
           duration: 9000,
@@ -201,7 +201,7 @@ export default function Form() {
         });
         return;
       }
-      if (data.data[0].message === "Validation failed") {
+      if (data.message === "Validation failed") {
         toast({
           title: "Validation failed",
           description: "Error occurred from the server",
