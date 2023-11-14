@@ -17,6 +17,7 @@ import Maths from "./pages/maths/Maths";
 import IitJee from "./pages/iitjee/IitJee";
 import Foundation from "./pages/foundation/Foundation";
 import CrashCoursh from "./pages/crashCoursh/CrashCoursh";
+import PrivecyPolicy from "./pages/privecyPolicy/PrivecyPolicy";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
         <Route path="/iitjee" element={<IitJee />} />
         <Route path="/foundation" element={<Foundation />} />
         <Route path="/crash-course" element={<CrashCoursh />} />
+        <Route path="/privecy-policy" element={<PrivecyPolicy />} />
 
         <Route path="/form" element={<Form></Form>}></Route>
         <Route path="/otp" element={<Otp></Otp>}></Route>

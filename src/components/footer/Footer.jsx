@@ -1,11 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import css from "./Footer.module.css";
 import yt from "../../assets/yt.png";
 import fb from "../../assets/fb.png";
 import twitter from "../../assets/twitter.png";
 import linkdin from "../../assets/linkdin.png";
+import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  const navigate = useNavigate();
+
+  const GoToPrivecyPolicy = () => {
+    navigate("/privecy-policy");
+  };
+
   return (
     <div className={css.footer} id="footer">
       <div className={css.top}>
@@ -91,14 +102,19 @@ const Footer = () => {
         </div>
       </div>
       <div className={css.bottom}>
-        <p className={css.bottom_para}>Privacy Policy</p>
-        <p className={css.bottom_para}>GDPR</p>
+        <p className={css.bottom_para} onClick={GoToPrivecyPolicy}>
+          Privacy Policy
+        </p>
         <p className={css.bottom_para}>GDPR</p>
         <p className={css.bottom_para}>Data Processing Addendum</p>
         <p className={css.bottom_para}>Security</p>
         <p className={css.bottom_para}>Data Processing Record</p>
       </div>
       <div className={css.dev}>
+        <p className={css.top_text}>
+          <span className={css.footer_colored}>Abhyaas IIT </span>
+          Educational Group of Institutes
+        </p>
         <p className={css.text}>
           Designed and Developed by{" "}
           <a
