@@ -14,7 +14,7 @@ const Footer = () => {
   const navigate = useNavigate();
 
   const GoToPrivecyPolicy = () => {
-    navigate("/privecy-policy");
+    navigate("/privacy-policy");
   };
 
   return (

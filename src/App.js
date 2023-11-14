@@ -30,7 +30,7 @@ function App() {
         <Route path="/iitjee" element={<IitJee />} />
         <Route path="/foundation" element={<Foundation />} />
         <Route path="/crash-course" element={<CrashCoursh />} />
-        <Route path="/privecy-policy" element={<PrivecyPolicy />} />
+        <Route path="/privacy-policy" element={<PrivecyPolicy />} />
 
         <Route path="/form" element={<Form></Form>}></Route>
         <Route path="/otp" element={<Otp></Otp>}></Route>
