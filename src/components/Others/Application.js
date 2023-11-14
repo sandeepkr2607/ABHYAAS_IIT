@@ -1,4 +1,4 @@
-import { Input, Progress, Table, TableContainer,Tr,Td, Toast } from "@chakra-ui/react";
+import { Input, Progress, Table, TableContainer,Tr,Td, Toast, Tbody } from "@chakra-ui/react";
 import {
   Center,
   Box,
@@ -56,19 +56,23 @@ export default function Application() {
         navigate('/form')
         return
       }
-      const picture=localStorage.getItem("pic");
-      if(!picture){
-        setPic('');
-      }else{
-        setPic(picture)
-      }
+      // const picture=localStorage.getItem("pic");
+      // if(!picture){
+      //   setPic('');
+      // }else{
+      //   setPic(picture)
+      // }
 
       const response = await fetch(`https://dev.seiasecure.com/api/v1/getCoachingApplicationById/${id}`);
       const data = await response.json();
+
+      console.log(data)
+
       if (data.success === false) {
         navigate('/form')
         return
       }
+      
       // if(data.data.isVerified===false){
       //   navigate('/otp')
       //   return
@@ -106,6 +110,11 @@ export default function Application() {
       
       const response = await fetch(`https://dev.seiasecure.com/api/v1/getCoachingApplicationById/${id}`);
       const data = await response.json();
+      if (data.success === false) {
+        navigate('/form')
+        return
+      }
+
       if(data.data.student_pic){
         setPic(data.data.student_pic);
         console.log('running')
@@ -165,12 +174,27 @@ export default function Application() {
 //error if server not response
   const Submithandler =async () => {
     const id = localStorage.getItem("id");
+    if(!pic){
+      toast({
+        title: "Please upload a image",
+        description: "Image is not uploaded",
+        position: "top",
+        status: "error",
+        duration: 9000,
+        isClosable: true,
+      });
+      return;
+    }
+
+
     const responseS = await fetch(`https://dev.seiasecure.com/api/v1/send_confirmation_sms/${id}`, {
       method: 'POST'})
     const responseE = await fetch(`https://dev.seiasecure.com/api/v1/send_confirmation_email/${id}`, {
       method: 'POST'})
     const data=await responseS.json();
     const Email=await responseE.json();
+
+
     if(data.success===true || Email.success===true){
 
       navigate("/success");
@@ -284,6 +308,7 @@ export default function Application() {
           <TableContainer>
             <Table variant={'simple'} 
             style={{ marginTop: "0" }}>
+              <Tbody>
                 <Tr>
                   <Td p={1}>Application No.</Td>
                   <Td p={1}>{info.applicationNo}</Td>
@@ -348,6 +373,7 @@ export default function Application() {
                   <Td p={1}>Application From Free</Td>
                   <Td p={1}>500</Td>
                 </Tr>
+                </Tbody>
             </Table>
           </TableContainer>
       </Box>
