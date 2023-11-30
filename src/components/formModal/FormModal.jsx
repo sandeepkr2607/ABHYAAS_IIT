@@ -1,66 +1,63 @@
-import React, { useCallback, useEffect, useRef,useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import css from "./FormModal.module.css";
 // import { MdClose } from "react-icons/md";
-import model_img from "../../assets/model_img.png";
+import model_img from "../../assets/modal_img2.jpg";
 // import { color } from "framer-motion";
 // import { FormErrorMessage } from "@chakra-ui/react";
 
 const FormModal = ({ showModal, setShowModal, onClose }) => {
   const modalRef = useRef(null);
-  const [input,setInput]=useState("");
-  const [mobile_number,setMobile_number]=useState("");
-  const [std,setStd]=useState("");
-  const [message,setMessage]=useState("");
-  const [school,setSchool]=useState("")
+  const [input, setInput] = useState("");
+  const [mobile_number, setMobile_number] = useState("");
+  const [std, setStd] = useState("");
+  const [message, setMessage] = useState("");
+  const [school, setSchool] = useState("");
   const [errors, setErrors] = useState({
-    input: '',
-    school:'',
-    mobile_number: '',
-    std: '',
+    input: "",
+    school: "",
+    mobile_number: "",
+    std: "",
   });
 
-  const inputChangeHandler=(event)=>{
-      setInput(event.target.value)
-      setErrors({
-        ...errors,
-        input:''
-      })
-  }
-  const schoolChangeHandler=(event)=>{
-      setSchool(event.target.value)
-      setErrors({
-        ...errors,
-        school:''
-      })
-  }
-  const mobile_numberChangeHandler=(event)=>{
+  const inputChangeHandler = (event) => {
+    setInput(event.target.value);
+    setErrors({
+      ...errors,
+      input: "",
+    });
+  };
+  const schoolChangeHandler = (event) => {
+    setSchool(event.target.value);
+    setErrors({
+      ...errors,
+      school: "",
+    });
+  };
+  const mobile_numberChangeHandler = (event) => {
     const regex = /^[0-9]{10}$/;
     setMobile_number(event.target.value);
     if (regex.test(event.target.value) === false) {
       setErrors({
         ...errors,
-        mobile_number:'Enter Valid Mobile Number'
-      })
-    }
-    else{
+        mobile_number: "Enter Valid Mobile Number",
+      });
+    } else {
       setErrors({
         ...errors,
-        mobile_number:''
-      })
+        mobile_number: "",
+      });
     }
-  }
-  const stdChangeHandler=(event)=>{
-      setStd(event.target.value)
-      setErrors({
-        ...errors,
-        std:''
-      })
-  }
-  const messageChangeHandler=(event)=>{
-      setMessage(event.target.value)
-  }
-
-
+  };
+  const stdChangeHandler = (event) => {
+    setStd(event.target.value);
+    setErrors({
+      ...errors,
+      std: "",
+    });
+  };
+  const messageChangeHandler = (event) => {
+    setMessage(event.target.value);
+  };
 
   const handleClickOutside = useCallback(
     (event) => {
@@ -71,50 +68,53 @@ const FormModal = ({ showModal, setShowModal, onClose }) => {
     [onClose]
   );
 
-  const onSubmitHandler=async (e)=>{
-      e.preventDefault();
-   
-      const regex = /^[0-9]{10}$/;
-      const newErrors = {};
+  const onSubmitHandler = async (e) => {
+    e.preventDefault();
 
-      if (input.trim() === '') {
-        newErrors.input= 'Name is required.';
-       
-      }
-  
-      if (regex.test(mobile_number) === false) {
-        newErrors.mobile_number = 'Enter Valid Mobile Number';
-      }
+    const regex = /^[0-9]{10}$/;
+    const newErrors = {};
 
-      if(school.trim()===''){
-        newErrors.school='School Name required'
-      }
-  
-      if (std === '') {
-        newErrors.std = 'Please select a standard';
-      }
+    if (input.trim() === "") {
+      newErrors.input = "Name is required.";
+    }
 
-      setErrors(newErrors);
-      // console.log(errors) 
+    if (regex.test(mobile_number) === false) {
+      newErrors.mobile_number = "Enter Valid Mobile Number";
+    }
 
+    if (school.trim() === "") {
+      newErrors.school = "School Name required";
+    }
 
-      if (Object.keys(newErrors).length === 0){
+    if (std === "") {
+      newErrors.std = "Please select a standard";
+    }
 
-      const response = await fetch("https://dev.seiasecure.com/api/v1/abhyaas_enquiry_form", {
-        method: 'POST',
+    setErrors(newErrors);
+    // console.log(errors)
+
+    if (Object.keys(newErrors).length === 0) {
+      const response = await fetch(
+        "https://dev.seiasecure.com/api/v1/abhyaas_enquiry_form",
+        {
+          method: "POST",
           headers: {
-           'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ "name":input,"mobile_number":mobile_number,"school":school, "std":std , "message":message })
-      });
-      const data=await response.json();
-      console.log(data)
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: input,
+            mobile_number: mobile_number,
+            school: school,
+            std: std,
+            message: message,
+          }),
+        }
+      );
+      const data = await response.json();
+      console.log(data);
       setShowModal(false);
-      }
-  }
-
-
-
+    }
+  };
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
@@ -138,7 +138,8 @@ const FormModal = ({ showModal, setShowModal, onClose }) => {
   return (
     <div
       className={`${css.modal} ${showModal ? css.active : ""}`}
-      onClick={handleClickOutside}>
+      onClick={handleClickOutside}
+    >
       <div className={css.inner_modal} ref={modalRef}>
         <img src={model_img} alt="" className={css.model_img} />
         <h1 className={css.heading_one}>Your Preference Matters,</h1>
@@ -147,30 +148,37 @@ const FormModal = ({ showModal, setShowModal, onClose }) => {
           <input
             type="text"
             placeholder="Your name please!"
-            className={  errors.input ? css.errorControl : css.name}
+            className={errors.input ? css.errorControl : css.name}
             onChange={inputChangeHandler}
           />
-          {errors.input &&  <div className={css.errorMessage}>{errors.input}</div>}
-         
+          {errors.input && (
+            <div className={css.errorMessage}>{errors.input}</div>
+          )}
+
           <input
             type="number"
             placeholder="Mobile No."
-            className={ errors.mobile_number ? css.errorControl : css.name}
+            className={errors.mobile_number ? css.errorControl : css.name}
             onChange={mobile_numberChangeHandler}
           />
-           {errors.mobile_number &&  <div className={css.errorMessage}>{errors.mobile_number}</div>}
-           <input
+          {errors.mobile_number && (
+            <div className={css.errorMessage}>{errors.mobile_number}</div>
+          )}
+          <input
             type="text"
             placeholder="Your school please!"
-            className={  errors.school ? css.errorControl : css.name}
+            className={errors.school ? css.errorControl : css.name}
             onChange={schoolChangeHandler}
           />
-          {errors.school &&  <div className={css.errorMessage}>{errors.school}</div>}
-        
-          <select className={errors.std? css.errorSelectControl: css.select} onChange={stdChangeHandler}>
-            <option  value=''>
-              Std... ?
-            </option>
+          {errors.school && (
+            <div className={css.errorMessage}>{errors.school}</div>
+          )}
+
+          <select
+            className={errors.std ? css.errorSelectControl : css.select}
+            onChange={stdChangeHandler}
+          >
+            <option value="">Std... ?</option>
             <option className={css.option} value="Std 6">
               Std 6
             </option>
@@ -199,17 +207,18 @@ const FormModal = ({ showModal, setShowModal, onClose }) => {
               NEET
             </option> */}
           </select>
-        
-          {errors.std &&  <div className={css.errorMessage}>{errors.std}</div>}
+
+          {errors.std && <div className={css.errorMessage}>{errors.std}</div>}
           <textarea
             placeholder="Feel free for any kind of query..."
             className={css.text_area}
             onChange={messageChangeHandler}
-            ></textarea>
+          ></textarea>
           <div className={css.btns}>
             <button
               className={css.btn_close}
-              onClick={() => setShowModal(false)}>
+              onClick={() => setShowModal(false)}
+            >
               CLOSE
             </button>
             <button className={css.btn} type="submit">

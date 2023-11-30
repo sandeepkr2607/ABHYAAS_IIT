@@ -42,7 +42,6 @@
   border-radius: 30px;
 }
 
-
 @keyframes slideIn {
   from {
     top: -100%;
@@ -71,7 +70,7 @@
 
 .model_img {
   width: 448px;
-  height: 200px;
+  height: 220px;
 }
 
 .heading_one {
@@ -147,7 +146,7 @@
 
   border: 2px solid rgba(239, 240, 246, 1);
   border-radius: 5px;
- 
+
   background-color: transparent;
   outline: none;
   font-family: Inter;
