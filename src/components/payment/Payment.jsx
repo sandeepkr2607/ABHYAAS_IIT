@@ -1,25 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import './Payment.css'
 import { useFormik } from 'formik';
-import { useNavigate } from 'react-router-dom';
 import { ValidationSchema } from './schema';
 import Header from '../header/Header';
 import Footer from '../footer/Footer';
-import { Box, ChakraProvider, Flex } from "@chakra-ui/react";
-import { Heading } from "@chakra-ui/react";
+import { Box, ChakraProvider } from "@chakra-ui/react";
 import { Center } from "@chakra-ui/react";
 import { Progress } from "@chakra-ui/react";
-import { Text } from "@chakra-ui/react";
 import { Divider } from "@chakra-ui/react";
-import { Input } from "@chakra-ui/react";
-import { FormControl, FormLabel } from "@chakra-ui/react";
-import { Checkbox } from "@chakra-ui/react";
-import { VStack, HStack } from "@chakra-ui/react";
-import { Select } from "@chakra-ui/react";
-import { Button } from "@chakra-ui/react";
-import { FormErrorMessage } from "@chakra-ui/react";
-
-import { useToast } from "@chakra-ui/react";
+import { HStack } from "@chakra-ui/react";
 
 
 const Payment = () => {
@@ -57,7 +46,6 @@ const Payment = () => {
         window.location.href = url;
     };
 
-    let navigate = useNavigate();
     const { values, handleBlur, handleChange, handleSubmit, errors, touched } = useFormik({
         initialValues: initialValues,
         validationSchema: ValidationSchema,
@@ -178,7 +166,7 @@ const Payment = () => {
                                 </HStack>
                             </Center>
 
-                            {/* Progress bar */}
+                            {/* ----------------Progress bar---------------- */}
                             <Divider orientation="horizontal" bgColor={"black"} />
 
                             <section className="antialiased bg-white text-gray-600  py-20">
@@ -246,7 +234,7 @@ const Payment = () => {
                                                             <div
                                                                 style={{ display: 'flex', alignItems: 'center', cursor: 'pointer', marginRight: '8px' }} onClick={handleCardChange}
                                                             >
-                                                                <input type="radio" style={{ display: 'none' }} checked={card} onChange={() => { }} />
+                                                                <input type="radio" style={{ display: 'none' }} checked={card} />
                                                                 <div
                                                                     style={{
                                                                         height: '10px', width: '10px', border: '2px solid #ccc', backgroundColor: '#fff', borderRadius: '50%', marginRight: '3px', backgroundColor: card ? '#FF914C' : 'white', borderColor: '#ccc',
@@ -361,7 +349,7 @@ const Payment = () => {
                                                 </div>
 
                                                 <div className="mt-3" >
-                                                    <div className="mb-4" style={{ marginBottom: '2rem', marginTop: '1rem' }} s>
+                                                    <div className="mb-4" style={{ marginBottom: '2rem', marginTop: '1rem' }}  >
                                                         <button type="submit" className="font-medium text-sm inline-flex items-center justify-center px-3 py-2 border border-transparent rounded-2xl leading-5 shadow-sm transition duration-150 ease-in-out w-full bg-orange-400 hover:bg-orange-600 text-white focus:outline-none focus-visible:ring-2" style={{ borderRadius: '2rem', paddingTop: '0.75rem', paddingBottom: "0.75rem", cursor: 'pointer' }}>Pay </button>
                                                     </div>
                                                     <div className="text-xs text-gray-400  text-start" >Your personel experience will be used to process your order,support your order throughout this website, and for other purposes described in this policy. </div>
