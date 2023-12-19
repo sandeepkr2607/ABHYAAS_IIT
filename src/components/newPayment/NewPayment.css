@@ -1,0 +1,130 @@
+.payment {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  margin: auto;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(255, 246, 206, 1);
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+    rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+  padding: 20px;
+  flex: 6;
+  max-width: 500px;
+  border-radius: 15px;
+}
+
+.heading_left {
+  font-size: 30px;
+  color: rgba(107, 40, 55, 1);
+}
+
+.left_rest {
+  display: flex;
+  justify-content: space-between;
+}
+
+.hori_line {
+  height: 6px;
+  width: 100%;
+  background-color: rgba(107, 40, 55, 1);
+  border: none;
+}
+
+.verti_Line {
+  width: 4px;
+  border: none;
+  background-color: rgba(107, 40, 55, 1);
+}
+
+.details,
+.amount {
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+}
+
+.details_list,
+.amount_list {
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-around;
+}
+
+.deatils_heading,
+.lower_heading {
+  font-size: 20px;
+  font-weight: 600;
+  color: rgba(255, 145, 76, 1);
+}
+
+.para {
+  font-size: 18px;
+  font-weight: 500;
+  font-family: poppins;
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(255, 246, 206, 1);
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+    rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+  padding: 20px;
+  flex: 6;
+  max-width: 500px;
+  border-radius: 15px;
+}
+
+.right_heading {
+  font-size: 30px;
+  color: rgba(107, 40, 55, 1);
+}
+
+.right_rest {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.lable {
+  font-size: 20px;
+  font-family: poppins;
+  margin-bottom: 5px;
+  color: rgba(255, 145, 76, 1);
+}
+
+.input {
+  height: 30px;
+  width: 90%;
+  border: none;
+  box-shadow: rgba(255, 145, 76, 1) 0px 2px 8px 0px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  outline: none;
+  padding: 8px 20px;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+  font-size: 25px;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+}
+
+.btn:hover {
+  background-color: rgba(107, 40, 55, 1);
+}

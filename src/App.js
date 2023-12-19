@@ -19,6 +19,7 @@ import Foundation from "./pages/foundation/Foundation";
 import CrashCoursh from "./pages/crashCoursh/CrashCoursh";
 import PrivecyPolicy from "./pages/privecyPolicy/PrivecyPolicy";
 import Payment from "./components/payment/Payment";
+import NewPayment from "./components/newPayment/NewPayment";
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
           path="/application"
           element={<Application></Application>}></Route>
         <Route path="/payment" element={<Payment></Payment>}></Route>
+        <Route path="/new-payment" element={<NewPayment></NewPayment>}></Route>
         <Route path="/login" element={<Admin></Admin>}></Route>
         <Route path="/success" element={<Success></Success>}></Route>
         <Route path="/pdf" element={<Pdfgenerator></Pdfgenerator>}></Route>
