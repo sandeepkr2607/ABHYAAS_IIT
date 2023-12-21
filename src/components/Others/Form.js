@@ -15,7 +15,6 @@ import { useNavigate } from "react-router-dom";
 import Header from "../header/Header.jsx";
 import Footer from "../footer/Footer.jsx";
 import { FormErrorMessage } from "@chakra-ui/react";
-
 import { useToast } from "@chakra-ui/react";
 
 const Target_courses = [
@@ -190,7 +189,14 @@ export default function Form() {
       );
       const data = await response.json();
       console.log(data)
-      if (data.message === "Mobile number is already registered.") {
+
+      // console.log("this data", data.data[0].message, "payment", data.data[0].data[0].is_paymentDone)
+
+      // if verified -update
+      // if submitted && verified  -payment
+      // false -normal flow 
+      if (data.data[0].message == "Mobile number is Verified" || data.data[0].message == "Mobile number is already registered") {
+
         toast({
           title: "Already Resgistered",
           description: "This mobile number is already registered",
@@ -199,9 +205,25 @@ export default function Form() {
           duration: 9000,
           isClosable: true,
         });
+        localStorage.clear();
+        localStorage.setItem("id", data.data[0].data[0]._id);
+        localStorage.setItem("name", data.data[0].data[0].studentName);
+        console.log(data.data[0].data[0]._id);
+
+        const n = data.data[0].data.length
+        // verified otp check
+        if (!data?.data[0]?.data[0]?.is_paymentDone && !data?.data[0]?.data[n - 1]?.is_submitted && data?.data[0]?.data[n - 1]?.isVerified) {
+          navigate("/personal");
+        }
+
+        // payment check
+        if (!data?.data[0]?.data[0]?.is_paymentDone && data?.data[0]?.data[n - 1]?.is_submitted && data?.data[0]?.data[n - 1]?.isVerified) {
+          navigate("/new-payment");
+        }
+
         return;
       }
-      if (data.message === "Validation failed") {
+      if (data.data[0].message === "Validation failed") {
         toast({
           title: "Validation failed",
           description: "Error occurred from the server",
@@ -213,12 +235,17 @@ export default function Form() {
         return;
       }
 
+      const n = data.data[0].data.length
+
       localStorage.clear();
       localStorage.setItem("id", data.data[0].data._id);
       console.log(data.data[0].data._id);
       console.log(data.data[1].otpNumber);
       if (data.data[1].otpNumber) {
-        navigate("/otp");
+        if (!data?.data[0]?.data[0]?.is_paymentDone && !data?.data[0]?.data[n - 1]?.isVerified && !data?.data[0]?.data[n - 1]?.is_submitted) {
+          navigate("/otp");
+        }
+
       }
       // navigate("/personal");
     }

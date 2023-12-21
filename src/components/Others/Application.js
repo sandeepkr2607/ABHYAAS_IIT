@@ -199,7 +199,7 @@ export default function Application() {
 
     if (data.success === true || Email.success === true) {
 
-      navigate("/payment");
+      navigate("/new-payment");
     }
 
   };
