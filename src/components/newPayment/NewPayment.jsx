@@ -45,7 +45,7 @@ const NewPayment = () => {
   const initialValues = {
     "userId": `${id}`,
     number: '',
-    "amount": 605
+    "amount": 605.77  // amount in paise for PhonePe gateway 
   }
 
   const { values, handleBlur, handleChange, handleSubmit, errors, touched } = useFormik({
@@ -66,21 +66,16 @@ const NewPayment = () => {
         console.log(json.url)
         if (json.success) {
           console.log('Payment received')
-
           //redirect to success page  
           redirectToExternalURL(json.url);
         } else {
           console.log('failed ')
-
         }
       } catch (error) {
         console.log(error);
-
       }
-
     }
   })
-
   const redirectToExternalURL = (url) => {
     window.location.href = url;
   };
@@ -228,7 +223,6 @@ const NewPayment = () => {
                   </form>
                 </div>
               </div>
-
 
             </Box>
           </Center>
