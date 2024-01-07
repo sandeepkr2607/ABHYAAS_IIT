@@ -11,6 +11,12 @@ import { HStack } from "@chakra-ui/react";
 import "./NewPayment.css";
 
 const NewPayment = () => {
+  // for testing
+  // {
+  //   "userId": "63ca3eeff9987ba8ba37fde2",
+  //     "number": "9546251777",
+  //       "amount": 100
+  // }
   const [studentData, setstudentData] = useState();
   const [StudentName, setStudentName] = useState();
   const id = localStorage.getItem("id");
@@ -39,7 +45,7 @@ const NewPayment = () => {
   const initialValues = {
     userId: `${id}`,
     number: "",
-    amount: 605,
+    amount: 605.77, // amount in paise for PhonePe gateway
   };
 
   const { values, handleBlur, handleChange, handleSubmit, errors, touched } =
@@ -64,7 +70,6 @@ const NewPayment = () => {
           console.log(json.url);
           if (json.success) {
             console.log("Payment received");
-
             //redirect to success page
             redirectToExternalURL(json.url);
           } else {
@@ -75,7 +80,6 @@ const NewPayment = () => {
         }
       },
     });
-
   const redirectToExternalURL = (url) => {
     window.location.href = url;
   };

@@ -20,6 +20,7 @@ import CrashCoursh from "./pages/crashCoursh/CrashCoursh";
 import PrivecyPolicy from "./pages/privecyPolicy/PrivecyPolicy";
 import Payment from "./components/payment/Payment";
 import NewPayment from "./components/newPayment/NewPayment";
+import Denied from "./components/Denied/Denied";
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
         <Route path="/new-payment" element={<NewPayment></NewPayment>}></Route>
         <Route path="/login" element={<Admin></Admin>}></Route>
         <Route path="/success" element={<Success></Success>}></Route>
+        <Route path="/denied" element={<Denied />}></Route>
         <Route path="/pdf" element={<Pdfgenerator></Pdfgenerator>}></Route>
         <Route
           path="/studentdetails"
