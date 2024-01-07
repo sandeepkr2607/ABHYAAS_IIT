@@ -30,7 +30,7 @@ const CrashCoursh = () => {
             backgroundPosition: "center",
           }}>
           <h2 className={css.courseName}>Free Crash Course </h2>
-          <p className={css.classes}>Class: 8th,9th & 12th grade</p>
+          <p className={css.classes}>Class: 9th </p>
         </div>
         <div className={css.top_btn}>
           <button className={css.btn} onClick={onclickHandler}>

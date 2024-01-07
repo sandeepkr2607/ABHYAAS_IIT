@@ -21,7 +21,7 @@ const Classes = () => {
           <img src={icon} alt="icon" className={css.card_img} />
           <p className={css.card_para}>
             <span className={css.color_text}> Free Crash Course </span>
-            by 6+ IITians Starting From December 2023
+            for Class 9th 6+ IITians Starting From January 2024
           </p>
           <button className={css.btn} onClick={SubmithandlerCrash}>
             Register Now
@@ -31,7 +31,7 @@ const Classes = () => {
           <img src={icon} alt="icon" className={css.card_img} />
           <p className={css.card_para}>
             <span className={css.color_text}> “Tea With 14+ IITians” </span>
-            Free Orientation Programme On 21st January 2024.
+            Free Orientation Programme On 21st February 2024.
           </p>
           <button className={css.btn} onClick={Submithandler}>
             Join Us

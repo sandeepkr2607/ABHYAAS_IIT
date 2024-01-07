@@ -81,7 +81,7 @@ const Slick = () => {
               <div className="disc">
                 <h2 className="course_title">Brain Gym</h2>
                 <p className="course_class">Class 6-7</p>
-                <button className="btn" onClick={onclickBrain}>
+                <button className="btn_slick" onClick={onclickBrain}>
                   View Details
                 </button>
               </div>
@@ -91,7 +91,7 @@ const Slick = () => {
               <div className="disc">
                 <h2 className="course_title">Foundation Course</h2>
                 <p className="course_class">Class 8, 9 & 10</p>
-                <button className="btn" onClick={onclickFoundation}>
+                <button className="btn_slick" onClick={onclickFoundation}>
                   View Details
                 </button>
               </div>
@@ -99,9 +99,11 @@ const Slick = () => {
             <div className="image_box">
               <img src={course3} alt="" className="image" />
               <div className="disc">
-                <h2 className="course_title">IIT/JEE Mains</h2>
+                <h2 className="course_title">
+                  IIT JEE Main <br /> <br /> & Advance
+                </h2>
                 <p className="course_class">Class 11-12</p>
-                <button className="btn" onClick={onclickIitJee}>
+                <button className="btn_slick" onClick={onclickIitJee}>
                   View Details
                 </button>
               </div>
@@ -111,7 +113,7 @@ const Slick = () => {
               <div className="disc">
                 <h2 className="course_title">NEET UG</h2>
                 <p className="course_class">Class 11-12</p>
-                <button className="btn">Coming Soon</button>
+                <button className="btn_slick">Coming Soon</button>
               </div>
             </div>
             <div className="image_box">
@@ -119,7 +121,7 @@ const Slick = () => {
               <div className="disc">
                 <h2 className="course_title">Maths+ Programme</h2>
                 <p className="course_class">Class 6-11</p>
-                <button className="btn" onClick={onclickMaths}>
+                <button className="btn_slick" onClick={onclickMaths}>
                   View Details
                 </button>
               </div>

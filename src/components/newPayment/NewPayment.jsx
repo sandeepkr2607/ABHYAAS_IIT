@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { ValidationSchema } from './schema';
-import { useFormik } from 'formik';
-import Header from '../header/Header';
-import Footer from '../footer/Footer';
+import { ValidationSchema } from "./schema";
+import { useFormik } from "formik";
+import Header from "../header/Header";
+import Footer from "../footer/Footer";
 import { Box, ChakraProvider } from "@chakra-ui/react";
 import { Center } from "@chakra-ui/react";
 import { Progress } from "@chakra-ui/react";
@@ -10,15 +10,7 @@ import { Divider } from "@chakra-ui/react";
 import { HStack } from "@chakra-ui/react";
 import "./NewPayment.css";
 
-
 const NewPayment = () => {
-
-  // for testing
-  // {
-  //   "userId": "63ca3eeff9987ba8ba37fde2",
-  //     "number": "9546251777",
-  //       "amount": 100
-  // }
   const [studentData, setstudentData] = useState();
   const [StudentName, setStudentName] = useState();
   const id = localStorage.getItem("id");
@@ -26,7 +18,9 @@ const NewPayment = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`https://dev.seiasecure.com/api/v1/getCoachingApplicationById/${id}`);
+        const response = await fetch(
+          `https://dev.seiasecure.com/api/v1/getCoachingApplicationById/${id}`
+        );
         const data = await response.json();
 
         console.log(data);
@@ -43,50 +37,50 @@ const NewPayment = () => {
   }, [id]);
 
   const initialValues = {
-    "userId": `${id}`,
-    number: '',
-    "amount": 605
-  }
+    userId: `${id}`,
+    number: "",
+    amount: 605,
+  };
 
-  const { values, handleBlur, handleChange, handleSubmit, errors, touched } = useFormik({
-    initialValues: initialValues,
-    validationSchema: ValidationSchema,
-    onSubmit: async () => {
-      try {
-        const options = {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(values)
+  const { values, handleBlur, handleChange, handleSubmit, errors, touched } =
+    useFormik({
+      initialValues: initialValues,
+      validationSchema: ValidationSchema,
+      onSubmit: async () => {
+        try {
+          const options = {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(values),
+          };
+          console.log(values);
+          const response = await fetch(
+            `https://dev.seiasecure.com/api/v1/initiate_payment`,
+            options
+          );
+          const json = await response.json();
+          console.log(json.url);
+          if (json.success) {
+            console.log("Payment received");
+
+            //redirect to success page
+            redirectToExternalURL(json.url);
+          } else {
+            console.log("failed ");
+          }
+        } catch (error) {
+          console.log(error);
         }
-        console.log(values)
-        const response = await fetch(`https://dev.seiasecure.com/api/v1/initiate_payment`, options);
-        const json = await response.json();
-        console.log(json.url)
-        if (json.success) {
-          console.log('Payment received')
-
-          //redirect to success page  
-          redirectToExternalURL(json.url);
-        } else {
-          console.log('failed ')
-
-        }
-      } catch (error) {
-        console.log(error);
-
-      }
-
-    }
-  })
+      },
+    });
 
   const redirectToExternalURL = (url) => {
     window.location.href = url;
   };
 
   return (
-
     <>
       <ChakraProvider>
         <Box width={"100%"}>
@@ -183,7 +177,7 @@ const NewPayment = () => {
                       <p className="deatils_heading">DETAILS</p>
                       <hr className="hori_line" />
                       <div className="details_list">
-                        <p className="para" >Registration Charge</p>
+                        <p className="para">Registration Charge</p>
                         <p className="para">GST Charge 18%</p>
                         <p className="para">Payment Gateway Charge</p>
                       </div>
@@ -192,7 +186,7 @@ const NewPayment = () => {
                     </div>
                     <div className="verti_Line"></div>
                     <div className="amount">
-                      <p className="deatils_heading" >AMOUNT</p>
+                      <p className="deatils_heading">AMOUNT</p>
                       <hr className="hori_line" />
                       <div className="amount_list">
                         <p className="para">₹ 500</p>
@@ -212,36 +206,77 @@ const NewPayment = () => {
                       <label htmlFor="name" className="lable">
                         Name
                       </label>
-                      <input type="text" id="name" name="name" className="input" value={StudentName} style={{ height: '40px' }} />
+                      <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        className="input"
+                        value={StudentName}
+                        style={{ height: "40px" }}
+                      />
                       <label htmlFor="number" className="lable">
                         Mobile Number
                       </label>
-                      <input type="number" id="number" name="number" className="input" value={values.number} onChange={handleChange} onBlur={handleBlur} style={{ height: '40px' }} />
-                      {errors && errors.number && touched.number ? (<span style={{ color: 'red', marginLeft: '1rem', marginTop: '-0.75rem', fontSize: '18px' }}>{errors.number}</span>) : (null)}
+                      <input
+                        type="number"
+                        id="number"
+                        name="number"
+                        className="input"
+                        value={values.number}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        style={{ height: "40px" }}
+                      />
+                      {errors && errors.number && touched.number ? (
+                        <span
+                          style={{
+                            color: "red",
+                            marginLeft: "1rem",
+                            marginTop: "-0.75rem",
+                            fontSize: "18px",
+                          }}>
+                          {errors.number}
+                        </span>
+                      ) : null}
                       <label htmlFor="amount" className="lable">
                         Amount
                       </label>
-                      <input type="number" id="amount" name="amount" className="input" value={605.77} onChange={handleChange} onBlur={handleBlur} style={{ height: '40px' }} />
-                      {errors && errors.amount && touched.amount ? (<span style={{ color: 'red', marginLeft: '1rem', marginTop: '-0.75rem', fontSize: '18px' }}>{errors.amount}</span>) : (null)}
+                      <input
+                        type="number"
+                        id="amount"
+                        name="amount"
+                        className="input"
+                        value={605.77}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        style={{ height: "40px" }}
+                      />
+                      {errors && errors.amount && touched.amount ? (
+                        <span
+                          style={{
+                            color: "red",
+                            marginLeft: "1rem",
+                            marginTop: "-0.75rem",
+                            fontSize: "18px",
+                          }}>
+                          {errors.amount}
+                        </span>
+                      ) : null}
                     </div>
-                    <button className="btn" type="submit" >Pay</button>
+                    <button className="btn" type="submit">
+                      Pay
+                    </button>
                   </form>
                 </div>
               </div>
-
-
             </Box>
           </Center>
           <Box>
             <Footer></Footer>
           </Box>
-        </Box >
-      </ChakraProvider >
-
+        </Box>
+      </ChakraProvider>
     </>
-
-
-
   );
 };
 
