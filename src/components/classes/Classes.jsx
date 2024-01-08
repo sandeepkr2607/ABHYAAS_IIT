@@ -21,7 +21,7 @@ const Classes = () => {
           <img src={icon} alt="icon" className={css.card_img} />
           <p className={css.card_para}>
             <span className={css.color_text}> Free Crash Course </span>
-            for Class 9th 6+ IITians Starting From January 2024
+            for Class 9th by 6+ IITians Starting From January 2024
           </p>
           <button className={css.btn} onClick={SubmithandlerCrash}>
             Register Now
