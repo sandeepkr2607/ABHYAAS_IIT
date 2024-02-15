@@ -1,13 +1,13 @@
-import React from 'react'
+import React from "react";
 import { useEffect, useState } from "react";
 import { CSVLink } from "react-csv";
-import { Button, FormLabel, Input,Form, FormControl } from "@chakra-ui/react";
-import {  useLocation } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { Button, FormLabel, Input, Form, FormControl } from "@chakra-ui/react";
+import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ChakraProvider } from "@chakra-ui/react";
 import { Table, TableContainer, Tr, Td } from "@chakra-ui/react";
 import { Thead, Th, Tbody } from "@chakra-ui/react";
-import {  Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Text } from "@chakra-ui/react";
 import { Image } from "@chakra-ui/react";
 import { useToast } from "@chakra-ui/react";
@@ -36,42 +36,41 @@ const headers = [
   { label: "Updated Time", key: "Updated" },
 ];
 export default function Data(props) {
-    const navigate = useNavigate();
-    const location=useLocation();
-    const { state } = location;
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { state } = location;
   let count = 1;
   const [data, setData] = useState([]);
   const [fetchAgain, setFetchAgain] = useState(false);
 
   useEffect(() => {
-    if(!state){
-        navigate('/login')
-        return;
+    if (!state) {
+      navigate("/login");
+      return;
     }
-
 
     let info = [];
     async function fetchData() {
-        const response = await fetch(
-            "https://dev.seiasecure.com/api/v1/getAllCoachingApplications",
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                    password:state
-              }),
-            }
-            );
+      const response = await fetch(
+        "https://dev.abhyaasiit.com/api/v1/getAllCoachingApplications",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            password: state,
+          }),
+        }
+      );
       const json = await response.json();
       // console.log(json)
       json.data.forEach((item) => {
-        let dateofB='';
-        if(item.dateOfBirth){
-           dateofB =item.dateOfBirth.replace("T00:00:00.000Z", "");
-          }
-          // console.log(dateofB);
+        let dateofB = "";
+        if (item.dateOfBirth) {
+          dateofB = item.dateOfBirth.replace("T00:00:00.000Z", "");
+        }
+        // console.log(dateofB);
         let object = {
           id: item._id,
           name: item.studentName,
@@ -106,33 +105,31 @@ export default function Data(props) {
   }, []);
 
   useEffect(() => {
-    if(!state){
-        navigate('/login')
-        return;
+    if (!state) {
+      navigate("/login");
+      return;
     }
-
-
 
     let info = [];
     async function fetchData() {
-        const response = await fetch(
-            "https://dev.seiasecure.com/api/v1/getAllCoachingApplications",
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                    password:state
-              }),
-            }
-            );
+      const response = await fetch(
+        "https://dev.abhyaasiit.com/api/v1/getAllCoachingApplications",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            password: state,
+          }),
+        }
+      );
       const json = await response.json();
       json.data.forEach((item) => {
-        let dateofB='';
-        if(item.dateOfBirth){
-           dateofB =item.dateOfBirth.replace("T00:00:00.000Z", "");
-          }
+        let dateofB = "";
+        if (item.dateOfBirth) {
+          dateofB = item.dateOfBirth.replace("T00:00:00.000Z", "");
+        }
         let object = {
           id: item._id,
           name: item.studentName,
@@ -168,7 +165,7 @@ export default function Data(props) {
   const onDelete = async (props) => {
     // console.log(props);
     const response = await fetch(
-      `https://dev.seiasecure.com/api/v1/delete_aaplication/${props}`,
+      `https://dev.abhyaasiit.com/api/v1/delete_aaplication/${props}`,
       {
         method: "DELETE",
       }
@@ -246,7 +243,7 @@ export default function Data(props) {
                   <Td>{item.DOB}</Td>
                   <Td>
                     <Link to={item.studentPic}>
-                      <Image src={item.studentPic} boxSize={'100px'}></Image>
+                      <Image src={item.studentPic} boxSize={"100px"}></Image>
                     </Link>
                   </Td>
                   <Td>{item.aadhar}</Td>
@@ -269,9 +266,6 @@ export default function Data(props) {
           </Tbody>
         </Table>
       </TableContainer>
-      
-
     </ChakraProvider>
   );
 }
-

@@ -40,8 +40,6 @@ export default function Personal() {
   const [district, setDistrict] = useState("");
   const [email, setEmail] = useState("");
   const [about, setAbout] = useState("");
-  
-
 
   const [errors, setErrors] = useState({
     name: "",
@@ -209,34 +207,24 @@ export default function Personal() {
         email: "",
       });
     }
-
-    
   };
-
-
 
   const handleBlur = (event) => {
     const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
     // Check if the input value matches a Google saved email pattern
-    setEmail(event.target.value)
-      if (!emailRegex.test(event.target.value)) {
-        setErrors({
-          ...errors,
-          email: "Enter Valid Email",
-        });
-      } else {
-        setErrors({
-          ...errors,
-          email: "",
-        });
-      }
-    
+    setEmail(event.target.value);
+    if (!emailRegex.test(event.target.value)) {
+      setErrors({
+        ...errors,
+        email: "Enter Valid Email",
+      });
+    } else {
+      setErrors({
+        ...errors,
+        email: "",
+      });
+    }
   };
-
-
-
-
-
 
   const aboutChangeHandler = (event) => {
     setAbout(event.target.value);
@@ -257,7 +245,7 @@ export default function Personal() {
         return;
       }
       const response = await fetch(
-        `https://dev.seiasecure.com/api/v1/getCoachingApplicationById/${id}`
+        `https://dev.abhyaasiit.com/api/v1/getCoachingApplicationById/${id}`
       );
       const data = await response.json();
       console.log(data);
@@ -277,8 +265,6 @@ export default function Personal() {
 
     fetchData();
   }, []);
-
-
 
   const Submithandler = async () => {
     const regex = /^[0-9]{10}$/;
@@ -325,7 +311,7 @@ export default function Personal() {
     if (emailRegex.test(email) === false) {
       newErrors.email = "Enter your email";
     }
- 
+
     if (about.trim() === "") {
       newErrors.about = "This field is required";
     }
@@ -334,10 +320,9 @@ export default function Personal() {
       if (!id) {
         navigate("/application");
       }
-      
 
       const response = await fetch(
-        `https://dev.seiasecure.com/api/v1/updateCoachingApplicationById/${id}`,
+        `https://dev.abhyaasiit.com/api/v1/updateCoachingApplicationById/${id}`,
         {
           method: "PUT",
           headers: {
@@ -365,7 +350,7 @@ export default function Personal() {
       );
       const data = await response.json();
       console.log(data);
-      console.log(pincode)
+      console.log(pincode);
       if (data.success === true) {
         navigate("/application");
       }
@@ -382,8 +367,7 @@ export default function Personal() {
             boxShadow={"base"}
             width={["100%", "80%"]}
             rounded={"lg"}
-            m={"3"}
-          >
+            m={"3"}>
             <Center>
               <HStack spacing={2} my={8}>
                 <Box
@@ -391,8 +375,7 @@ export default function Personal() {
                   rounded={"xl"}
                   width={{ base: 6, md: 6 }}
                   height={"auto"}
-                  textColor={"white"}
-                >
+                  textColor={"white"}>
                   1
                 </Box>
                 <Progress
@@ -408,8 +391,7 @@ export default function Personal() {
                   rounded={"xl"}
                   width={{ base: 6, md: 6 }}
                   height={"auto"}
-                  textColor={"white"}
-                >
+                  textColor={"white"}>
                   2
                 </Box>
                 <Progress
@@ -425,8 +407,7 @@ export default function Personal() {
                   rounded={"xl"}
                   width={{ base: 6, md: 6 }}
                   height={"auto"}
-                  textColor={"gray.700"}
-                >
+                  textColor={"gray.700"}>
                   3
                 </Box>
                 <Progress
@@ -442,8 +423,7 @@ export default function Personal() {
                   rounded={"xl"}
                   width={{ base: 6, md: 6 }}
                   height={"auto"}
-                  textColor={"gray.700"}
-                >
+                  textColor={"gray.700"}>
                   4
                 </Box>
               </HStack>
@@ -456,8 +436,7 @@ export default function Personal() {
                   textStyle="h1"
                   fontWeight={"bold"}
                   fontSize={"lg"}
-                  m={3}
-                >
+                  m={3}>
                   Personal Details
                 </Heading>
                 <Text textStyle="p" fontFamily={""}>
@@ -471,10 +450,11 @@ export default function Personal() {
               alignItems={{ base: "center", lg: "flex-start" }}
               justify={{ lg: "space-between" }}
               gap={{ base: "62px" }}
-              p={{ base: 1, lg: 50 }}
-            >
-              <FormControl isInvalid={errors.name} height="2rem"
-              // marginBottom={20}
+              p={{ base: 1, lg: 50 }}>
+              <FormControl
+                isInvalid={errors.name}
+                height="2rem"
+                // marginBottom={20}
               >
                 <FormLabel>Name</FormLabel>
                 <Input
@@ -510,211 +490,327 @@ export default function Personal() {
                   ""
                 )}
               </FormControl>
-              <FormControl isInvalid={errors.date} 
-              height="2rem" 
-              // marginBottom={20}
+              <FormControl
+                isInvalid={errors.date}
+                height="2rem"
+                // marginBottom={20}
               >
-                    <FormLabel>Date of Birth</FormLabel>
-                    <Input
-                      placeholder="Select Date and Time"
-                      size="md"
-                      type="date"
-                      rounded={"full"}
-                      boxShadow={"base"}
-                      width={'100%'}
-                      onChange={dateChangeHandler}
-                    />
-                    {errors.date?(<FormErrorMessage>{errors.date}</FormErrorMessage>):''}
-                  </FormControl>
-                  <FormControl
-                      height="2rem" 
-                  //  marginBottom={20} 
-                   isInvalid={errors.gender}>
-                    <FormLabel>Gender</FormLabel>
-                    <Select
-                      color={"gray"}
-                      rounded={"full"}
-                      boxShadow={"base"}
-                      width={"100%"}
-                      onChange={genderChangeHandler}
-                      >
-                      <option value=''>Gender</option>
-                      <option value="male">Male</option>
-                      <option value="female">Female</option>
-                      <option value="not want to disclose">Not want to disclose</option>
-                    </Select>
-                    {errors.gender?(<FormErrorMessage>{errors.gender}</FormErrorMessage>):''}
-                  </FormControl>
+                <FormLabel>Date of Birth</FormLabel>
+                <Input
+                  placeholder="Select Date and Time"
+                  size="md"
+                  type="date"
+                  rounded={"full"}
+                  boxShadow={"base"}
+                  width={"100%"}
+                  onChange={dateChangeHandler}
+                />
+                {errors.date ? (
+                  <FormErrorMessage>{errors.date}</FormErrorMessage>
+                ) : (
+                  ""
+                )}
+              </FormControl>
+              <FormControl
+                height="2rem"
+                //  marginBottom={20}
+                isInvalid={errors.gender}>
+                <FormLabel>Gender</FormLabel>
+                <Select
+                  color={"gray"}
+                  rounded={"full"}
+                  boxShadow={"base"}
+                  width={"100%"}
+                  onChange={genderChangeHandler}>
+                  <option value="">Gender</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="not want to disclose">
+                    Not want to disclose
+                  </option>
+                </Select>
+                {errors.gender ? (
+                  <FormErrorMessage>{errors.gender}</FormErrorMessage>
+                ) : (
+                  ""
+                )}
+              </FormControl>
             </Flex>
             <Flex
-                direction={{ base: "column", lg: "row" }}
-                alignItems={{ base: "center", lg: "flex-start" }}
-                justify={{ lg: "space-between" }}
-                gap={{ base: "62px" }}
-                p={{ base: 1, lg: 50 }}
-                // flexGrow={3}
-                mt={{ base: "60px", lg: 6 }}
+              direction={{ base: "column", lg: "row" }}
+              alignItems={{ base: "center", lg: "flex-start" }}
+              justify={{ lg: "space-between" }}
+              gap={{ base: "62px" }}
+              p={{ base: 1, lg: 50 }}
+              // flexGrow={3}
+              mt={{ base: "60px", lg: 6 }}>
+              <FormControl
+                isInvalid={errors.category}
+                height="2rem"
+                // marginBottom={20}
               >
-                  <FormControl isInvalid={errors.category} height="2rem"
-                  // marginBottom={20}
-                  >
-                    <FormLabel>Category</FormLabel>
-                    <Select
-                      color={"gray"}
-                      rounded={"full"}
-                      boxShadow={"base"}
-                      onChange={categoryChangeHandler}
-                      >
-                      <option value=''>Category</option>
-                      <option value='general'>General</option>
-                      <option value='general-ews'>General-Ews</option>
-                      <option value='obc'>OBC</option>
-                      <option value='sc'>SC</option>
-                      <option value='st'>ST</option>
-                    </Select>
-                    {errors.category?(<FormErrorMessage>{errors.category}</FormErrorMessage>):''}
-                  </FormControl>
-                  <FormControl isInvalid={errors.addhar} height="2rem"
-                  // marginBottom={20}
-                  >
-                    <FormLabel>AADHAR NO. (Optional)</FormLabel>
-                    <Input color={"gray"} rounded={"full"} boxShadow={"base"} onChange={aadharChangeHandler} />
-                    {errors.addhar?(<FormErrorMessage>{errors.addhar}</FormErrorMessage>):''}
-                  </FormControl>
-                  <FormControl isInvalid={errors.mobileS} height="2rem"
-                  // marginBottom={20}
-                  >
-                    <FormLabel>Mobile No.</FormLabel>
-                    <Input color={"gray"} rounded={"full"} boxShadow={"base"} onChange={mobileSChangeHandler} value={mobileS} disabled/>
-                  </FormControl>
-                  <FormControl isInvalid={errors.mobileF} height="2rem" 
-                  // marginBottom={20}
-                  >
-                    <FormLabel>Parent's Mobile No.</FormLabel>
-                    <Input color={"gray"} rounded={"full"} boxShadow={"base"} onChange={mobileFChangeHandler}/>
-                    {errors.mobileF?(<FormErrorMessage>{errors.mobileF}</FormErrorMessage>):''}
-                  </FormControl>
-              </Flex>
-              <Flex
-                direction={{ base: "column", lg: "row" }}
-                alignItems={{ base: "center", lg: "flex-start" }}
-                justify={{ lg: "space-between" }}
-                gap={{ base: "62px" }}
-                p={{ base: 1, lg: 50 }}
-                flexGrow={3}
-                mt={{ base: "50px", lg: 6 }}
+                <FormLabel>Category</FormLabel>
+                <Select
+                  color={"gray"}
+                  rounded={"full"}
+                  boxShadow={"base"}
+                  onChange={categoryChangeHandler}>
+                  <option value="">Category</option>
+                  <option value="general">General</option>
+                  <option value="general-ews">General-Ews</option>
+                  <option value="obc">OBC</option>
+                  <option value="sc">SC</option>
+                  <option value="st">ST</option>
+                </Select>
+                {errors.category ? (
+                  <FormErrorMessage>{errors.category}</FormErrorMessage>
+                ) : (
+                  ""
+                )}
+              </FormControl>
+              <FormControl
+                isInvalid={errors.addhar}
+                height="2rem"
+                // marginBottom={20}
               >
-                 <FormControl width={["100%","100%","100%","180%"]} isInvalid={errors.address} height="2rem" 
+                <FormLabel>AADHAR NO. (Optional)</FormLabel>
+                <Input
+                  color={"gray"}
+                  rounded={"full"}
+                  boxShadow={"base"}
+                  onChange={aadharChangeHandler}
+                />
+                {errors.addhar ? (
+                  <FormErrorMessage>{errors.addhar}</FormErrorMessage>
+                ) : (
+                  ""
+                )}
+              </FormControl>
+              <FormControl
+                isInvalid={errors.mobileS}
+                height="2rem"
+                // marginBottom={20}
+              >
+                <FormLabel>Mobile No.</FormLabel>
+                <Input
+                  color={"gray"}
+                  rounded={"full"}
+                  boxShadow={"base"}
+                  onChange={mobileSChangeHandler}
+                  value={mobileS}
+                  disabled
+                />
+              </FormControl>
+              <FormControl
+                isInvalid={errors.mobileF}
+                height="2rem"
+                // marginBottom={20}
+              >
+                <FormLabel>Parent's Mobile No.</FormLabel>
+                <Input
+                  color={"gray"}
+                  rounded={"full"}
+                  boxShadow={"base"}
+                  onChange={mobileFChangeHandler}
+                />
+                {errors.mobileF ? (
+                  <FormErrorMessage>{errors.mobileF}</FormErrorMessage>
+                ) : (
+                  ""
+                )}
+              </FormControl>
+            </Flex>
+            <Flex
+              direction={{ base: "column", lg: "row" }}
+              alignItems={{ base: "center", lg: "flex-start" }}
+              justify={{ lg: "space-between" }}
+              gap={{ base: "62px" }}
+              p={{ base: 1, lg: 50 }}
+              flexGrow={3}
+              mt={{ base: "50px", lg: 6 }}>
+              <FormControl
+                width={["100%", "100%", "100%", "180%"]}
+                isInvalid={errors.address}
+                height="2rem"
                 //  marginBottom={20}
-                 >
-                    <FormLabel>Permanent Address</FormLabel>
-                    <Input color={"gray"} rounded={"full"} boxShadow={"base"} onChange={addressChangeHandler}/>
-                    {errors.address?(<FormErrorMessage>{errors.address}</FormErrorMessage>):''}
-                  </FormControl>
-                  <FormControl width={["100%","100%","100%","80%"]} isInvalid={errors.city} height="2rem" 
-                  // marginBottom={20}
-                  >
-                    <FormLabel>City/Town/Village</FormLabel>
-                    <Input color={"gray"} rounded={"full"} boxShadow={"base"} onChange={cityChangeHandler}/>
-                    {errors.city?(<FormErrorMessage>{errors.city}</FormErrorMessage>):''}
-                  </FormControl>
-              </Flex>
-              <Flex
-                direction={{ base: "column", lg: "row" }}
-                alignItems={{ base: "center", lg: "flex-start" }}
-                justify={{ lg: "space-between" }}
-                gap={{ base: "62px" }}
-                p={{ base: 1, lg: 50 }}
-                flexGrow={3}
-                mt={{ base: "50px", lg: 6 }}
               >
-               <FormControl isInvalid={errors.pincode} height="2rem"
-              //  marginBottom={20}
-               >
-                    <FormLabel>Pin Code</FormLabel>
-                    <Input color={"gray"} rounded={"full"} boxShadow={"base"} onChange={pincodeChangeHandler}/>
-                    {errors.pincode?(<FormErrorMessage>{errors.pincode}</FormErrorMessage>):''}
-                  </FormControl>
-                  <FormControl isInvalid={errors.state} height="2rem"
-                  // marginBottom={20}
-                  >
-                    <FormLabel>State</FormLabel>
-                    <Input color={"gray"} rounded={"full"} boxShadow={"base"} onChange={stateChangeHandler}/>
-                    {errors.state?(<FormErrorMessage>{errors.state}</FormErrorMessage>):''}
-                  </FormControl>
-                  <FormControl isInvalid={errors.district} height="2rem"
-                  // marginBottom={20}
-                  >
-                    <FormLabel>District</FormLabel>
-                    <Input color={"gray"} rounded={"full"} boxShadow={"base"} onChange={districtChangeHandler}/>
-                    {errors.district?(<FormErrorMessage>{errors.district}</FormErrorMessage>):''}
-                  </FormControl>
-                  <FormControl isInvalid={errors.email} height="2rem"
-                  // marginBottom={20}
-                  >
-                    <FormLabel>Email</FormLabel>
-                    <Input color={"gray"} rounded={"full"} boxShadow={"base"} onChange={emailChangeHandler} 
-                    onBlur={handleBlur}
-                    />
-                    {errors.email?(<FormErrorMessage>{errors.email}</FormErrorMessage>):''}
-                  </FormControl>
-                  </Flex>
-                  <Flex
-                direction={{ base: "column", lg: "row" }}
-                alignItems={{ base: "center", lg: "flex-start" }}
-                justify={{ lg: "space-between" }}
-                gap={{ base: "62px" }}
-                p={{ base: 1, lg: 50 }}
-                flexGrow={3}
-                mt={{ base: "50px", lg: 6 }}
-              >    
-                  <FormControl width={["100%","100%","100%","180%"]} isInvalid={errors.about} height="2rem"
-                  marginBottom={"80px"}
-                  >
-                    <FormLabel>
-                      How did you came to know about AbhyaasIIT
-                    </FormLabel>
-                    <Select color={"gray"} rounded={"full"} boxShadow={"base"} onChange={aboutChangeHandler}>
-                      <option value=''>How do you know about AbhyaasIIT</option>
-                      <option value='From a friend'>From a friend</option>
-                      <option value='Form Social Media Add'>Form Social Media</option>
-                      <option value='From news papers'>From news papers</option>
-                      <option value='From websites'>From websites</option>
-                      <option value='From schools'>From schools</option>
-                    </Select>
-                    {errors.about?(<FormErrorMessage>{errors.about}</FormErrorMessage>):''}
-                  </FormControl>
-              
-              </Flex>
-              <Flex
+                <FormLabel>Permanent Address</FormLabel>
+                <Input
+                  color={"gray"}
+                  rounded={"full"}
+                  boxShadow={"base"}
+                  onChange={addressChangeHandler}
+                />
+                {errors.address ? (
+                  <FormErrorMessage>{errors.address}</FormErrorMessage>
+                ) : (
+                  ""
+                )}
+              </FormControl>
+              <FormControl
+                width={["100%", "100%", "100%", "80%"]}
+                isInvalid={errors.city}
+                height="2rem"
+                // marginBottom={20}
+              >
+                <FormLabel>City/Town/Village</FormLabel>
+                <Input
+                  color={"gray"}
+                  rounded={"full"}
+                  boxShadow={"base"}
+                  onChange={cityChangeHandler}
+                />
+                {errors.city ? (
+                  <FormErrorMessage>{errors.city}</FormErrorMessage>
+                ) : (
+                  ""
+                )}
+              </FormControl>
+            </Flex>
+            <Flex
+              direction={{ base: "column", lg: "row" }}
+              alignItems={{ base: "center", lg: "flex-start" }}
+              justify={{ lg: "space-between" }}
+              gap={{ base: "62px" }}
+              p={{ base: 1, lg: 50 }}
+              flexGrow={3}
+              mt={{ base: "50px", lg: 6 }}>
+              <FormControl
+                isInvalid={errors.pincode}
+                height="2rem"
+                //  marginBottom={20}
+              >
+                <FormLabel>Pin Code</FormLabel>
+                <Input
+                  color={"gray"}
+                  rounded={"full"}
+                  boxShadow={"base"}
+                  onChange={pincodeChangeHandler}
+                />
+                {errors.pincode ? (
+                  <FormErrorMessage>{errors.pincode}</FormErrorMessage>
+                ) : (
+                  ""
+                )}
+              </FormControl>
+              <FormControl
+                isInvalid={errors.state}
+                height="2rem"
+                // marginBottom={20}
+              >
+                <FormLabel>State</FormLabel>
+                <Input
+                  color={"gray"}
+                  rounded={"full"}
+                  boxShadow={"base"}
+                  onChange={stateChangeHandler}
+                />
+                {errors.state ? (
+                  <FormErrorMessage>{errors.state}</FormErrorMessage>
+                ) : (
+                  ""
+                )}
+              </FormControl>
+              <FormControl
+                isInvalid={errors.district}
+                height="2rem"
+                // marginBottom={20}
+              >
+                <FormLabel>District</FormLabel>
+                <Input
+                  color={"gray"}
+                  rounded={"full"}
+                  boxShadow={"base"}
+                  onChange={districtChangeHandler}
+                />
+                {errors.district ? (
+                  <FormErrorMessage>{errors.district}</FormErrorMessage>
+                ) : (
+                  ""
+                )}
+              </FormControl>
+              <FormControl
+                isInvalid={errors.email}
+                height="2rem"
+                // marginBottom={20}
+              >
+                <FormLabel>Email</FormLabel>
+                <Input
+                  color={"gray"}
+                  rounded={"full"}
+                  boxShadow={"base"}
+                  onChange={emailChangeHandler}
+                  onBlur={handleBlur}
+                />
+                {errors.email ? (
+                  <FormErrorMessage>{errors.email}</FormErrorMessage>
+                ) : (
+                  ""
+                )}
+              </FormControl>
+            </Flex>
+            <Flex
+              direction={{ base: "column", lg: "row" }}
+              alignItems={{ base: "center", lg: "flex-start" }}
+              justify={{ lg: "space-between" }}
+              gap={{ base: "62px" }}
+              p={{ base: 1, lg: 50 }}
+              flexGrow={3}
+              mt={{ base: "50px", lg: 6 }}>
+              <FormControl
+                width={["100%", "100%", "100%", "180%"]}
+                isInvalid={errors.about}
+                height="2rem"
+                marginBottom={"80px"}>
+                <FormLabel>How did you came to know about AbhyaasIIT</FormLabel>
+                <Select
+                  color={"gray"}
+                  rounded={"full"}
+                  boxShadow={"base"}
+                  onChange={aboutChangeHandler}>
+                  <option value="">How do you know about AbhyaasIIT</option>
+                  <option value="From a friend">From a friend</option>
+                  <option value="Form Social Media Add">
+                    Form Social Media
+                  </option>
+                  <option value="From news papers">From news papers</option>
+                  <option value="From websites">From websites</option>
+                  <option value="From schools">From schools</option>
+                </Select>
+                {errors.about ? (
+                  <FormErrorMessage>{errors.about}</FormErrorMessage>
+                ) : (
+                  ""
+                )}
+              </FormControl>
+            </Flex>
+            <Flex
               direction={{ base: "column", lg: "row" }}
               alignItems={{ base: "center", lg: "flex-start" }}
               justify={{ lg: "space-between" }}
               gap={{ base: "15px" }}
-              p={{ base: 1, lg: 50 }}
-            >
-                 <Checkbox
-                    colorScheme="orange"
-                    defaultChecked
-                    // marginLeft={0}
-                    width={["100%","100%","100%","150%"]}
-                    onChange={handleCheckboxChange}
-                    // marginTop={{base:'10px'}}
-                    disabled
-                    >
-                    I Agree to receive SMS/Call from AbhyaasIIT
-                  </Checkbox>
-                  <Button
-                    colorScheme="orange"
-                    size="lg"
-                    rounded={"full"}
-                    width={"80%"}
-                    marginTop={0}
-                    marginBottom={0}
-                    onClick={Submithandler}>
-                    next
-                  </Button>
-          </Flex>
+              p={{ base: 1, lg: 50 }}>
+              <Checkbox
+                colorScheme="orange"
+                defaultChecked
+                // marginLeft={0}
+                width={["100%", "100%", "100%", "150%"]}
+                onChange={handleCheckboxChange}
+                // marginTop={{base:'10px'}}
+                disabled>
+                I Agree to receive SMS/Call from AbhyaasIIT
+              </Checkbox>
+              <Button
+                colorScheme="orange"
+                size="lg"
+                rounded={"full"}
+                width={"80%"}
+                marginTop={0}
+                marginBottom={0}
+                onClick={Submithandler}>
+                next
+              </Button>
+            </Flex>
           </Box>
         </Center>
         <Box>

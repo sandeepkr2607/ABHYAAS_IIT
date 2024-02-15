@@ -95,7 +95,7 @@ const FormModal = ({ showModal, setShowModal, onClose }) => {
 
     if (Object.keys(newErrors).length === 0) {
       const response = await fetch(
-        "https://dev.seiasecure.com/api/v1/abhyaas_enquiry_form",
+        "https://dev.abhyaasiit.com/api/v1/abhyaas_enquiry_form",
         {
           method: "POST",
           headers: {
@@ -138,8 +138,7 @@ const FormModal = ({ showModal, setShowModal, onClose }) => {
   return (
     <div
       className={`${css.modal} ${showModal ? css.active : ""}`}
-      onClick={handleClickOutside}
-    >
+      onClick={handleClickOutside}>
       <div className={css.inner_modal} ref={modalRef}>
         <img src={model_img} alt="" className={css.model_img} />
         <h1 className={css.heading_one}>Your Preference Matters,</h1>
@@ -176,8 +175,7 @@ const FormModal = ({ showModal, setShowModal, onClose }) => {
 
           <select
             className={errors.std ? css.errorSelectControl : css.select}
-            onChange={stdChangeHandler}
-          >
+            onChange={stdChangeHandler}>
             <option value="">Std... ?</option>
             <option className={css.option} value="Std 6">
               Std 6
@@ -212,13 +210,11 @@ const FormModal = ({ showModal, setShowModal, onClose }) => {
           <textarea
             placeholder="Feel free for any kind of query..."
             className={css.text_area}
-            onChange={messageChangeHandler}
-          ></textarea>
+            onChange={messageChangeHandler}></textarea>
           <div className={css.btns}>
             <button
               className={css.btn_close}
-              onClick={() => setShowModal(false)}
-            >
+              onClick={() => setShowModal(false)}>
               CLOSE
             </button>
             <button className={css.btn} type="submit">

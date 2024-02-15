@@ -46,8 +46,8 @@ export default function Pdfgenerator() {
     fatherName: "",
     category: "",
     city: "",
-    school:"",
-    gender:"",
+    school: "",
+    gender: "",
     district: "",
     state: "",
     pinCode: "",
@@ -71,7 +71,7 @@ export default function Pdfgenerator() {
       // }
 
       const response = await fetch(
-        `https://dev.seiasecure.com/api/v1/getCoachingApplicationById/${id}`
+        `https://dev.abhyaasiit.com/api/v1/getCoachingApplicationById/${id}`
       );
       const data = await response.json();
       if (data.success === false) {
@@ -102,7 +102,7 @@ export default function Pdfgenerator() {
       newData.academicSession = data.data.academicSession;
       newData.email = data.data.email;
       newData.createdAt = data.data.createdAt;
-      newData.school=data.data.school
+      newData.school = data.data.school;
       setInfo(newData);
     }
     fetchData();
@@ -130,8 +130,7 @@ export default function Pdfgenerator() {
               ref={PDF}
               maxW="1000px" // Set a maximum width for the box
               width={["98%", "100%", "100%", "90%"]}
-              mx="auto"
-            >
+              mx="auto">
               <Flex align="center" justify="center">
                 <Image src={logo} boxSize={"65px"} />
                 <Heading fontSize="xl" mb={2} style={{ marginTop: "22px" }}>
@@ -152,8 +151,7 @@ export default function Pdfgenerator() {
                   width="90%"
                   mx="auto"
                   flexDirection={{ base: "column", lg: "row" }} // Adjust layout based on screen size
-                  alignItems={{ base: "center", lg: "flex-start" }}
-                >
+                  alignItems={{ base: "center", lg: "flex-start" }}>
                   <Flex
                     flexDirection={{
                       base: "column",
@@ -164,16 +162,25 @@ export default function Pdfgenerator() {
                     align={{ base: "center", lg: "flex-start" }} // Align items to top on large screens
                   >
                     <Box
-                      width={["180px","250px"]}
-                      height={["180px","160px"]}
+                      width={["180px", "250px"]}
+                      height={["180px", "160px"]}
                       margin="0 auto"
                       overflow="hidden"
                       border="2px solid white"
                       // objectFit={"contain"}
-                      marginTop={{ base: "0", sm:"-130px",md: "-130px", lg: "0" }} // Adjust top margin on large screens
-                      marginLeft={{ base: "0", sm:"0px",md: "0px", lg: "0" }}
-                      marginRight={{ base: "0", sm:"40px",md: "50px", lg: "50px" }}
-                    >
+                      marginTop={{
+                        base: "0",
+                        sm: "-130px",
+                        md: "-130px",
+                        lg: "0",
+                      }} // Adjust top margin on large screens
+                      marginLeft={{ base: "0", sm: "0px", md: "0px", lg: "0" }}
+                      marginRight={{
+                        base: "0",
+                        sm: "40px",
+                        md: "50px",
+                        lg: "50px",
+                      }}>
                       <Image
                         // size="full"
                         src={pic}
@@ -181,9 +188,10 @@ export default function Pdfgenerator() {
                         borderRadius="none"
                       />
                     </Box>
-                    <Box pt={0} flex={{ base: "none", lg: "1" }} 
-                    marginLeft={{base:"40px"}} 
-                    >
+                    <Box
+                      pt={0}
+                      flex={{ base: "none", lg: "1" }}
+                      marginLeft={{ base: "40px" }}>
                       <TableContainer style={{ marginTop: "0px" }}>
                         <Table variant={"simple"} style={{ marginTop: "0" }}>
                           <Tbody style={{ marginTop: "0" }}>
@@ -207,7 +215,7 @@ export default function Pdfgenerator() {
                               <Td p={1}>Category</Td>
                               <Td p={1}>{info.category}</Td>
                             </Tr>
-                            
+
                             <Tr>
                               <Td p={1}>School</Td>
                               <Td p={1}>{info.school}</Td>
@@ -243,50 +251,63 @@ export default function Pdfgenerator() {
                           </Tbody>
                         </Table>
                       </TableContainer>
-                    </Box>                 
+                    </Box>
                   </Flex>
                 </Box>
               </Flex>
-<Box mt={5} pl={[20, 4]} pr={[16,20]}>
-      <Text fontWeight="bold" textAlign="start">
-        Important Instructions:-
-      </Text>
-      <UnorderedList ml={["0", "20px"]} spacing={2}>
-        <ListItem>
-          <Text textAlign="start" width={['100%', '600px']}>
-            Limited seats only. Registration for these classes shall close once a batch is full. Any Registration request received after that shall be liable to be Cancelled even after automated mail reply is received by students.
-          </Text>
-        </ListItem>
-        <ListItem>
-          <Text textAlign="start" width={['100%', '600px']}>
-            Students are advised to make a confirmatory call to the Institute after Registration for the crash course.
-          </Text>
-        </ListItem>
-        {/* ... Add more list items as needed */}
-        <ListItem>
-          <Text textAlign="start" width={['100%', '600px']}>
-          Students who plan to join AbhyaasIIT Institute in the upcoming session are advised to take the Crash Course as it will help improve
-           their performance in Admission Entrance Tests (AET) for the courses of 2024 session
-          </Text>
-        </ListItem>
-        <ListItem>
-          <Text textAlign="start" width={['100%', '600px']}>
-          This course shall cover Mathematics and Science upto Olympiad level where a student will be enabled to compete at National and International stage
-          </Text>
-        </ListItem>
-        <ListItem>
-          <Text textAlign="start" width={['100%', '600px']}>
-          The students will go through a highly intense competitive environment with Daily Practice Papers(DPPs) and weekly Output Tests(OTs).
-          </Text>
-        </ListItem>
-        <ListItem>
-          <Text textAlign="start" width={['100%', '600px']}>
-          Each student will be assigned to a personal IITian Mentor who will conduct bi-Monthly review of the student and conduct meeting with Parents every month in order to develop
-           the environment of child In and Out of the Institute
-          </Text>
-        </ListItem>
-      </UnorderedList>
-    </Box>
+              <Box mt={5} pl={[20, 4]} pr={[16, 20]}>
+                <Text fontWeight="bold" textAlign="start">
+                  Important Instructions:-
+                </Text>
+                <UnorderedList ml={["0", "20px"]} spacing={2}>
+                  <ListItem>
+                    <Text textAlign="start" width={["100%", "600px"]}>
+                      Limited seats only. Registration for these classes shall
+                      close once a batch is full. Any Registration request
+                      received after that shall be liable to be Cancelled even
+                      after automated mail reply is received by students.
+                    </Text>
+                  </ListItem>
+                  <ListItem>
+                    <Text textAlign="start" width={["100%", "600px"]}>
+                      Students are advised to make a confirmatory call to the
+                      Institute after Registration for the crash course.
+                    </Text>
+                  </ListItem>
+                  {/* ... Add more list items as needed */}
+                  <ListItem>
+                    <Text textAlign="start" width={["100%", "600px"]}>
+                      Students who plan to join AbhyaasIIT Institute in the
+                      upcoming session are advised to take the Crash Course as
+                      it will help improve their performance in Admission
+                      Entrance Tests (AET) for the courses of 2024 session
+                    </Text>
+                  </ListItem>
+                  <ListItem>
+                    <Text textAlign="start" width={["100%", "600px"]}>
+                      This course shall cover Mathematics and Science upto
+                      Olympiad level where a student will be enabled to compete
+                      at National and International stage
+                    </Text>
+                  </ListItem>
+                  <ListItem>
+                    <Text textAlign="start" width={["100%", "600px"]}>
+                      The students will go through a highly intense competitive
+                      environment with Daily Practice Papers(DPPs) and weekly
+                      Output Tests(OTs).
+                    </Text>
+                  </ListItem>
+                  <ListItem>
+                    <Text textAlign="start" width={["100%", "600px"]}>
+                      Each student will be assigned to a personal IITian Mentor
+                      who will conduct bi-Monthly review of the student and
+                      conduct meeting with Parents every month in order to
+                      develop the environment of child In and Out of the
+                      Institute
+                    </Text>
+                  </ListItem>
+                </UnorderedList>
+              </Box>
               <Flex justify="center" mt={4} px={10} py={0}>
                 <Text fontSize="sm" fontStyle="italic">
                   This admit card is valid for the specified exam only.

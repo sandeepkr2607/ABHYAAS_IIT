@@ -25,7 +25,7 @@ const NewPayment = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `https://dev.seiasecure.com/api/v1/getCoachingApplicationById/${id}`
+          `https://dev.abhyaasiit.com/api/v1/getCoachingApplicationById/${id}`
         );
         const data = await response.json();
 
@@ -63,7 +63,7 @@ const NewPayment = () => {
           };
           console.log(values);
           const response = await fetch(
-            `https://dev.seiasecure.com/api/v1/initiate_payment`,
+            `https://dev.abhyaasiit.com/api/v1/initiate_payment`,
             options
           );
           const json = await response.json();

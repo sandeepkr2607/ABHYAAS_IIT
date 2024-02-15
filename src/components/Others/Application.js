@@ -1,4 +1,13 @@
-import { Input, Progress, Table, TableContainer, Tr, Td, Toast, Tbody } from "@chakra-ui/react";
+import {
+  Input,
+  Progress,
+  Table,
+  TableContainer,
+  Tr,
+  Td,
+  Toast,
+  Tbody,
+} from "@chakra-ui/react";
 import {
   Center,
   Box,
@@ -20,10 +29,6 @@ import { useEffect, useState } from "react";
 import { Spinner } from "@chakra-ui/react";
 import { useToast } from "@chakra-ui/react";
 
-
-
-
-
 export default function Application() {
   const navigate = useNavigate();
   const [fetchAgain, setFetchAgain] = useState(false);
@@ -31,30 +36,28 @@ export default function Application() {
   const toast = useToast();
 
   const [info, setInfo] = useState({
-    applicationNo: '',
-    targetCourse: '',
-    studentName: '',
-    fatherName: '',
-    category: '',
-    city: '',
-    class: '',
-    district: '',
-    state: '',
-    pinCode: '',
-    school: ''
+    applicationNo: "",
+    targetCourse: "",
+    studentName: "",
+    fatherName: "",
+    category: "",
+    city: "",
+    class: "",
+    district: "",
+    state: "",
+    pinCode: "",
+    school: "",
   });
 
-  const [pic, setPic] = useState('');
-
+  const [pic, setPic] = useState("");
 
   useEffect(() => {
-
     async function fetchData() {
-      window.scrollTo(0, 0)
+      window.scrollTo(0, 0);
       const id = localStorage.getItem("id");
       if (!id) {
-        navigate('/form')
-        return
+        navigate("/form");
+        return;
       }
       // const picture=localStorage.getItem("pic");
       // if(!picture){
@@ -63,14 +66,16 @@ export default function Application() {
       //   setPic(picture)
       // }
 
-      const response = await fetch(`https://dev.seiasecure.com/api/v1/getCoachingApplicationById/${id}`);
+      const response = await fetch(
+        `https://dev.abhyaasiit.com/api/v1/getCoachingApplicationById/${id}`
+      );
       const data = await response.json();
 
-      console.log(data)
+      console.log(data);
 
       if (data.success === false) {
-        navigate('/form')
-        return
+        navigate("/form");
+        return;
       }
 
       // if(data.data.isVerified===false){
@@ -81,51 +86,48 @@ export default function Application() {
       if (data.data.student_pic) {
         setPic(data.data.student_pic);
       }
-      const newData = {}
-      newData.applicationNo = data.data.applicationNo
-      newData.targetCourse = data.data.targetCourse
-      newData.studentName = data.data.studentName
-      newData.fatherName = data.data.fatherName
-      newData.category = data.data.category
-      newData.city = data.data.city
-      newData.class = data.data.targetClass
-      newData.district = data.data.district
-      newData.state = data.data.state
-      newData.pinCode = data.data.pinCode
-      newData.school = data.data.school
+      const newData = {};
+      newData.applicationNo = data.data.applicationNo;
+      newData.targetCourse = data.data.targetCourse;
+      newData.studentName = data.data.studentName;
+      newData.fatherName = data.data.fatherName;
+      newData.category = data.data.category;
+      newData.city = data.data.city;
+      newData.class = data.data.targetClass;
+      newData.district = data.data.district;
+      newData.state = data.data.state;
+      newData.pinCode = data.data.pinCode;
+      newData.school = data.data.school;
       setInfo(newData);
-
     }
     fetchData();
-  }, [])
+  }, []);
 
   useEffect(() => {
-
     async function fetchData() {
       const id = localStorage.getItem("id");
       if (!id) {
-        navigate('/form')
-        return
+        navigate("/form");
+        return;
       }
 
-      const response = await fetch(`https://dev.seiasecure.com/api/v1/getCoachingApplicationById/${id}`);
+      const response = await fetch(
+        `https://dev.abhyaasiit.com/api/v1/getCoachingApplicationById/${id}`
+      );
       const data = await response.json();
       if (data.success === false) {
-        navigate('/form')
-        return
+        navigate("/form");
+        return;
       }
 
       if (data.data.student_pic) {
         setPic(data.data.student_pic);
-        console.log('running')
-        setLoading(false)
+        console.log("running");
+        setLoading(false);
       }
     }
     fetchData();
-
-  }, [fetchAgain])
-
-
+  }, [fetchAgain]);
 
   const handleFileChange = async (event) => {
     const file = event.target.files[0];
@@ -139,36 +141,38 @@ export default function Application() {
           status: "error",
           duration: 9000,
           isClosable: true,
-        })
+        });
         return;
       }
 
-
-      setLoading(true)
+      setLoading(true);
       // Implement your logic to handle the selected file here
       const id = localStorage.getItem("id");
       if (!id) {
-        navigate('/form')
-        return
+        navigate("/form");
+        return;
       }
       const data = new FormData();
-      data.append('file', file);
-      const response = await fetch(`https://dev.seiasecure.com/api/v1/upload_image/${id}`, { //last image/upload is addded by us with the API base URL
-        method: 'post',
-        body: data
-      })
-      const datas = await response.json()
-      console.log(datas)
+      data.append("file", file);
+      const response = await fetch(
+        `https://dev.abhyaasiit.com/api/v1/upload_image/${id}`,
+        {
+          //last image/upload is addded by us with the API base URL
+          method: "post",
+          body: data,
+        }
+      );
+      const datas = await response.json();
+      console.log(datas);
       // localStorage.setItem("pic",datas.profilePicImageUrl.student_pic)
       console.log(datas.profilePicImageUrl.student_pic);
 
       // if(datas.profilePicImageUrl.student_pic){
       //   setFetchAgain(!fetchAgain);
       // }
-      if (datas.message === 'Image uploaded successfully') {
+      if (datas.message === "Image uploaded successfully") {
         setFetchAgain(!fetchAgain);
       }
-
     }
   };
   //error if server not response
@@ -186,26 +190,28 @@ export default function Application() {
       return;
     }
 
-
-    const responseS = await fetch(`https://dev.seiasecure.com/api/v1/send_confirmation_sms/${id}`, {
-      method: 'POST'
-    })
-    const responseE = await fetch(`https://dev.seiasecure.com/api/v1/send_confirmation_email/${id}`, {
-      method: 'POST'
-    })
+    const responseS = await fetch(
+      `https://dev.abhyaasiit.com/api/v1/send_confirmation_sms/${id}`,
+      {
+        method: "POST",
+      }
+    );
+    const responseE = await fetch(
+      `https://dev.abhyaasiit.com/api/v1/send_confirmation_email/${id}`,
+      {
+        method: "POST",
+      }
+    );
     const data = await responseS.json();
     const Email = await responseE.json();
 
-
     if (data.success === true || Email.success === true) {
-
       navigate("/new-payment");
     }
-
   };
   return (
     <>
-      <ChakraProvider >
+      <ChakraProvider>
         <Box>
           <Header></Header>
         </Box>
@@ -222,8 +228,7 @@ export default function Application() {
                   rounded={"xl"}
                   width={{ base: 6, md: 6 }}
                   height={"auto"}
-                  textColor={"white"}
-                >
+                  textColor={"white"}>
                   1
                 </Box>
                 <Progress
@@ -240,8 +245,7 @@ export default function Application() {
                   rounded={"xl"}
                   width={{ base: 6, md: 6 }}
                   height={"auto"}
-                  textColor={"white"}
-                >
+                  textColor={"white"}>
                   2
                 </Box>
                 <Progress
@@ -258,8 +262,7 @@ export default function Application() {
                   rounded={"xl"}
                   width={{ base: 6, md: 6 }}
                   height={"auto"}
-                  textColor={"white"}
-                >
+                  textColor={"white"}>
                   3
                 </Box>
                 <Progress
@@ -276,8 +279,7 @@ export default function Application() {
                   rounded={"xl"}
                   width={{ base: 6, md: 6 }}
                   height={"auto"}
-                  textColor={"gray.700"}
-                >
+                  textColor={"gray.700"}>
                   4
                 </Box>
               </HStack>
@@ -285,7 +287,11 @@ export default function Application() {
             <Divider orientation="horizontal" bgColor={"black"} />
             <Center>
               <Box m={3}>
-                <Heading textStyle="h1" fontWeight={"bold"} fontSize={"lg"} m={3}>
+                <Heading
+                  textStyle="h1"
+                  fontWeight={"bold"}
+                  fontSize={"lg"}
+                  m={3}>
                   Personal Details
                 </Heading>
                 <Text textStyle="p" fontFamily={""}>
@@ -297,19 +303,18 @@ export default function Application() {
               <HStack
                 spacing={5}
                 w="100%"
-                justify={{ base: 'center', lg: 'space-between' }} // Adjust alignment based on screen size
-                flexDirection={{ base: 'column', lg: 'row' }} // Stack vertically on small screens, side by side on large screens
+                justify={{ base: "center", lg: "space-between" }} // Adjust alignment based on screen size
+                flexDirection={{ base: "column", lg: "row" }} // Stack vertically on small screens, side by side on large screens
               >
                 <Box
                   // boxShadow="base"
                   rounded="2xl"
                   m={3}
                   w="100%" // Full width on small screens
-                  maxW={{ base: '90%', lg: '45%' }} // Responsive width
+                  maxW={{ base: "90%", lg: "45%" }} // Responsive width
                 >
                   <TableContainer>
-                    <Table variant={'simple'}
-                      style={{ marginTop: "0" }}>
+                    <Table variant={"simple"} style={{ marginTop: "0" }}>
                       <Tbody>
                         <Tr>
                           <Td p={1}>Application No.</Td>
@@ -386,10 +391,16 @@ export default function Application() {
                   p={10}
                   bgColor="orange.100"
                   overflow="hidden"
-                  height={'30%'}
-                  flex={{ base: 'none', lg: 'none' }} // Adjust flex based on screen size
-                  width={{ base: '80%', sm: '45%', md: '35%', lg: '40%', xl: '35%', "2xl": '30%' }} // Responsive width
-
+                  height={"30%"}
+                  flex={{ base: "none", lg: "none" }} // Adjust flex based on screen size
+                  width={{
+                    base: "80%",
+                    sm: "45%",
+                    md: "35%",
+                    lg: "40%",
+                    xl: "35%",
+                    "2xl": "30%",
+                  }} // Responsive width
                 >
                   {!pic && !loading ? (
                     <VStack spacing={0} p={0} mb={25}>
@@ -399,35 +410,36 @@ export default function Application() {
                       <Text fontWeight="bold">color</Text>
                       <Text fontWeight="bold">Photograph</Text>
                     </VStack>
-                  ) : (loading ? (<Box height={'100%'} p={'47px'}> <Spinner thickness='4px'
-                    speed='0.65s'
-                    emptyColor='gray.200'
-                    color='orange'
-                    size='xl' ></Spinner></Box>)
-                    :
-
-                    (
-                      <Avatar
-                        mr={2}
-                        size="2xl"
-                        cursor="pointer"
-                        src={pic}
-                        mb={5}
-                      />
-                    ))
-                  }
+                  ) : loading ? (
+                    <Box height={"100%"} p={"47px"}>
+                      {" "}
+                      <Spinner
+                        thickness="4px"
+                        speed="0.65s"
+                        emptyColor="gray.200"
+                        color="orange"
+                        size="xl"></Spinner>
+                    </Box>
+                  ) : (
+                    <Avatar
+                      mr={2}
+                      size="2xl"
+                      cursor="pointer"
+                      src={pic}
+                      mb={5}
+                    />
+                  )}
                   <label htmlFor="files" className="btn">
                     Browse
                   </label>
                   <Input
                     id="files"
                     accept="image/*"
-                    style={{ display: 'none' }}
+                    style={{ display: "none" }}
                     width={0}
                     type="file"
                     onChange={handleFileChange}
                   />
-
                 </Box>
               </HStack>
               <Button
@@ -437,12 +449,10 @@ export default function Application() {
                 w={["80%", "30%"]}
                 mt={2}
                 mb={2}
-                onClick={Submithandler}
-              >
+                onClick={Submithandler}>
                 Next
               </Button>
             </VStack>
-
           </Box>
         </Center>
         <Box>
