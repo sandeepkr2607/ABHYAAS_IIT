@@ -139,131 +139,233 @@ export default function Form() {
     window.scrollTo(0, 0);
   }, []);
   const navigate = useNavigate();
+
+  // const Submithandler = async () => {
+  //   const regex = /^[0-9]{10}$/;
+  //   const newErrors = {};
+  //   if (academic_session === "") {
+  //     newErrors.academic_session = "Please enter a session";
+  //   }
+  //   if (target_course === "") {
+  //     newErrors.target_course = "Please enter a course";
+  //   }
+  //   if (target_class === "") {
+  //     newErrors.target_class = "Please enter a class";
+  //   }
+  //   if (name.trim() === "") {
+  //     newErrors.name = "Name is required";
+  //   }
+  //   if (school.trim() === "") {
+  //     newErrors.school = "School is required";
+  //   }
+  //   if (regex.test(mobile) === false) {
+  //     newErrors.mobile = "Enter Valid Mobile Number";
+  //   }
+  //   if (isChecked === false) {
+  //     newErrors.Checkbox = "Please tick the checkbox";
+  //   }
+
+  //   setErrors(newErrors);
+
+  //   if (Object.keys(newErrors).length === 0) {
+  //     const response = await fetch(
+  //       "https://dev.abhyaasiit.com/api/v1/coaching_application",
+
+  //       {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //         body: JSON.stringify({
+  //           academicSession: academic_session,
+  //           studyMode: "Offline",
+  //           targetCourse: target_course,
+  //           targetClass: target_class,
+  //           studyCenter: "RaghunathPur,Motihari",
+  //           studentName: name,
+  //           school: school,
+  //           mobileNo: mobile,
+  //           agreeToReceiveSMS: isChecked,
+  //         }),
+  //       }
+  //     );
+  //     const data = await response.json();
+  //     console.log(data);
+
+  //     // console.log("this data", data.data[0].message, "payment", data.data[0].data[0].is_paymentDone)
+
+  //     // if verified -update
+  //     // if submitted && verified  -payment
+  //     // false -normal flow
+  //     if (
+  //       data.data[0].message == "Mobile number is Verified" ||
+  //       data.data[0].message == "Mobile number is already registered"
+  //     ) {
+  //       toast({
+  //         title: "Already Resgistered",
+  //         description: "This mobile number is already registered",
+  //         position: "top",
+  //         status: "success",
+  //         duration: 9000,
+  //         isClosable: true,
+  //       });
+  //       localStorage.clear();
+  //       localStorage.setItem("id", data.data[0].data[0]._id);
+  //       localStorage.setItem("name", data.data[0].data[0].studentName);
+  //       console.log(data.data[0].data[0]._id);
+
+  //       const n = data.data[0].data.length;
+  //       // verified otp check
+  //       if (
+  //         !data?.data[0]?.data[0]?.is_paymentDone &&
+  //         !data?.data[0]?.data[n - 1]?.is_submitted &&
+  //         data?.data[0]?.data[n - 1]?.isVerified
+  //       ) {
+  //         navigate("/personal");
+  //       }
+
+  //       // payment check
+  //       if (
+  //         !data?.data[0]?.data[0]?.is_paymentDone &&
+  //         data?.data[0]?.data[n - 1]?.is_submitted &&
+  //         data?.data[0]?.data[n - 1]?.isVerified
+  //       ) {
+  //         navigate("/new-payment");
+  //       }
+
+  //       return;
+  //     }
+  //     if (data.data[0].message === "Validation failed") {
+  //       toast({
+  //         title: "Validation failed",
+  //         description: "Error occurred from the server",
+  //         position: "top",
+  //         status: "error",
+  //         duration: 9000,
+  //         isClosable: true,
+  //       });
+  //       return;
+  //     }
+
+  //     const n = data.data[0].data.length;
+
+  //     localStorage.clear();
+  //     localStorage.setItem("id", data.data[0].data._id);
+  //     console.log(data.data[0].data._id);
+  //     console.log(data?.data[1]?.otpNumber);
+  //     if (data?.data[1]?.otpNumber) {
+  //       if (
+  //         !data?.data[0]?.data[0]?.is_paymentDone &&
+  //         !data?.data[0]?.data[n - 1]?.isVerified &&
+  //         !data?.data[0]?.data[n - 1]?.is_submitted
+  //       ) {
+  //         navigate("/otp");
+  //       }
+  //     }
+  //     // navigate("/personal");
+  //   }
+  // };
+
   const Submithandler = async () => {
     const regex = /^[0-9]{10}$/;
     const newErrors = {};
-    if (academic_session === "") {
+
+    // Validation
+    if (!academic_session)
       newErrors.academic_session = "Please enter a session";
-    }
-    if (target_course === "") {
-      newErrors.target_course = "Please enter a course";
-    }
-    if (target_class === "") {
-      newErrors.target_class = "Please enter a class";
-    }
-    if (name.trim() === "") {
-      newErrors.name = "Name is required";
-    }
-    if (school.trim() === "") {
-      newErrors.school = "School is required";
-    }
-    if (regex.test(mobile) === false) {
-      newErrors.mobile = "Enter Valid Mobile Number";
-    }
-    if (isChecked === false) {
-      newErrors.Checkbox = "Please tick the checkbox";
-    }
+    if (!target_course) newErrors.target_course = "Please enter a course";
+    if (!target_class) newErrors.target_class = "Please enter a class";
+    if (name.trim() === "") newErrors.name = "Name is required";
+    if (school.trim() === "") newErrors.school = "School is required";
+    if (!regex.test(mobile)) newErrors.mobile = "Enter a valid mobile number";
+    if (!isChecked) newErrors.Checkbox = "Please tick the checkbox";
 
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      const response = await fetch(
-        "https://dev.abhyaasiit.com/api/v1/coaching_application",
+      try {
+        const response = await fetch(
+          "https://dev.abhyaasiit.com/api/v1/coaching_application",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              academicSession: academic_session,
+              studyMode: "Offline",
+              targetCourse: target_course,
+              targetClass: target_class,
+              studyCenter: "RaghunathPur,Motihari",
+              studentName: name,
+              school: school,
+              mobileNo: mobile,
+              agreeToReceiveSMS: isChecked,
+            }),
+          }
+        );
 
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            academicSession: academic_session,
-            studyMode: "Offline",
-            targetCourse: target_course,
-            targetClass: target_class,
-            studyCenter: "RaghunathPur,Motihari",
-            studentName: name,
-            school: school,
-            mobileNo: mobile,
-            agreeToReceiveSMS: isChecked,
-          }),
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
         }
-      );
-      const data = await response.json();
-      console.log(data);
 
-      // console.log("this data", data.data[0].message, "payment", data.data[0].data[0].is_paymentDone)
+        const data = await response.json();
+        console.log(data);
 
-      // if verified -update
-      // if submitted && verified  -payment
-      // false -normal flow
-      if (
-        data.data[0].message == "Mobile number is Verified" ||
-        data.data[0].message == "Mobile number is already registered"
-      ) {
-        toast({
-          title: "Already Resgistered",
-          description: "This mobile number is already registered",
-          position: "top",
-          status: "success",
-          duration: 9000,
-          isClosable: true,
-        });
-        localStorage.clear();
-        localStorage.setItem("id", data.data[0].data[0]._id);
-        localStorage.setItem("name", data.data[0].data[0].studentName);
-        console.log(data.data[0].data[0]._id);
+        // Check response message and handle cases
+        if (
+          data?.data?.[0]?.message === "Mobile number is Verified" ||
+          data?.data?.[0]?.message === "Mobile number is already registered"
+        ) {
+          localStorage.setItem("id", data.data[0].data[0]._id);
+          localStorage.setItem("name", data.data[0].data[0].studentName);
+          const n = data.data[0].data.length;
 
+          if (!data.data[0].data[0].is_paymentDone) {
+            if (
+              !data.data[0].data[n - 1].is_submitted &&
+              data.data[0].data[n - 1].isVerified
+            ) {
+              navigate("/personal");
+            } else if (data.data[0].data[n - 1].is_submitted) {
+              navigate("/new-payment");
+            }
+          }
+          return;
+        }
+
+        if (data?.data?.[0]?.message === "Validation failed") {
+          toast({
+            title: "Validation Failed",
+            description: "Error occurred from the server",
+            status: "error",
+            duration: 9000,
+            isClosable: true,
+          });
+          return;
+        }
+
+        // Handle OTP Navigation
         const n = data.data[0].data.length;
-        // verified otp check
         if (
           !data?.data[0]?.data[0]?.is_paymentDone &&
-          !data?.data[0]?.data[n - 1]?.is_submitted &&
-          data?.data[0]?.data[n - 1]?.isVerified
+          !data?.data[0]?.data[n - 1]?.isVerified
         ) {
-          navigate("/personal");
+          navigate("/otp");
         }
-
-        // payment check
-        if (
-          !data?.data[0]?.data[0]?.is_paymentDone &&
-          data?.data[0]?.data[n - 1]?.is_submitted &&
-          data?.data[0]?.data[n - 1]?.isVerified
-        ) {
-          navigate("/new-payment");
-        }
-
-        return;
-      }
-      if (data.data[0].message === "Validation failed") {
+      } catch (error) {
+        console.error("Error:", error);
         toast({
-          title: "Validation failed",
-          description: "Error occurred from the server",
-          position: "top",
+          title: "Error",
+          description: "Something went wrong. Please try again.",
           status: "error",
           duration: 9000,
           isClosable: true,
         });
-        return;
       }
-
-      const n = data.data[0].data.length;
-
-      localStorage.clear();
-      localStorage.setItem("id", data.data[0].data._id);
-      console.log(data.data[0].data._id);
-      console.log(data.data[1].otpNumber);
-      if (data.data[1].otpNumber) {
-        if (
-          !data?.data[0]?.data[0]?.is_paymentDone &&
-          !data?.data[0]?.data[n - 1]?.isVerified &&
-          !data?.data[0]?.data[n - 1]?.is_submitted
-        ) {
-          navigate("/otp");
-        }
-      }
-      // navigate("/personal");
     }
   };
+
   const selectedCourses = (course) => {
     if (course === "") return "";
     if (course === "Brain Gym") {
@@ -345,7 +447,8 @@ export default function Form() {
               rounded={"lg"}
               mx={2}
               marginTop={3}
-              marginBottom={[0, 10]}>
+              marginBottom={[0, 10]}
+            >
               <Center>
                 <HStack spacing={2} my={8}>
                   <Box
@@ -353,7 +456,8 @@ export default function Form() {
                     rounded={"xl"}
                     width={{ base: 6, md: 6 }}
                     height={"auto"}
-                    textColor={"white"}>
+                    textColor={"white"}
+                  >
                     1
                   </Box>
                   <Progress
@@ -371,7 +475,8 @@ export default function Form() {
                     rounded={"xl"}
                     width={{ base: 6, md: 6 }}
                     height={"auto"}
-                    textColor={"gray.700"}>
+                    textColor={"gray.700"}
+                  >
                     2
                   </Box>
                   <Progress
@@ -389,7 +494,8 @@ export default function Form() {
                     rounded={"xl"}
                     width={{ base: 6, md: 6 }}
                     height={"auto"}
-                    textColor={"gray.700"}>
+                    textColor={"gray.700"}
+                  >
                     3
                   </Box>
                   <Progress
@@ -407,7 +513,8 @@ export default function Form() {
                     rounded={"xl"}
                     width={{ base: 6, md: 6 }}
                     height={"auto"}
-                    textColor={"gray.700"}>
+                    textColor={"gray.700"}
+                  >
                     4
                   </Box>
                 </HStack>
@@ -421,7 +528,8 @@ export default function Form() {
                     textStyle="h1"
                     fontWeight={"bold"}
                     fontSize={"lg"}
-                    m={3}>
+                    m={3}
+                  >
                     Course Details
                   </Heading>
                   <Text textStyle="p" fontFamily={""}>
@@ -435,7 +543,8 @@ export default function Form() {
                 alignItems={{ base: "center", lg: "flex-start" }}
                 justify={{ lg: "space-between" }}
                 gap={{ base: "62px" }}
-                p={{ base: 2, lg: 50 }}>
+                p={{ base: 2, lg: 50 }}
+              >
                 <FormControl isInvalid={errors.academic_session} height="2rem">
                   <FormLabel>Academic Session</FormLabel>
                   <Select
@@ -443,7 +552,8 @@ export default function Form() {
                     rounded={"full"}
                     boxShadow={"base"}
                     width={"100%"}
-                    onChange={sessionChangeHandler}>
+                    onChange={sessionChangeHandler}
+                  >
                     <option value="">Academic Session</option>
                     <option value="2023-24">2023-2024</option>
                     <option value="2024-25">2024-2025</option>
@@ -465,7 +575,8 @@ export default function Form() {
                     rounded={"full"}
                     boxShadow={"base"}
                     width={"100%"}
-                    disabled></Select>
+                    disabled
+                  ></Select>
                 </FormControl>
                 <FormControl isInvalid={errors.target_course} height="2rem">
                   <FormLabel>Target Course</FormLabel>
@@ -476,7 +587,8 @@ export default function Form() {
                     // width={"200px"}
                     width={"100%"}
                     value={target_course}
-                    onChange={CourseChangeHandler}>
+                    onChange={CourseChangeHandler}
+                  >
                     {academic_session === "" ? (
                       <option value=""> Select Course </option>
                     ) : academic_session === "2023-24" ? (
@@ -505,7 +617,8 @@ export default function Form() {
                     boxShadow={"base"}
                     width={"100%"}
                     onChange={classChangeHandler}
-                    value={target_class}>
+                    value={target_class}
+                  >
                     {/* {academic_session===''} */}
                     <option value="">Select Class</option>
                     {selectedCourses(target_course)}
@@ -524,7 +637,8 @@ export default function Form() {
                 gap={{ base: "62px" }}
                 p={{ base: 2, lg: 50 }}
                 flexGrow={3}
-                mt={{ base: "50px", lg: 6 }}>
+                mt={{ base: "50px", lg: 6 }}
+              >
                 <FormControl height="2rem">
                   <FormLabel>Study Center</FormLabel>
                   <Select rounded={"full"} boxShadow={"base"} width={"100%"}>
@@ -586,7 +700,8 @@ export default function Form() {
                 alignItems={{ base: "center", lg: "flex-start" }}
                 justify={{ lg: "space-between" }}
                 gap={{ base: "15px" }}
-                p={{ base: 1, lg: 50 }}>
+                p={{ base: 1, lg: 50 }}
+              >
                 <Box>
                   <Checkbox
                     colorScheme="orange"
@@ -595,7 +710,8 @@ export default function Form() {
                     marginLeft={0}
                     width={["100%", "100%", "100%", "150%"]}
                     onChange={handleCheckboxChange}
-                    marginTop={{ base: "80px", lg: "10px" }}>
+                    marginTop={{ base: "80px", lg: "10px" }}
+                  >
                     I Agree to receive SMS/Call from AbhyaasIIT
                   </Checkbox>
                   <Flex direction={"row"} alignContent={"flex-start"}>
@@ -615,7 +731,8 @@ export default function Form() {
                   width={["80%", "30%"]}
                   marginTop={0}
                   marginBottom={0}
-                  onClick={Submithandler}>
+                  onClick={Submithandler}
+                >
                   next
                 </Button>
               </Flex>
