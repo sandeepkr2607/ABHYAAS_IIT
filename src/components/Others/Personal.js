@@ -244,23 +244,25 @@ export default function Personal() {
         navigate("/form");
         return;
       }
-      const response = await fetch(
-        `https://dev.abhyaasiit.com/api/v1/getCoachingApplicationById/${id}`
-      );
-      const data = await response.json();
-      console.log(data);
-      if (data.success === false) {
-        navigate("/form");
-        return;
-      }
-      //backend
-      if (data.data.isVerified === false) {
-        navigate("/otp");
-        return;
-      }
+      try {
+        const response = await fetch(
+          `https://dev.abhyaasiit.com/api/v1/getCoachingApplicationById/${id}`
+        );
+        const data = await response.json();
+        console.log(data);
 
-      setName(data.data.studentName);
-      setMobileS(data.data.mobileNo);
+        if (data.success === false) {
+          navigate("/form");
+          return;
+        }
+
+        // Remove the isVerified check
+        setName(data.data.studentName);
+        setMobileS(data.data.mobileNo);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        navigate("/form");
+      }
     }
 
     fetchData();
@@ -367,7 +369,8 @@ export default function Personal() {
             boxShadow={"base"}
             width={["100%", "80%"]}
             rounded={"lg"}
-            m={"3"}>
+            m={"3"}
+          >
             <Center>
               <HStack spacing={2} my={8}>
                 <Box
@@ -375,7 +378,8 @@ export default function Personal() {
                   rounded={"xl"}
                   width={{ base: 6, md: 6 }}
                   height={"auto"}
-                  textColor={"white"}>
+                  textColor={"white"}
+                >
                   1
                 </Box>
                 <Progress
@@ -391,7 +395,8 @@ export default function Personal() {
                   rounded={"xl"}
                   width={{ base: 6, md: 6 }}
                   height={"auto"}
-                  textColor={"white"}>
+                  textColor={"white"}
+                >
                   2
                 </Box>
                 <Progress
@@ -407,7 +412,8 @@ export default function Personal() {
                   rounded={"xl"}
                   width={{ base: 6, md: 6 }}
                   height={"auto"}
-                  textColor={"gray.700"}>
+                  textColor={"gray.700"}
+                >
                   3
                 </Box>
                 <Progress
@@ -423,7 +429,8 @@ export default function Personal() {
                   rounded={"xl"}
                   width={{ base: 6, md: 6 }}
                   height={"auto"}
-                  textColor={"gray.700"}>
+                  textColor={"gray.700"}
+                >
                   4
                 </Box>
               </HStack>
@@ -436,7 +443,8 @@ export default function Personal() {
                   textStyle="h1"
                   fontWeight={"bold"}
                   fontSize={"lg"}
-                  m={3}>
+                  m={3}
+                >
                   Personal Details
                 </Heading>
                 <Text textStyle="p" fontFamily={""}>
@@ -450,7 +458,8 @@ export default function Personal() {
               alignItems={{ base: "center", lg: "flex-start" }}
               justify={{ lg: "space-between" }}
               gap={{ base: "62px" }}
-              p={{ base: 1, lg: 50 }}>
+              p={{ base: 1, lg: 50 }}
+            >
               <FormControl
                 isInvalid={errors.name}
                 height="2rem"
@@ -514,14 +523,16 @@ export default function Personal() {
               <FormControl
                 height="2rem"
                 //  marginBottom={20}
-                isInvalid={errors.gender}>
+                isInvalid={errors.gender}
+              >
                 <FormLabel>Gender</FormLabel>
                 <Select
                   color={"gray"}
                   rounded={"full"}
                   boxShadow={"base"}
                   width={"100%"}
-                  onChange={genderChangeHandler}>
+                  onChange={genderChangeHandler}
+                >
                   <option value="">Gender</option>
                   <option value="male">Male</option>
                   <option value="female">Female</option>
@@ -543,7 +554,8 @@ export default function Personal() {
               gap={{ base: "62px" }}
               p={{ base: 1, lg: 50 }}
               // flexGrow={3}
-              mt={{ base: "60px", lg: 6 }}>
+              mt={{ base: "60px", lg: 6 }}
+            >
               <FormControl
                 isInvalid={errors.category}
                 height="2rem"
@@ -554,7 +566,8 @@ export default function Personal() {
                   color={"gray"}
                   rounded={"full"}
                   boxShadow={"base"}
-                  onChange={categoryChangeHandler}>
+                  onChange={categoryChangeHandler}
+                >
                   <option value="">Category</option>
                   <option value="general">General</option>
                   <option value="general-ews">General-Ews</option>
@@ -627,7 +640,8 @@ export default function Personal() {
               gap={{ base: "62px" }}
               p={{ base: 1, lg: 50 }}
               flexGrow={3}
-              mt={{ base: "50px", lg: 6 }}>
+              mt={{ base: "50px", lg: 6 }}
+            >
               <FormControl
                 width={["100%", "100%", "100%", "180%"]}
                 isInvalid={errors.address}
@@ -674,7 +688,8 @@ export default function Personal() {
               gap={{ base: "62px" }}
               p={{ base: 1, lg: 50 }}
               flexGrow={3}
-              mt={{ base: "50px", lg: 6 }}>
+              mt={{ base: "50px", lg: 6 }}
+            >
               <FormControl
                 isInvalid={errors.pincode}
                 height="2rem"
@@ -756,18 +771,21 @@ export default function Personal() {
               gap={{ base: "62px" }}
               p={{ base: 1, lg: 50 }}
               flexGrow={3}
-              mt={{ base: "50px", lg: 6 }}>
+              mt={{ base: "50px", lg: 6 }}
+            >
               <FormControl
                 width={["100%", "100%", "100%", "180%"]}
                 isInvalid={errors.about}
                 height="2rem"
-                marginBottom={"80px"}>
+                marginBottom={"80px"}
+              >
                 <FormLabel>How did you came to know about AbhyaasIIT</FormLabel>
                 <Select
                   color={"gray"}
                   rounded={"full"}
                   boxShadow={"base"}
-                  onChange={aboutChangeHandler}>
+                  onChange={aboutChangeHandler}
+                >
                   <option value="">How do you know about AbhyaasIIT</option>
                   <option value="From a friend">From a friend</option>
                   <option value="Form Social Media Add">
@@ -789,7 +807,8 @@ export default function Personal() {
               alignItems={{ base: "center", lg: "flex-start" }}
               justify={{ lg: "space-between" }}
               gap={{ base: "15px" }}
-              p={{ base: 1, lg: 50 }}>
+              p={{ base: 1, lg: 50 }}
+            >
               <Checkbox
                 colorScheme="orange"
                 defaultChecked
@@ -797,7 +816,8 @@ export default function Personal() {
                 width={["100%", "100%", "100%", "150%"]}
                 onChange={handleCheckboxChange}
                 // marginTop={{base:'10px'}}
-                disabled>
+                disabled
+              >
                 I Agree to receive SMS/Call from AbhyaasIIT
               </Checkbox>
               <Button
@@ -807,7 +827,8 @@ export default function Personal() {
                 width={"80%"}
                 marginTop={0}
                 marginBottom={0}
-                onClick={Submithandler}>
+                onClick={Submithandler}
+              >
                 next
               </Button>
             </Flex>

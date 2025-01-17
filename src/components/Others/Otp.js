@@ -30,6 +30,7 @@ export default function Otp() {
         `https://dev.abhyaasiit.com/api/v1/getCoachingApplicationById/${id}`
       );
       const data = await response.json();
+      console.log(data);
       if (data.success === false) {
         navigate("/form");
         return;
@@ -105,7 +106,8 @@ export default function Otp() {
             rounded={"lg"}
             p={[5, 10]}
             m={[3, 10]}
-            boxShadow={"base"}>
+            boxShadow={"base"}
+          >
             <Center>
               <Box m={3} marginTop={8}>
                 <Heading fontWeight={"bold"} fontSize={["xl", "2xl"]} m={3}>
@@ -136,7 +138,8 @@ export default function Otp() {
               width={["100%", "60%", "40%"]} // Adjust button width for different screen sizes
               marginTop={"4%"}
               marginBottom={"2%"}
-              onClick={Submithandler}>
+              onClick={Submithandler}
+            >
               Next
             </Button>
             <Center>

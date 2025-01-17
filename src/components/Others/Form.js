@@ -52,19 +52,19 @@ export default function Form() {
     name: "",
     mobile: "",
     school: "",
-    Checkbox: "",
+    // Checkbox: "",
   });
   const [school, setSchool] = useState("");
   const toast = useToast();
-  const [isChecked, setIsChecked] = useState(false);
+  // const [isChecked, setIsChecked] = useState(false);
 
-  const handleCheckboxChange = (event) => {
-    setIsChecked(event.target.checked);
-    setErrors({
-      ...errors,
-      Checkbox: "",
-    });
-  };
+  // const handleCheckboxChange = (event) => {
+  //   setIsChecked(event.target.checked);
+  //   setErrors({
+  //     ...errors,
+  //     Checkbox: "",
+  //   });
+  // };
 
   const sessionChangeHandler = (event) => {
     setAcademic_session(event.target.value);
@@ -104,7 +104,7 @@ export default function Form() {
   };
 
   const mobileChangeHandler = (event) => {
-    const regex = /^[0-9]{10}$/;
+    const regex = /^[6-9][0-9]{9}$/;
     setMobile(event.target.value);
     if (regex.test(event.target.value) === false) {
       setErrors({
@@ -267,7 +267,8 @@ export default function Form() {
   // };
 
   const Submithandler = async () => {
-    const regex = /^[0-9]{10}$/;
+    const regex = /^[6-9][0-9]{9}$/;
+
     const newErrors = {};
 
     // Validation
@@ -278,7 +279,6 @@ export default function Form() {
     if (name.trim() === "") newErrors.name = "Name is required";
     if (school.trim() === "") newErrors.school = "School is required";
     if (!regex.test(mobile)) newErrors.mobile = "Enter a valid mobile number";
-    if (!isChecked) newErrors.Checkbox = "Please tick the checkbox";
 
     setErrors(newErrors);
 
@@ -300,7 +300,6 @@ export default function Form() {
               studentName: name,
               school: school,
               mobileNo: mobile,
-              agreeToReceiveSMS: isChecked,
             }),
           }
         );
@@ -310,49 +309,18 @@ export default function Form() {
         }
 
         const data = await response.json();
-        console.log(data);
+        console.log("Form submitted successfully:", data);
 
-        // Check response message and handle cases
-        if (
-          data?.data?.[0]?.message === "Mobile number is Verified" ||
-          data?.data?.[0]?.message === "Mobile number is already registered"
-        ) {
-          localStorage.setItem("id", data.data[0].data[0]._id);
-          localStorage.setItem("name", data.data[0].data[0].studentName);
-          const n = data.data[0].data.length;
-
-          if (!data.data[0].data[0].is_paymentDone) {
-            if (
-              !data.data[0].data[n - 1].is_submitted &&
-              data.data[0].data[n - 1].isVerified
-            ) {
-              navigate("/personal");
-            } else if (data.data[0].data[n - 1].is_submitted) {
-              navigate("/new-payment");
-            }
-          }
-          return;
+        // Extract and store the ID in localStorage
+        const id = data?.data?.[0]?.data?._id;
+        if (id) {
+          localStorage.setItem("id", id);
+          console.log("ID stored in localStorage:", id);
         }
 
-        if (data?.data?.[0]?.message === "Validation failed") {
-          toast({
-            title: "Validation Failed",
-            description: "Error occurred from the server",
-            status: "error",
-            duration: 9000,
-            isClosable: true,
-          });
-          return;
-        }
-
-        // Handle OTP Navigation
-        const n = data.data[0].data.length;
-        if (
-          !data?.data[0]?.data[0]?.is_paymentDone &&
-          !data?.data[0]?.data[n - 1]?.isVerified
-        ) {
-          navigate("/otp");
-        }
+        // Redirect directly to the Personal page
+        console.log("Redirecting to Personal page");
+        navigate("/personal");
       } catch (error) {
         console.error("Error:", error);
         toast({
@@ -702,7 +670,7 @@ export default function Form() {
                 gap={{ base: "15px" }}
                 p={{ base: 1, lg: 50 }}
               >
-                <Box>
+                {/* <Box>
                   <Checkbox
                     colorScheme="orange"
                     isInvalid={errors.Checkbox}
@@ -723,7 +691,7 @@ export default function Form() {
                       ""
                     )}
                   </Flex>
-                </Box>
+                </Box> */}
                 <Button
                   colorScheme="orange"
                   size="lg"
