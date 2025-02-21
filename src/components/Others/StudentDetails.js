@@ -1,5 +1,5 @@
 // import React from 'react'
-import { useLocation } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
 
 // export default function StudentDetails(props) {
 //     const location=useLocation();
@@ -20,19 +20,19 @@ import {
   VStack,
   Button,
   Divider,
-} from "@chakra-ui/react";
-import { UnorderedList, ListItem } from "@chakra-ui/react";
+} from '@chakra-ui/react';
+import { UnorderedList, ListItem } from '@chakra-ui/react';
 // import { Input } from "@chakra-ui/react";
-import { Heading, Flex } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
-import { Avatar } from "@chakra-ui/react";
-import logo from "../../assets/logo.png";
+import { Heading, Flex } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
+import { Avatar } from '@chakra-ui/react';
+import logo from '../../assets/logo.png';
 
-import { useRef } from "react";
+import { useRef } from 'react';
 
-import { ChakraProvider } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
-import { useReactToPrint } from "react-to-print";
+import { ChakraProvider } from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
+import { useReactToPrint } from 'react-to-print';
 import {
   Table,
   Thead,
@@ -42,8 +42,8 @@ import {
   Td,
   // TableCaption,
   TableContainer,
-} from "@chakra-ui/react";
-import { Image, Stack } from "@chakra-ui/react";
+} from '@chakra-ui/react';
+import { Image, Stack } from '@chakra-ui/react';
 // import Header from "../header/Header";
 
 export default function StudentDetails(props) {
@@ -53,20 +53,20 @@ export default function StudentDetails(props) {
   const PDF = useRef();
 
   const [info, setInfo] = useState({
-    applicationNo: "",
-    targetCourse: "",
-    studentName: "",
-    fatherName: "",
-    category: "",
-    city: "",
-    school: "",
-    gender: "",
-    district: "",
-    state: "",
-    pinCode: "",
+    applicationNo: '',
+    targetCourse: '',
+    studentName: '',
+    fatherName: '',
+    category: '',
+    city: '',
+    school: '',
+    gender: '',
+    district: '',
+    state: '',
+    pinCode: '',
   });
 
-  const [pic, setPic] = useState("");
+  const [pic, setPic] = useState('');
 
   useEffect(() => {
     async function fetchData() {
@@ -83,15 +83,15 @@ export default function StudentDetails(props) {
       //   setPic(picture)
       // }
       if (!state) {
-        navigate("/errorregabhyaasIIT2023");
+        navigate('/errorregabhyaasIIT2023');
         return;
       }
       const response = await fetch(
-        `https://dev.abhyaasiit.com/api/v1/getCoachingApplicationById/${state}`
+        `https://api.abhyaasiit.com/api/v1/getCoachingApplicationById/${state}`
       );
       const data = await response.json();
       if (data.success === false) {
-        navigate("/errorregabhyaasIIT2023");
+        navigate('/errorregabhyaasIIT2023');
         return;
       }
       // if (data.data.isVerified === false) {
@@ -125,12 +125,12 @@ export default function StudentDetails(props) {
   }, []);
   const generatePDF = useReactToPrint({
     content: () => PDF.current,
-    documentTitle: "User",
-    onAfterPrint: () => alert("Data saved in PDF"),
+    documentTitle: 'User',
+    onAfterPrint: () => alert('Data saved in PDF'),
   });
 
   const homepagehandler = () => {
-    navigate("/login");
+    navigate('/login');
   };
 
   return (
@@ -140,77 +140,81 @@ export default function StudentDetails(props) {
           <VStack>
             <Box
               p={4}
-              borderRadius="md"
-              boxShadow="md"
-              textAlign="center"
+              borderRadius='md'
+              boxShadow='md'
+              textAlign='center'
               ref={PDF}
-              maxW="1000px" // Set a maximum width for the box
-              width={["98%", "100%", "100%", "90%"]}
-              mx="auto">
-              <Flex align="center" justify="center">
-                <Image src={logo} boxSize={"65px"} />
-                <Heading fontSize="xl" mb={2} style={{ marginTop: "22px" }}>
+              maxW='1000px' // Set a maximum width for the box
+              width={['98%', '100%', '100%', '90%']}
+              mx='auto'
+            >
+              <Flex align='center' justify='center'>
+                <Image src={logo} boxSize={'65px'} />
+                <Heading fontSize='xl' mb={2} style={{ marginTop: '22px' }}>
                   Application Form {info.academicSession}
                 </Heading>
               </Flex>
               <Divider
-                orientation="horizontal"
-                bgColor={"black"}
-                height={"1px"}
+                orientation='horizontal'
+                bgColor={'black'}
+                height={'1px'}
               />
-              <Flex justify="space-between">
+              <Flex justify='space-between'>
                 <Box
                   p={4}
-                  borderRadius="md"
-                  textAlign="center"
-                  maxWidth="1000px"
-                  width="90%"
-                  mx="auto"
-                  flexDirection={{ base: "column", lg: "row" }} // Adjust layout based on screen size
-                  alignItems={{ base: "center", lg: "flex-start" }}>
+                  borderRadius='md'
+                  textAlign='center'
+                  maxWidth='1000px'
+                  width='90%'
+                  mx='auto'
+                  flexDirection={{ base: 'column', lg: 'row' }} // Adjust layout based on screen size
+                  alignItems={{ base: 'center', lg: 'flex-start' }}
+                >
                   <Flex
                     flexDirection={{
-                      base: "column",
-                      sm: "row",
-                      md: "row",
-                      lg: "row",
+                      base: 'column',
+                      sm: 'row',
+                      md: 'row',
+                      lg: 'row',
                     }} // Adjust layout based on screen size
-                    align={{ base: "center", lg: "flex-start" }} // Align items to top on large screens
+                    align={{ base: 'center', lg: 'flex-start' }} // Align items to top on large screens
                   >
                     <Box
-                      width={["180px", "250px"]}
-                      height={["180px", "160px"]}
-                      margin="0 auto"
-                      overflow="hidden"
-                      border="2px solid white"
+                      width={['180px', '250px']}
+                      height={['180px', '160px']}
+                      margin='0 auto'
+                      overflow='hidden'
+                      border='2px solid white'
                       // objectFit={"contain"}
                       marginTop={{
-                        base: "0",
-                        sm: "-130px",
-                        md: "-130px",
-                        lg: "0",
+                        base: '0',
+                        sm: '-130px',
+                        md: '-130px',
+                        lg: '0',
                       }} // Adjust top margin on large screens
-                      marginLeft={{ base: "0", sm: "0px", md: "0px", lg: "0" }}
+                      marginLeft={{ base: '0', sm: '0px', md: '0px', lg: '0' }}
                       marginRight={{
-                        base: "0",
-                        sm: "40px",
-                        md: "50px",
-                        lg: "50px",
-                      }}>
+                        base: '0',
+                        sm: '40px',
+                        md: '50px',
+                        lg: '50px',
+                      }}
+                    >
                       <Image
                         // size="full"
                         src={pic}
-                        boxSize={"150px"}
-                        borderRadius="none"
+                        boxSize={'150px'}
+                        borderRadius='none'
                       />
                     </Box>
                     <Box
                       pt={0}
-                      flex={{ base: "none", lg: "1" }}
-                      marginLeft={{ base: "40px" }}>
-                      <TableContainer style={{ marginTop: "0px" }}>
-                        <Table variant={"simple"} style={{ marginTop: "0" }}>
-                          <Tbody style={{ marginTop: "0" }}>
+                      flex={{ base: 'none', lg: '1' }}
+                      marginLeft={{ base: '40px' }}
+                    >
+                      <TableContainer style={{ marginTop: '0px' }}>
+                        <Table variant={'simple'} style={{ marginTop: '0' }}>
+                          <Tbody style={{ marginTop: '0' }}>
                             <Tr>
                               <Td p={1}>Application No.</Td>
                               <Td p={1}>{info.applicationNo}</Td>
@@ -246,7 +250,7 @@ export default function StudentDetails(props) {
                             </Tr>
                             <Tr>
                               <Td p={1}>Study Center</Td>
-                              <Td p={1}>Raghunathpur,Motihari</Td>
+                              <Td p={1}>Raghunathpur & Raja Bazar,Motihari</Td>
                             </Tr>
                             <Tr>
                               <Td p={1}>Mobile No.</Td>
@@ -272,12 +276,12 @@ export default function StudentDetails(props) {
                 </Box>
               </Flex>
               <Box mt={5} pl={[20, 4]} pr={[16, 20]}>
-                <Text fontWeight="bold" textAlign="start">
+                <Text fontWeight='bold' textAlign='start'>
                   Important Instructions:-
                 </Text>
-                <UnorderedList ml={["0", "20px"]} spacing={2}>
+                <UnorderedList ml={['0', '20px']} spacing={2}>
                   <ListItem>
-                    <Text textAlign="start" width={["100%", "600px"]}>
+                    <Text textAlign='start' width={['100%', '600px']}>
                       Limited seats only. Registration for these classes shall
                       close once a batch is full. Any Registration request
                       received after that shall be liable to be Cancelled even
@@ -285,14 +289,14 @@ export default function StudentDetails(props) {
                     </Text>
                   </ListItem>
                   <ListItem>
-                    <Text textAlign="start" width={["100%", "600px"]}>
+                    <Text textAlign='start' width={['100%', '600px']}>
                       Students are advised to make a confirmatory call to the
                       Institute after Registration for the crash course.
                     </Text>
                   </ListItem>
                   {/* ... Add more list items as needed */}
                   <ListItem>
-                    <Text textAlign="start" width={["100%", "600px"]}>
+                    <Text textAlign='start' width={['100%', '600px']}>
                       Students who plan to join AbhyaasIIT Institute in the
                       upcoming session are advised to take the Crash Course as
                       it will help improve their performance in Admission
@@ -300,21 +304,21 @@ export default function StudentDetails(props) {
                     </Text>
                   </ListItem>
                   <ListItem>
-                    <Text textAlign="start" width={["100%", "600px"]}>
+                    <Text textAlign='start' width={['100%', '600px']}>
                       This course shall cover Mathematics and Science upto
                       Olympiad level where a student will be enabled to compete
                       at National and International stage
                     </Text>
                   </ListItem>
                   <ListItem>
-                    <Text textAlign="start" width={["100%", "600px"]}>
+                    <Text textAlign='start' width={['100%', '600px']}>
                       The students will go through a highly intense competitive
                       environment with Daily Practice Papers(DPPs) and weekly
                       Output Tests(OTs).
                     </Text>
                   </ListItem>
                   <ListItem>
-                    <Text textAlign="start" width={["100%", "600px"]}>
+                    <Text textAlign='start' width={['100%', '600px']}>
                       Each student will be assigned to a personal IITian Mentor
                       who will conduct bi-Monthly review of the student and
                       conduct meeting with Parents every month in order to
@@ -324,8 +328,8 @@ export default function StudentDetails(props) {
                   </ListItem>
                 </UnorderedList>
               </Box>
-              <Flex justify="center" mt={4} px={10} py={0}>
-                <Text fontSize="sm" fontStyle="italic">
+              <Flex justify='center' mt={4} px={10} py={0}>
+                <Text fontSize='sm' fontStyle='italic'>
                   This admit card is valid for the specified exam only.
                   Submitted at {info.createdAt}
                 </Text>

@@ -1,38 +1,38 @@
-import { HStack, Text, Heading } from "@chakra-ui/react";
-import { PinInput, PinInputField } from "@chakra-ui/react";
-import { Box, Button } from "@chakra-ui/react";
+import { HStack, Text, Heading } from '@chakra-ui/react';
+import { PinInput, PinInputField } from '@chakra-ui/react';
+import { Box, Button } from '@chakra-ui/react';
 
-import { Center } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
-import Header from "../header/Header.jsx";
-import Footer from "../footer/Footer.jsx";
-import { ChakraProvider } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
-import { useToast } from "@chakra-ui/react";
+import { Center } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
+import Header from '../header/Header.jsx';
+import Footer from '../footer/Footer.jsx';
+import { ChakraProvider } from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
+import { useToast } from '@chakra-ui/react';
 
 export default function Otp() {
   const toast = useToast();
   const navigate = useNavigate();
 
-  const [pin, setPin] = useState("");
-  const [mobile, setMobile] = useState("");
+  const [pin, setPin] = useState('');
+  const [mobile, setMobile] = useState('');
 
   useEffect(() => {
     async function fetchData() {
       window.scrollTo(0, 0);
-      const id = localStorage.getItem("id");
+      const id = localStorage.getItem('id');
       if (!id) {
-        navigate("/form");
+        navigate('/form');
         return;
       }
 
       const response = await fetch(
-        `https://dev.abhyaasiit.com/api/v1/getCoachingApplicationById/${id}`
+        `https://api.abhyaasiit.com/api/v1/getCoachingApplicationById/${id}`
       );
       const data = await response.json();
       console.log(data);
       if (data.success === false) {
-        navigate("/form");
+        navigate('/form');
         return;
       }
 
@@ -46,14 +46,14 @@ export default function Otp() {
   };
 
   const onSendAgain = async () => {
-    const id = localStorage.getItem("id");
+    const id = localStorage.getItem('id');
     // const phone=localStorage.getItem("mobile")
     const otpResponse = await fetch(
-      `https://dev.abhyaasiit.com/api/v1/send_otp/${id}`,
+      `https://api.abhyaasiit.com/api/v1/send_otp/${id}`,
       {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({ mobileNo: mobile }),
       }
@@ -65,13 +65,13 @@ export default function Otp() {
   const Submithandler = async () => {
     // console.log(pin)
     // const phone=localStorage.getItem("mobile")
-    const id = localStorage.getItem("id");
+    const id = localStorage.getItem('id');
     const Response = await fetch(
-      `https://dev.abhyaasiit.com/api/v1/verify_otp/${id}`,
+      `https://api.abhyaasiit.com/api/v1/verify_otp/${id}`,
       {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({ mobileNo: mobile, otpNumber: pin }),
       }
@@ -81,17 +81,17 @@ export default function Otp() {
 
     if (data.success === false) {
       toast({
-        title: "Otp not veified",
-        description: "Do send Again",
-        position: "top",
-        status: "error",
+        title: 'Otp not veified',
+        description: 'Do send Again',
+        position: 'top',
+        status: 'error',
         duration: 9000,
         isClosable: true,
       });
       return;
     }
 
-    navigate("/personal");
+    navigate('/personal');
   };
   return (
     <>
@@ -102,20 +102,20 @@ export default function Otp() {
 
         <Center>
           <Box
-            width={["100%", "80%", "50%"]} // Adjust width for different screen sizes
-            rounded={"lg"}
+            width={['100%', '80%', '50%']} // Adjust width for different screen sizes
+            rounded={'lg'}
             p={[5, 10]}
             m={[3, 10]}
-            boxShadow={"base"}
+            boxShadow={'base'}
           >
             <Center>
               <Box m={3} marginTop={8}>
-                <Heading fontWeight={"bold"} fontSize={["xl", "2xl"]} m={3}>
+                <Heading fontWeight={'bold'} fontSize={['xl', '2xl']} m={3}>
                   Enter Your OTP
                 </Heading>
                 <HStack m={3}>
                   <Text>OTP was sent to</Text>
-                  <Text color={"orange"} fontWeight={"bold"}>
+                  <Text color={'orange'} fontWeight={'bold'}>
                     {mobile}
                   </Text>
                 </HStack>
@@ -126,18 +126,18 @@ export default function Otp() {
               <HStack p={3}>
                 <PinInput value={pin} onChange={handlePinChange}>
                   {[1, 2, 3, 4, 5, 6].map((index) => (
-                    <PinInputField key={index} boxShadow={"base"} />
+                    <PinInputField key={index} boxShadow={'base'} />
                   ))}
                 </PinInput>
               </HStack>
             </Center>
             <Button
-              colorScheme="orange"
-              size="lg"
-              rounded={"full"}
-              width={["100%", "60%", "40%"]} // Adjust button width for different screen sizes
-              marginTop={"4%"}
-              marginBottom={"2%"}
+              colorScheme='orange'
+              size='lg'
+              rounded={'full'}
+              width={['100%', '60%', '40%']} // Adjust button width for different screen sizes
+              marginTop={'4%'}
+              marginBottom={'2%'}
               onClick={Submithandler}
             >
               Next
@@ -146,10 +146,10 @@ export default function Otp() {
               <HStack>
                 <Text>OTP Not Received?</Text>
                 <Button
-                  color={"orange"}
-                  bgColor={"white"}
+                  color={'orange'}
+                  bgColor={'white'}
                   onClick={onSendAgain}
-                  fontSize={["sm", "md"]} // Adjust font size for different screen sizes
+                  fontSize={['sm', 'md']} // Adjust font size for different screen sizes
                 >
                   Send Again
                 </Button>
