@@ -1,6 +1,6 @@
 import React from 'react';
 import css from './AboutUs.module.css';
-import about_img from '../../assets/about_img.png';
+import about_img from '../../assets/about_img.jpg';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 const AboutUs = () => {

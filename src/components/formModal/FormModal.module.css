@@ -255,6 +255,7 @@
   .model_img {
     width: 390px;
     height: 150px;
+    border-radius: 12px;
   }
 
   .heading_one {
