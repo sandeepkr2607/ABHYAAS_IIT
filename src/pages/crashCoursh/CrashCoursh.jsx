@@ -1,17 +1,17 @@
-import React, { useEffect } from "react";
-import css from "./CrashCoursh.module.css";
-import { useNavigate } from "react-router-dom";
-import Header from "../../components/header/Header";
-import Note from "../../components/note/Note";
-import Footer from "../../components/footer/Footer";
-import crashbg from "../../assets/crashbg.png";
-import crashimg from "../../assets/crashimg.png";
+import React, { useEffect } from 'react';
+import css from './CrashCoursh.module.css';
+import { useNavigate } from 'react-router-dom';
+import Header from '../../components/header/Header';
+import Note from '../../components/note/Note';
+import Footer from '../../components/footer/Footer';
+import crashbg from '../../assets/crashbg.png';
+import crashimg from '../../assets/crashimg.png';
 
 const CrashCoursh = () => {
   const navigate = useNavigate();
 
   const onclickHandler = () => {
-    navigate("/form");
+    navigate('/form');
   };
 
   useEffect(() => {
@@ -26,11 +26,13 @@ const CrashCoursh = () => {
           className={css.bg}
           style={{
             backgroundImage: `url(${crashbg})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}>
-          <h2 className={css.courseName}>Free Crash Course </h2>
-          <p className={css.classes}>Class: 9th </p>
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        >
+          <h2 className={css.courseName}>Admission Entrance Test </h2>
+          {/* <h2 className={css.courseName}>Free Crash Course </h2>
+          <p className={css.classes}>Class: 9th </p> */}
         </div>
         <div className={css.top_btn}>
           <button className={css.btn} onClick={onclickHandler}>
@@ -39,7 +41,7 @@ const CrashCoursh = () => {
         </div>
       </div>
       <div className={css.middle}>
-        <img src={crashimg} alt="" className={css.img} />
+        <img src={crashimg} alt='' className={css.img} />
         <p className={css.text}>
           Our Maths+ Programme is a special initiative for the Junior
           Mathematicians among us who are highly enthusiastic about Maths and

@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
-import css from "./Footer.module.css";
-import yt from "../../assets/yt.png";
-import fb from "../../assets/fb.png";
-import twitter from "../../assets/twitter.png";
-import linkdin from "../../assets/linkdin.png";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect } from 'react';
+import css from './Footer.module.css';
+import yt from '../../assets/yt.png';
+import fb from '../../assets/fb.png';
+import twitter from '../../assets/twitter.png';
+import linkdin from '../../assets/linkdin.png';
+import { useNavigate } from 'react-router-dom';
 
 const Footer = () => {
   useEffect(() => {
@@ -14,42 +14,50 @@ const Footer = () => {
   const navigate = useNavigate();
 
   const GoToPrivecyPolicy = () => {
-    navigate("/privacy-policy");
+    navigate('/privacy-policy');
+  };
+
+  const GoToReturnPolicy = () => {
+    navigate('/return-policy');
   };
 
   return (
-    <div className={css.footer} id="footer">
+    <div className={css.footer} id='footer'>
       <div className={css.top}>
         <div className={css.left}>
           <p className={css.Follow_us}>Follow us:</p>
           <div className={css.follow_links}>
             <a
               className={css.img_link}
-              target="_blank"
-              rel="noreferrer"
-              href="https://instagram.com/abhyaasiit/">
-              <img src={yt} alt="" className={css.link} />
+              target='_blank'
+              rel='noreferrer'
+              href='https://instagram.com/abhyaasiit/'
+            >
+              <img src={yt} alt='' className={css.link} />
             </a>
             <a
               className={css.img_link}
-              target="_blank"
-              rel="noreferrer"
-              href="https://www.facebook.com/profile.php?id=100095737801437&mibextid=ZbWKwL">
-              <img src={fb} alt="" className={css.link} />
+              target='_blank'
+              rel='noreferrer'
+              href='https://www.facebook.com/profile.php?id=100095737801437&mibextid=ZbWKwL'
+            >
+              <img src={fb} alt='' className={css.link} />
             </a>
             <a
               className={css.img_link}
-              target="_blank"
-              rel="noreferrer"
-              href="https://instagram.com/abhyaasiit/">
-              <img src={twitter} alt="" className={css.link} />
+              target='_blank'
+              rel='noreferrer'
+              href='https://instagram.com/abhyaasiit/'
+            >
+              <img src={twitter} alt='' className={css.link} />
             </a>
             <a
               className={css.img_link}
-              target="_blank"
-              rel="noreferrer"
-              href="https://www.linkedin.com/company/abhyaasiit/">
-              <img src={linkdin} alt="" className={css.link} />
+              target='_blank'
+              rel='noreferrer'
+              href='https://www.linkedin.com/company/abhyaasiit/'
+            >
+              <img src={linkdin} alt='' className={css.link} />
             </a>
           </div>
           <div className={css.line}></div>
@@ -57,9 +65,9 @@ const Footer = () => {
           <p className={css.left_para}>Schedule a meeting with our mentor.</p>
           <p className={css.email}>Email address*</p>
           <input
-            type="email"
+            type='email'
             className={css.input}
-            placeholder="Enter Your Email Address"
+            placeholder='Enter Your Email Address'
           />
           <button className={css.left_btn}>Subscribe</button>
         </div>
@@ -80,23 +88,14 @@ const Footer = () => {
             <p className={css.link}>Boards Special</p>
             <p className={css.link}>Brain Gym</p>
           </div>
-          {/* <div className={css.section}>
-            <h4 className={css.title}>STUDENT's TALK</h4>
-            <p className={css.link}>abhyaasiit Toppers</p>
-            <p className={css.link}>Testimonials</p>
-            <p className={css.link}>Alumni</p>
-          </div> */}
-          {/* <div className={css.section}>
-            <h4 className={css.title}>RESOURCES</h4>
-            <p className={css.link}>JEE & NEET 2023 Exam Pattern</p>
-            <p className={css.link}>JEE & NEET Top Scorers</p>
-            <p className={css.link}>GATE 2023 Exam Pattern</p>
-          </div> */}
           <div className={css.section}>
             <h4 className={css.title}>ENQUIRY</h4>
             <p className={css.link}>Blog</p>
             <p className={css.link}>FAQs</p>
             <p className={css.link}>Feedback</p>
+            <p className={css.link} onClick={GoToReturnPolicy}>
+              Our Return Policy
+            </p>
             <p className={css.link}>Contact Us</p>
           </div>
         </div>
@@ -116,12 +115,13 @@ const Footer = () => {
           Educational Group of Institutes
         </p>
         <p className={css.text}>
-          Designed and Developed by{" "}
+          Designed and Developed by{' '}
           <a
             className={css.nixLink}
-            target="_blank"
-            rel="noreferrer"
-            href="https://nixonbit.com/">
+            target='_blank'
+            rel='noreferrer'
+            href='https://nixonbit.com/'
+          >
             NixonBit
           </a>
         </p>

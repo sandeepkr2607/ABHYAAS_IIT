@@ -1,0 +1,28 @@
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 40px 20px;
+  text-align: center;
+  background-color: #fffaf0; /* Light yellow background */
+}
+
+.heading {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #ff7f2a; /* Orange color to match theme */
+  margin-bottom: 20px;
+}
+
+.paragraph {
+  font-size: 1.2rem;
+  color: #333;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  margin-top: 20px;
+  border-radius: 10px;
+}
